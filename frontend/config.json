@@ -504,5 +504,57 @@
                 "lightning": 7
             }
         }
+    ],
+    "moves": [
+        {
+            "name": "melee",
+            "type": "attack",
+            "description": "Melee attack"
+        },
+        {
+            "name": "ranged",
+            "type": "attack",
+            "description": "Ranged attack"
+        },
+        {
+            "name": "fortify",
+            "type": "defense",
+            "description": "Fortify your defenses"
+        },
+        {
+            "name": "heal",
+            "type": "defense",
+            "description": "Heal yourself"
+        },
+        {
+            "name": "nightcrawler",
+            "type": "passive",
+            "description": "You have buffs when it's dark"
+        },
+        {
+            "name": "daywalker",
+            "type": "passive",
+            "description": "You have buffs when it's light"
+        },
+        {
+            "name": "berserk",
+            "type": "passive",
+            "description": "You have buffs when you have low health"
+        },
+        {
+            "name": "berserk",
+            "type": "passive",
+            "description": "You have buffs when you have low health"
+        },
+        {
+            "name": "tank",
+            "type": "passive",
+            "description": "You have defense buffs"
+        },
+        {
+            "name": "glass_cannon",
+            "type": "passive",
+            "description": "You have attack buffs"
+        }
     ]
 }

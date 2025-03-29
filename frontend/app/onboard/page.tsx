@@ -1,21 +1,67 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Shield, Sword } from "lucide-react";
 import { useMintChar } from "@/components/useMintChar";
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
+import { gladiatorAbi, gladiatorAddress } from "../abi";
+import { PinataSDK } from "pinata-web3";
+
+const pinata = new PinataSDK({
+  pinataJwt: process.env.NEXT_PUBLIC_PINATA_JWT,
+  pinataGateway: process.env.NEXT_PUBLIC_PINATA_GATEWAY,
+});
 
 export default function GladiatorOnboarding() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("male");
   const [isMinting, setIsMinting] = useState(false);
   const [mintURI, setMintURI] = useState("");
+  const [claimed, setClaimed] = useState(false);
+  const { address } = useAccount();
+  const { writeContractAsync } = useWriteContract();
+
+  const { data, refetch: refetchClaimBool } = useReadContract({
+    abi: gladiatorAbi,
+    address: gladiatorAddress,
+    functionName: "hasClaimedNFT",
+    args: [address],
+  });
+
+  useEffect(() => {
+    console.log(
+      "Setting up refetch interval for fetching if gladiator alr claimed:"
+    );
+
+    const interval = setInterval(() => {
+      refetchClaimBool()
+        .then((result: any) => {
+          console.log("Claim check result: ", result);
+          setClaimed(result);
+        })
+        .catch((error: any) => {
+          console.error("Error during claim check: ", error);
+          setClaimed(false);
+        });
+    }, 5000);
+
+    return () => {
+      console.log("Clearing refetch interval.\n");
+      clearInterval(interval);
+    };
+  }, [refetchClaimBool]);
 
   async function handleMint() {
     console.log("Minting...");
+    if (claimed) {
+      console.error("Error: Already Claimed.");
+      return;
+    }
+    
     setIsMinting(true);
     try {
       const res = await fetch("/api/gladiator/generate", {
@@ -26,22 +72,35 @@ export default function GladiatorOnboarding() {
         body: JSON.stringify({ name, gender }),
       });
       const data = await res.json();
-      console.log("Minting response:", data);
+      console.log("Backend response:", data);
+      
+      if (!data.success) {
+        throw new Error("Failed to generate gladiator data");
+      }
 
-      if (data.ok) {
-        console.log("Minting successful!");
-        // TODO - set the tokenURI
-        // setMintURI({ ...data.mintURI });
-        const data = await useMintChar(mintURI);
-        console.log("Minting data:", data);
-        // Fix once API
-        // if (data) {
-        //   console.log("Minting completed successfully!");
-        // }
-        setIsMinting(false);
+      const pinataRes = await pinata.upload.json(data);
+      const ipfsUrl = `https://ipfs.io/ipfs/${pinataRes.IpfsHash}`;
+      console.log("File uploaded to IPFS:", ipfsUrl);
+
+      setMintURI(data);
+      const tx = await writeContractAsync({
+        abi: gladiatorAbi,
+        address: gladiatorAddress,
+        functionName: "mintGladiator",
+        args: [ipfsUrl],
+      });
+      console.log("Minting transaction:", tx);
+      
+      if (tx) {
+        console.log("Minting completed successfully!");
+        // The transaction hash is returned, we can use it to track the transaction
+        console.log("Transaction hash:", tx);
       }
     } catch (error) {
       console.error("Error minting gladiator:", error);
+      // You might want to show an error message to the user here
+    } finally {
+      setIsMinting(false);
     }
   }
 
