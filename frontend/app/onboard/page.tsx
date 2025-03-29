@@ -20,12 +20,11 @@ export default function GladiatorOnboarding() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("male");
   const [isMinting, setIsMinting] = useState(false);
-  const [mintURI, setMintURI] = useState("");
   const [claimed, setClaimed] = useState(false);
   const { address } = useAccount();
   const { writeContractAsync } = useWriteContract();
 
-  const { data, refetch: refetchClaimBool } = useReadContract({
+  const { refetch: refetchClaimBool } = useReadContract({
     abi: gladiatorAbi,
     address: gladiatorAddress,
     functionName: "hasClaimedNFT",
@@ -60,10 +59,10 @@ export default function GladiatorOnboarding() {
 
   async function handleMint() {
     console.log("Minting...");
-    if (claimed) {
-      console.error("Error: Already Claimed.");
-      return;
-    }
+    // if (claimed) {
+    //   console.error("Error: Already Claimed.");
+    //   return;
+    // }
 
     setIsMinting(true);
     try {
@@ -84,8 +83,6 @@ export default function GladiatorOnboarding() {
       const pinataRes = await pinata.upload.json(data);
       const ipfsUrl = `https://ipfs.io/ipfs/${pinataRes.IpfsHash}`;
       console.log("File uploaded to IPFS:", ipfsUrl);
-
-      setMintURI(data);
       const tx = await writeContractAsync({
         abi: gladiatorAbi,
         address: gladiatorAddress,
