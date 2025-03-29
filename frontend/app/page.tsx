@@ -184,14 +184,11 @@ export default function Home() {
             </p>
 
             <div className="flex justify-center gap-4 mt-8">
-              <Button
-                variant="outline"
-                className="border border-stone-700 text-stone-300 rounded-md relative group overflow-hidden bg-transparent hover:bg-transparent"
-              >
+              <Button className="border border-stone-700 text-white rounded-md relative group overflow-hidden bg-transparent hover:bg-transparent">
                 <span className="relative z-10">Explore Mythology</span>
                 <span className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-10 transition-all duration-300"></span>
-                <span className="absolute inset-0 border border-stone-500 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"></span>
-                <span className="absolute -inset-1 bg-gradient-to-r from-stone-600 to-stone-400 rounded-md opacity-0 group-hover:opacity-20 blur-md transition-all duration-500"></span>
+                <span className="absolute inset-0 border border-purple-500 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"></span>
+                <span className="absolute -inset-1 bg-gradient-to-r from-purple-700 to-purple-400 rounded-md opacity-0 group-hover:opacity-20 blur-md transition-all duration-500"></span>
               </Button>
               <Button className="bg-transparent hover:bg-transparent text-stone-100 rounded-md relative group overflow-hidden border border-stone-700">
                 <span className="relative z-10">Historical Figures</span>
