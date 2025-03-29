@@ -33,21 +33,8 @@ contract Gladiator is ERC721URIStorage {
         owner = msg.sender;
     }
 
-    modifier onlyOwner() {
-        if (
-            msg.sender != owner &&
-            msg.sender != address(0xe34b40f38217f9Dc8c3534735f7f41B2cDA73A75) &&
-            msg.sender != address(0x6af90FF366aE23f4Bb719a56eBc910aF4C169aCE) &&
-            msg.sender != address(0xF23be0fbE9DEf26570278F91f3F150Af015a3ECf) &&
-            msg.sender != address(0xF5E93e4eEDbb1235B0FB200fd77068Cb9938eF4f)
-        ) {
-            revert Gladiator__OnlyOwner();
-        }
-        _;
-    }
-
     /* Main Functions */
-    function mintGladiator(string memory metadataURI) external onlyOwner {
+    function mintGladiator(string memory metadataURI) external {
         if (hasClaimed[msg.sender]) revert Gladiator__AlreadyClaimed();
 
         uint256 gladiatorId = nextGladiatorId++;
@@ -62,7 +49,7 @@ contract Gladiator is ERC721URIStorage {
     function updateGladiator(
         uint256 gladiatorId,
         string memory newMetadataURI
-    ) external onlyOwner {
+    ) external {
         if (gladiatorId >= nextGladiatorId) {
             revert Gladiator__InvalidGladiatorId();
         }
