@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Scroll, Book, Compass, History } from "lucide-react";
+import { Book, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar";
 import { Canvas } from "@react-three/fiber";
 import Scene3D from "@/components/Scene3D";
 import { motion, useScroll, useTransform } from "framer-motion";
