@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.2.4",
     "framer-motion": "^12.6.2",
     "next": "15.1.0",
     "react": "^19.0.0",
