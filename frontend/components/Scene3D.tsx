@@ -7,7 +7,7 @@ import * as THREE from "three";
 export default function Scene3D() {
   const modelRef = useRef<THREE.Group>(null);
   const [scrollY, setScrollY] = useState(0);
-  const gltf = useLoader(GLTFLoader, "/model2.glb");
+  const gltf = useLoader(GLTFLoader, "/modelz.glb");
 
   // Track scroll position
   useEffect(() => {
@@ -43,13 +43,13 @@ export default function Scene3D() {
       );
 
       // Scale up as we scroll down
-      const targetScale = 1 + scrollY * 3; // Scale from 1 to 4
+      const targetScale = 0.7 + scrollY * 2; // Scale from 1 to 4
       modelRef.current.scale.setScalar(
         THREE.MathUtils.lerp(modelRef.current.scale.x, targetScale, 0.1)
       );
 
       // Move downward as we scroll
-      const targetY = -2 - scrollY * 10; // Move from -2 to -12
+      const targetY = -2 - scrollY * 6; // Move from -2 to -12
       modelRef.current.position.y = THREE.MathUtils.lerp(
         modelRef.current.position.y,
         targetY,
@@ -68,7 +68,7 @@ export default function Scene3D() {
         <group ref={modelRef}>
           <primitive
             object={gltf.scene}
-            scale={5}
+            scale={2}
             position={[0, 0, 0]}
             material={darkMaterial}
           />
