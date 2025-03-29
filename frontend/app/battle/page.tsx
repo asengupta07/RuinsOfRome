@@ -615,8 +615,8 @@ export default function BattlePage() {
               isHumanAttack ? "animate-slash-right" : "animate-slash"
             }`}
           >
-            <div className="w-full h-full bg-red-500 rounded-full opacity-50 animate-ping"></div>
-            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-yellow-400 to-red-500 rotate-45 blur-sm animate-pulse"></div>
+            <div className="w-full h-full bg-emerald-500 rounded-full opacity-50 animate-ping"></div>
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rotate-45 blur-sm animate-pulse"></div>
           </div>
         );
       case "stab":
@@ -626,11 +626,11 @@ export default function BattlePage() {
               isHumanAttack ? "animate-stab-right" : "animate-stab"
             }`}
           >
-            <div className="w-full h-full bg-blue-500 transform skew-x-30 opacity-70"></div>
+            <div className="w-full h-full bg-emerald-500 transform skew-x-30 opacity-70"></div>
             <div
               className={`absolute w-4 h-4 bg-white ${
                 isHumanAttack ? "right-0" : "left-0"
-              } top-1/2 -translate-y-1/2 rounded-full shadow-lg shadow-blue-500`}
+              } top-1/2 -translate-y-1/2 rounded-full shadow-lg shadow-emerald-500`}
             ></div>
           </div>
         );
@@ -641,7 +641,7 @@ export default function BattlePage() {
               isHumanAttack ? "animate-punch-right" : "animate-punch"
             }`}
           >
-            <div className="w-full h-full bg-orange-600 rounded-full relative flex items-center justify-center">
+            <div className="w-full h-full bg-emerald-600 rounded-full relative flex items-center justify-center">
               <span className="text-white font-bold text-xl">POW!</span>
             </div>
           </div>
@@ -653,7 +653,7 @@ export default function BattlePage() {
               isHumanAttack ? "animate-magic-right" : "animate-magic"
             }`}
           >
-            <div className="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-blue-400 opacity-70 animate-pulse"></div>
+            <div className="w-full h-full rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400 opacity-70 animate-pulse"></div>
             <div className="absolute inset-0 w-full h-full flex items-center justify-center">
               <span className="text-white font-bold text-xl animate-bounce">
                 ✨
@@ -694,10 +694,10 @@ export default function BattlePage() {
         style={{
           background: `
             linear-gradient(to bottom, 
-              rgba(0, 0, 0, 0.5) 0%, 
-              rgba(0, 0, 0, 0.5) 60%, 
+              rgba(0, 0, 0, 0.2) 0%, 
+              rgba(0, 0, 0, 0.2) 60%, 
               rgba(0, 0, 0, 1) 100%
-            ), url('/colloseum.jpg')
+            ), url('/emeraldsky.jpg')
           `,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -758,12 +758,12 @@ export default function BattlePage() {
                   renderAttackAnimation(attackAnimationType, true)}
 
                 <Card
-                  className={`w-full bg-gradient-to-b from-slate-700/80 to-slate-900/80 border-2 border-red-600 shadow-lg shadow-red-900/20 ${
+                  className={`w-full bg-gradient-to-b from-slate-700/80 to-slate-900/80 border-2 border-emerald-600 shadow-lg shadow-emerald-900/20 ${
                     targetShake === "human" ? "animate-shake" : ""
                   }`}
                 >
                   {targetShake === "human" && (
-                    <div className="absolute inset-0 bg-red-500/30 animate-flash z-10"></div>
+                    <div className="absolute inset-0 bg-emerald-500/30 animate-flash z-10"></div>
                   )}
                   <CardHeader className="text-center border-b border-slate-600 pb-2 pt-3">
                     <h3 className="text-xl font-bold tracking-wider text-white">
@@ -786,7 +786,7 @@ export default function BattlePage() {
                       {/* Stats */}
                       <div className="flex flex-col justify-center space-y-3">
                         <div className="flex items-center gap-2">
-                          <Swords className="h-5 w-5 text-red-400" />
+                          <Swords className="h-5 w-5 text-emerald-400" />
                           <span className="font-semibold text-white">
                             Attack
                           </span>
@@ -795,26 +795,29 @@ export default function BattlePage() {
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Shield className="h-5 w-5 text-blue-400" />
+                          <Shield className="h-5 w-5 text-emerald-400" />
                           <span className="font-semibold text-white">
                             Defense
                           </span>
-                          <span className="ml-auto text-white">
-                            {humanGladiator.defense}
-                            {humanDefenseBonus > 0 && (
-                              <span className="text-green-400 ml-1">
-                                +{humanDefenseBonus}
+                          <span className="ml-auto">
+                            {humanDefenseBonus > 0 ? (
+                              <span className="text-emerald-400">
+                                {humanGladiator.defense + humanDefenseBonus}
+                              </span>
+                            ) : (
+                              <span className="text-white">
+                                {humanGladiator.defense}
                               </span>
                             )}
                             {defenseBonusTurns > 0 && humanDefenseBonus > 0 && (
-                              <span className="text-xs ml-1 text-yellow-300">
+                              <span className="text-xs ml-1 text-emerald-300">
                                 ({defenseBonusTurns})
                               </span>
                             )}
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Footprints className="h-5 w-5 text-yellow-400" />
+                          <Footprints className="h-5 w-5 text-emerald-400" />
                           <span className="font-semibold text-white">
                             Speed
                           </span>
@@ -865,7 +868,7 @@ export default function BattlePage() {
                             className={`w-12 h-12 rounded-full bg-slate-800 border-2 ${
                               !isGladiatorTurn(humanGladiator.name)
                                 ? "border-gray-500 opacity-30 cursor-not-allowed"
-                                : "border-red-500 hover:border-red-300 hover:animate-pulse cursor-pointer"
+                                : "border-emerald-500 hover:border-emerald-300 hover:animate-pulse cursor-pointer"
                             } flex items-center justify-center transition-all duration-300`}
                           >
                             <Image
@@ -896,14 +899,14 @@ export default function BattlePage() {
                   <CardFooter className="bg-slate-900/80 py-2 flex justify-center">
                     <div className="w-full px-2">
                       <div className="flex items-center gap-2 mb-1">
-                        <Plus className="h-4 w-4 text-green-400" />
+                        <Plus className="h-4 w-4 text-emerald-400" />
                         <span className="font-semibold text-xs text-white">
                           HP: {displayedHumanHealth}/{humanGladiator.health}
                         </span>
                       </div>
                       <div className="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
                         <div
-                          className="bg-green-500 h-2.5 rounded-full transition-all duration-300 ease-out"
+                          className="bg-emerald-500 h-2.5 rounded-full transition-all duration-300 ease-out"
                           style={{
                             width: `${
                               (displayedHumanHealth / humanGladiator.health) *
@@ -921,7 +924,7 @@ export default function BattlePage() {
             {/* Center - VS Symbol */}
             <div className="flex flex-col items-center justify-center h-full w-2/12 relative">
               <div className="relative z-10">
-                <div className="text-6xl font-extrabold text-red-600 bg-slate-900/60 p-6 rounded-full border-4 border-red-700 shadow-lg shadow-red-900/30 transform rotate-0 hover:rotate-12 transition-all">
+                <div className="text-6xl font-extrabold text-emerald-600 bg-slate-900/60 p-6 rounded-full border-4 border-emerald-700 shadow-lg shadow-emerald-900/30 transform rotate-0 hover:rotate-12 transition-all">
                   VS
                 </div>
               </div>
@@ -971,12 +974,12 @@ export default function BattlePage() {
                   renderAttackAnimation(attackAnimationType, false)}
 
                 <Card
-                  className={`w-full bg-gradient-to-b from-slate-700/80 to-slate-900/80 border-2 border-blue-600 shadow-lg shadow-blue-900/20 ${
+                  className={`w-full bg-gradient-to-b from-slate-700/80 to-slate-900/80 border-2 border-emerald-600 shadow-lg shadow-emerald-900/20 ${
                     targetShake === "ai" ? "animate-shake" : ""
                   }`}
                 >
                   {targetShake === "ai" && (
-                    <div className="absolute inset-0 bg-red-500/30 animate-flash z-10"></div>
+                    <div className="absolute inset-0 bg-emerald-500/30 animate-flash z-10"></div>
                   )}
                   <CardHeader className="text-center border-b border-slate-600 pb-2 pt-3">
                     <h3 className="text-xl font-bold tracking-wider text-white">
@@ -999,7 +1002,7 @@ export default function BattlePage() {
                       {/* Stats */}
                       <div className="flex flex-col justify-center space-y-3">
                         <div className="flex items-center gap-2">
-                          <Swords className="h-5 w-5 text-red-400" />
+                          <Swords className="h-5 w-5 text-emerald-400" />
                           <span className="font-semibold text-white">
                             Attack
                           </span>
@@ -1008,26 +1011,29 @@ export default function BattlePage() {
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Shield className="h-5 w-5 text-blue-400" />
+                          <Shield className="h-5 w-5 text-emerald-400" />
                           <span className="font-semibold text-white">
                             Defense
                           </span>
-                          <span className="ml-auto text-white">
-                            {aiGladiator.defense}
-                            {aiDefenseBonus > 0 && (
-                              <span className="text-green-400 ml-1">
-                                +{aiDefenseBonus}
+                          <span className="ml-auto">
+                            {aiDefenseBonus > 0 ? (
+                              <span className="text-emerald-400">
+                                {aiGladiator.defense + aiDefenseBonus}
+                              </span>
+                            ) : (
+                              <span className="text-white">
+                                {aiGladiator.defense}
                               </span>
                             )}
                             {defenseBonusTurns > 0 && aiDefenseBonus > 0 && (
-                              <span className="text-xs ml-1 text-yellow-300">
+                              <span className="text-xs ml-1 text-emerald-300">
                                 ({defenseBonusTurns})
                               </span>
                             )}
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Footprints className="h-5 w-5 text-yellow-400" />
+                          <Footprints className="h-5 w-5 text-emerald-400" />
                           <span className="font-semibold text-white">
                             Speed
                           </span>
@@ -1078,7 +1084,7 @@ export default function BattlePage() {
                             className={`w-12 h-12 rounded-full bg-slate-800 border-2 ${
                               !isGladiatorTurn(aiGladiator.name)
                                 ? "border-gray-500 opacity-30 cursor-not-allowed"
-                                : "border-blue-500 hover:border-blue-300 hover:animate-pulse cursor-pointer"
+                                : "border-emerald-500 hover:border-emerald-300 hover:animate-pulse cursor-pointer"
                             } flex items-center justify-center transition-all duration-300`}
                           >
                             <Image
@@ -1109,14 +1115,14 @@ export default function BattlePage() {
                   <CardFooter className="bg-slate-900/80 py-2 flex justify-center">
                     <div className="w-full px-2">
                       <div className="flex items-center gap-2 mb-1">
-                        <Plus className="h-4 w-4 text-green-400" />
+                        <Plus className="h-4 w-4 text-emerald-400" />
                         <span className="font-semibold text-xs text-white">
                           HP: {displayedAIHealth}/{aiGladiator.health}
                         </span>
                       </div>
                       <div className="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
                         <div
-                          className="bg-green-500 h-2.5 rounded-full transition-all duration-300 ease-out"
+                          className="bg-emerald-500 h-2.5 rounded-full transition-all duration-300 ease-out"
                           style={{
                             width: `${
                               (displayedAIHealth / aiGladiator.health) * 100
@@ -1154,11 +1160,11 @@ export default function BattlePage() {
         >
           {/* Victory Modal Content */}
           {showVictoryModal && (
-            <div className="animate-in zoom-in-95 duration-300 ease-out bg-gradient-to-b from-slate-800 to-slate-900 border-4 border-yellow-500 rounded-lg shadow-2xl max-w-md w-full overflow-hidden">
+            <div className="animate-in zoom-in-95 duration-300 ease-out bg-gradient-to-b from-slate-800 to-slate-900 border-4 border-emerald-500 rounded-lg shadow-2xl max-w-md w-full overflow-hidden">
               {/* Modal header */}
-              <div className="bg-yellow-600/30 p-6">
+              <div className="bg-emerald-600/30 p-6">
                 <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-3xl font-bold text-yellow-400 flex items-center gap-3">
+                  <h2 className="text-3xl font-bold text-emerald-400 flex items-center gap-3">
                     <Trophy className="h-7 w-7" />
                     Victory!
                   </h2>
@@ -1177,7 +1183,7 @@ export default function BattlePage() {
               {/* Modal body */}
               <div className="p-6">
                 <div className="flex gap-4 items-center mb-8">
-                  <div className="flex-shrink-0 w-20 h-20 bg-slate-700 rounded-full border-4 border-yellow-600 p-1 overflow-hidden">
+                  <div className="flex-shrink-0 w-20 h-20 bg-slate-700 rounded-full border-4 border-emerald-600 p-1 overflow-hidden">
                     <Image
                       src="/marcus.png"
                       alt="Human Gladiator"
@@ -1191,7 +1197,7 @@ export default function BattlePage() {
                       <h3 className="text-lg font-semibold text-white">
                         {humanGladiator.name}
                       </h3>
-                      <span className="text-sm text-yellow-400">
+                      <span className="text-sm text-emerald-400">
                         VICTORIOUS
                       </span>
                     </div>
@@ -1203,11 +1209,11 @@ export default function BattlePage() {
                     <div className="relative h-2 bg-slate-700 rounded-full overflow-hidden">
                       <div className="absolute inset-0 bg-slate-700"></div>
                       <div
-                        className="absolute h-full bg-yellow-500 transition-all duration-1000 ease-out"
+                        className="absolute h-full bg-emerald-500 transition-all duration-1000 ease-out"
                         style={{ width: `${expProgress}%` }}
                       ></div>
                       <div
-                        className={`absolute h-full bg-green-500 transition-all duration-1000 ease-out ${
+                        className={`absolute h-full bg-emerald-300 transition-all duration-1000 ease-out ${
                           showExpAnimation ? "opacity-100" : "opacity-0"
                         }`}
                         style={{
@@ -1223,7 +1229,7 @@ export default function BattlePage() {
                     <div className="flex justify-between text-xs mt-1">
                       <span>Level {playerLevel}</span>
                       {levelUp && showExpAnimation && (
-                        <span className="text-green-400 animate-pulse">
+                        <span className="text-emerald-400 animate-pulse">
                           ↑ Level {newLevel}
                         </span>
                       )}
@@ -1236,7 +1242,7 @@ export default function BattlePage() {
 
                 {/* Rewards section */}
                 <div className="bg-slate-700/50 rounded-lg p-5 mb-6">
-                  <h3 className="text-lg font-semibold text-center mb-4 text-yellow-400">
+                  <h3 className="text-lg font-semibold text-center mb-4 text-emerald-400">
                     Rewards
                   </h3>
 
@@ -1250,11 +1256,11 @@ export default function BattlePage() {
                         {showExpAnimation && (
                           <>
                             <span className="text-white mx-1">+</span>
-                            <span className="text-lg font-bold text-green-400 animate-in slide-in-from-bottom-3 fade-in duration-500">
+                            <span className="text-lg font-bold text-emerald-400 animate-in slide-in-from-bottom-3 fade-in duration-500">
                               {earnedExp}
                             </span>
                             <span className="text-white mx-1">=</span>
-                            <span className="text-lg font-bold text-yellow-400 animate-in slide-in-from-right-3 fade-in duration-700 delay-300">
+                            <span className="text-lg font-bold text-emerald-400 animate-in slide-in-from-right-3 fade-in duration-700 delay-300">
                               {newTotalExp}
                             </span>
                           </>
@@ -1263,8 +1269,8 @@ export default function BattlePage() {
                     </div>
 
                     {levelUp && showExpAnimation && (
-                      <div className="bg-yellow-500/20 p-3 rounded-md text-center animate-in slide-in-from-bottom-5 fade-in duration-700 delay-500">
-                        <span className="text-lg font-bold text-yellow-400">
+                      <div className="bg-emerald-500/20 p-3 rounded-md text-center animate-in slide-in-from-bottom-5 fade-in duration-700 delay-500">
+                        <span className="text-lg font-bold text-emerald-400">
                           LEVEL UP!
                         </span>
                         <div className="text-sm text-slate-300">
@@ -1275,7 +1281,7 @@ export default function BattlePage() {
 
                     <div className="flex justify-between items-center">
                       <span className="text-slate-300">Glory Points:</span>
-                      <span className="text-lg font-bold text-blue-400">
+                      <span className="text-lg font-bold text-emerald-400">
                         +25
                       </span>
                     </div>
@@ -1283,7 +1289,7 @@ export default function BattlePage() {
                 </div>
 
                 <Button
-                  className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3"
                   onClick={() => window.location.reload()}
                 >
                   Fight Again
@@ -1294,11 +1300,11 @@ export default function BattlePage() {
 
           {/* Defeat Modal Content */}
           {showDefeatModal && (
-            <div className="animate-in zoom-in-95 duration-300 ease-out bg-gradient-to-b from-slate-800 to-slate-900 border-4 border-red-600 rounded-lg shadow-2xl max-w-md w-full overflow-hidden">
+            <div className="animate-in zoom-in-95 duration-300 ease-out bg-gradient-to-b from-slate-800 to-slate-900 border-4 border-emerald-600 rounded-lg shadow-2xl max-w-md w-full overflow-hidden">
               {/* Modal header */}
-              <div className="bg-red-900/30 p-6">
+              <div className="bg-emerald-900/30 p-6">
                 <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-3xl font-bold text-red-400 flex items-center gap-3">
+                  <h2 className="text-3xl font-bold text-emerald-400 flex items-center gap-3">
                     <Shield className="h-7 w-7" />
                     Defeat
                   </h2>
@@ -1317,7 +1323,7 @@ export default function BattlePage() {
               {/* Modal body */}
               <div className="p-6">
                 <div className="flex gap-4 items-center mb-8">
-                  <div className="relative flex-shrink-0 w-20 h-20 bg-slate-700 rounded-full border-4 border-red-600 p-1 overflow-hidden">
+                  <div className="relative flex-shrink-0 w-20 h-20 bg-slate-700 rounded-full border-4 border-emerald-600 p-1 overflow-hidden">
                     <Image
                       src="/marcus.png"
                       alt="Human Gladiator"
@@ -1326,8 +1332,8 @@ export default function BattlePage() {
                       className="object-cover rounded-full opacity-50 grayscale"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-2 bg-red-600 rotate-45 rounded-full"></div>
-                      <div className="w-12 h-2 bg-red-600 -rotate-45 rounded-full"></div>
+                      <div className="w-12 h-2 bg-emerald-600 rotate-45 rounded-full"></div>
+                      <div className="w-12 h-2 bg-emerald-600 -rotate-45 rounded-full"></div>
                     </div>
                   </div>
                   <div className="flex-1">
@@ -1335,7 +1341,7 @@ export default function BattlePage() {
                       <h3 className="text-lg font-semibold text-white">
                         {humanGladiator.name}
                       </h3>
-                      <span className="text-sm text-red-400">DEFEATED</span>
+                      <span className="text-sm text-emerald-400">DEFEATED</span>
                     </div>
                     <p className="text-sm text-slate-300 mb-2">
                       Slain by {aiGladiator.name} with {aiHealth} HP remaining
@@ -1344,7 +1350,7 @@ export default function BattlePage() {
                     <div className="relative h-2 bg-slate-700 rounded-full overflow-hidden">
                       <div className="absolute inset-0 bg-slate-700"></div>
                       <div
-                        className="absolute h-full bg-red-500 transition-all duration-500 ease-out"
+                        className="absolute h-full bg-emerald-500 transition-all duration-500 ease-out"
                         style={{ width: `${expProgress}%` }}
                       ></div>
                     </div>
@@ -1359,7 +1365,7 @@ export default function BattlePage() {
 
                 {/* Message section */}
                 <div className="bg-slate-700/50 rounded-lg p-5 mb-6">
-                  <h3 className="text-lg font-semibold text-center mb-4 text-red-400">
+                  <h3 className="text-lg font-semibold text-center mb-4 text-emerald-400">
                     The Emperor is Disappointed
                   </h3>
 
@@ -1386,7 +1392,7 @@ export default function BattlePage() {
                 </div>
 
                 <Button
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3"
                   onClick={() => window.location.reload()}
                 >
                   Try Again
