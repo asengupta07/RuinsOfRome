@@ -2,7 +2,13 @@ import { ALL, parseJSON } from 'partial-json';
 
 export function parseUntilJson(jsonstr: string): Record<string, any> {
   let jsonRes: Record<string, any> | string = jsonstr;
-
+  jsonRes = jsonRes.replaceAll('\n', '')
+  if (jsonRes.startsWith('```json')) {
+    jsonRes = jsonRes.replace('```json', '');
+  }
+  if (jsonRes.startsWith('`') || jsonRes.endsWith('`')) {
+    jsonRes = jsonRes.replaceAll('```', '');
+  }
   try {
     const properlyParsedJson = JSON.parse(jsonRes);
     console.log(
