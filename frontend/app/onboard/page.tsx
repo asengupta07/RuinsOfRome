@@ -61,7 +61,7 @@ export default function GladiatorOnboarding() {
       console.error("Error: Already Claimed.");
       return;
     }
-    
+
     setIsMinting(true);
     try {
       const res = await fetch("/api/gladiator/generate", {
@@ -73,7 +73,7 @@ export default function GladiatorOnboarding() {
       });
       const data = await res.json();
       console.log("Backend response:", data);
-      
+
       if (!data.success) {
         throw new Error("Failed to generate gladiator data");
       }
@@ -90,7 +90,7 @@ export default function GladiatorOnboarding() {
         args: [ipfsUrl],
       });
       console.log("Minting transaction:", tx);
-      
+
       if (tx) {
         console.log("Minting completed successfully!");
         // The transaction hash is returned, we can use it to track the transaction
