@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import { Canvas } from "@react-three/fiber";
 import Scene3D from "@/components/Scene3D";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 
 export default function Home() {
   const containerRef = useRef(null);
