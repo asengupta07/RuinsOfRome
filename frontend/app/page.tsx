@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Scroll, Book, Compass, History } from "lucide-react";
+import { Book, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import { Canvas } from "@react-three/fiber";
 import Scene3D from "@/components/Scene3D";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -30,21 +31,30 @@ export default function Home() {
     offset: ["start start", "end end"],
   });
 
-  // Opacity transforms for each section
+  // Opacity transforms for each section - updated for better fade behavior
   const opacitySection1 = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.3],
-    [1, 1, 0]
+    [0, 0.3],
+    [1, 0] // First section starts fully visible and fades out
   );
+
   const opacitySection2 = useTransform(
     scrollYProgress,
-    [0.2, 0.3, 0.5, 0.6],
-    [0, 1, 1, 0]
+    [0.2, 0.35, 0.55, 0.7],
+    [0, 1, 1, 0] // Second section fades in and out
   );
+
   const opacitySection3 = useTransform(
     scrollYProgress,
-    [0.5, 0.6, 0.8, 0.9],
-    [0, 1, 1, 0]
+    [0.5, 0.65, 0.9],
+    [0, 1, 1] // Third section fades in and stays visible
+  );
+
+  // Add opacity transform for footer
+  const opacityFooter = useTransform(
+    scrollYProgress,
+    [0.8, 0.9],
+    [0, 1] // Footer fades in and stays visible
   );
 
   return (
@@ -97,8 +107,11 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             >
-              <Button className="bg-stone-800 hover:bg-stone-700 text-stone-100 px-8 py-6 rounded-none text-lg font-serif">
-                Begin the Journey
+              <Button className="bg-transparent hover:bg-transparent text-stone-100 px-8 py-6 text-lg font-serif relative group overflow-hidden rounded-md border border-stone-700">
+                <span className="relative z-10">Begin the Journey</span>
+                <span className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-10 transition-all duration-300"></span>
+                <span className="absolute inset-0 border border-amber-500 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"></span>
+                <span className="absolute -inset-1 bg-gradient-to-r from-amber-700 to-amber-500 rounded-md opacity-0 group-hover:opacity-20 blur-md transition-all duration-500"></span>
               </Button>
             </motion.div>
           </div>
@@ -147,7 +160,7 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* The Lore Continues Section */}
+        {/* The Lore Continues Section - Reverted to match other sections */}
         <motion.section
           style={{ opacity: opacitySection3 }}
           className="h-screen flex items-center justify-center px-4 md:px-8 lg:px-16"
@@ -171,18 +184,45 @@ export default function Home() {
             </p>
 
             <div className="flex justify-center gap-4 mt-8">
-              <Button
-                variant="outline"
-                className="border-stone-700 text-stone-300 rounded-none"
-              >
-                Explore Mythology
+              <Button className="border border-stone-700 text-white rounded-md relative group overflow-hidden bg-transparent hover:bg-transparent">
+                <span className="relative z-10">Explore Mythology</span>
+                <span className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-10 transition-all duration-300"></span>
+                <span className="absolute inset-0 border border-purple-500 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"></span>
+                <span className="absolute -inset-1 bg-gradient-to-r from-purple-700 to-purple-400 rounded-md opacity-0 group-hover:opacity-20 blur-md transition-all duration-500"></span>
               </Button>
-              <Button className="bg-stone-800 hover:bg-stone-700 text-stone-100 rounded-none">
-                Historical Figures
+              <Button className="bg-transparent hover:bg-transparent text-stone-100 rounded-md relative group overflow-hidden border border-stone-700">
+                <span className="relative z-10">Historical Figures</span>
+                <span className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-10 transition-all duration-300"></span>
+                <span className="absolute inset-0 border border-emerald-500 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"></span>
+                <span className="absolute -inset-1 bg-gradient-to-r from-emerald-700 to-emerald-500 rounded-md opacity-0 group-hover:opacity-20 blur-md transition-all duration-500"></span>
               </Button>
             </div>
           </div>
         </motion.section>
+
+        {/* Footer Section */}
+        <motion.footer
+          style={{ opacity: opacityFooter }}
+          className="absolute bottom-0 left-0 right-0 py-8 px-4 md:px-8 lg:px-16 border-t border-stone-800/50"
+        >
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <h3 className="text-2xl font-serif font-bold text-stone-200">
+                Ruins of Rome
+              </h3>
+              <p className="text-sm text-stone-400 mt-1">
+                Journey through ancient history
+              </p>
+            </div>
+
+            <div className="text-sm text-stone-500">
+              <p>
+                © {new Date().getFullYear()} Ruins of Rome. All rights reserved.
+              </p>
+              <p className="mt-1">A historical exploration experience</p>
+            </div>
+          </div>
+        </motion.footer>
       </div>
     </div>
   );

@@ -23,14 +23,14 @@ export default function Scene3D() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Create a dark material
+  // Create a lighter material
   const darkMaterial = new THREE.MeshStandardMaterial({
-    color: "#000000",
-    metalness: 0.8,
-    roughness: 1,
-    envMapIntensity: 1.5,
-    emissive: "#000000",
-    emissiveIntensity: 0,
+    color: "#222222", // Lighter color instead of pure black
+    metalness: 0.6, // Reduced metalness
+    roughness: 0.8, // Adjusted roughness
+    envMapIntensity: 2.0, // Increased environment map intensity
+    emissive: "#111111", // Slight emissive glow
+    emissiveIntensity: 0.1, // Low emissive intensity
   });
 
   useFrame((state, delta) => {
@@ -74,26 +74,30 @@ export default function Scene3D() {
           />
         </group>
       </Float>
-
-      {/* Dark lighting setup */}
-      <ambientLight intensity={0.1} />
+      {/* Improved lighting setup */}
+      <ambientLight intensity={0.6} /> {/* Increased ambient light */}
       <spotLight
         position={[10, 10, 10]}
         angle={0.3}
         penumbra={1}
-        intensity={0.5}
+        intensity={0.8}
         castShadow
       />
-      <pointLight position={[-10, -10, -10]} color="#000000" intensity={0.3} />
-      <pointLight position={[10, -10, 10]} color="#000000" intensity={0.3} />
-
+      <pointLight position={[-10, -10, -10]} color="#444444" intensity={0.5} />{" "}
+      {/* Lighter color */}
+      <pointLight
+        position={[10, -10, 10]}
+        color="#444444"
+        intensity={0.5}
+      />{" "}
+      {/* Lighter color */}
       {/* Camera animation */}
       <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={45}>
         <spotLight
           position={[0, 0, 2]}
           angle={0.5}
           penumbra={0.5}
-          intensity={0.5}
+          intensity={0.8}
           castShadow
         />
       </PerspectiveCamera>
