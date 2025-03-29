@@ -39,7 +39,7 @@ export default function BattlePage() {
 
       {/* Main Battle Area */}
       <main className="container mx-auto py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-16 items-center">
           {/* Human Character Card */}
           <div className="flex flex-col items-center mt-20">
             <Card className="w-full max-w-md bg-gradient-to-b from-slate-700 to-slate-800 border-2 border-red-600 shadow-lg shadow-red-900/20">

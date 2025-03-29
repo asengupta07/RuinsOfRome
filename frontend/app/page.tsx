@@ -86,9 +86,9 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight"
             >
-              The History of
-              <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-stone-200 via-stone-100 to-stone-300">
-                Sculpture
+              Gladiators Rise,
+              <span className="block mt-4 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-stone-200 via-stone-100 to-stone-300">
+                Legends Are Born
               </span>
             </motion.h1>
 
@@ -96,10 +96,10 @@ export default function Home() {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-xl md:text-2xl text-stone-300 max-w-3xl mx-auto mb-10 leading-relaxed font-serif"
+              className="text-xl md:text-2xl text-stone-300 max-w-3xl mx-auto mb-10 mt-2 leading-relaxed font-serif"
             >
-              Journey through time exploring the magnificent artworks that
-              shaped human civilization
+              Unleash gladiators, earn divine blessings, and conquer the arena
+              in a battle of destiny
             </motion.p>
 
             <motion.div
@@ -107,12 +107,14 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             >
-              <Button className="bg-transparent hover:bg-transparent text-stone-100 px-8 py-6 text-lg font-serif relative group overflow-hidden rounded-md border border-stone-700">
-                <span className="relative z-10">Begin the Journey</span>
-                <span className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-10 transition-all duration-300"></span>
-                <span className="absolute inset-0 border border-amber-500 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"></span>
-                <span className="absolute -inset-1 bg-gradient-to-r from-amber-700 to-amber-500 rounded-md opacity-0 group-hover:opacity-20 blur-md transition-all duration-500"></span>
-              </Button>
+              <Link href="/battle">
+                <Button className="bg-transparent hover:bg-transparent text-stone-100 px-8 py-6 text-lg font-serif relative group overflow-hidden rounded-md border border-stone-700">
+                  <span className="relative z-10">Begin the Journey</span>
+                  <span className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-10 transition-all duration-300"></span>
+                  <span className="absolute inset-0 border border-amber-500 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"></span>
+                  <span className="absolute -inset-1 bg-gradient-to-r from-amber-700 to-amber-500 rounded-md opacity-0 group-hover:opacity-20 blur-md transition-all duration-500"></span>
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </motion.section>
