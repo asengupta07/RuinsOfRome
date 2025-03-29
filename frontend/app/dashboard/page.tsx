@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useAccount, useReadContract } from "wagmi"
 import { gladiatorAbi, gladiatorAddress } from "../abi"
+import Navbar from "@/components/Navbar"
 
 
 export default function Home() {
@@ -44,15 +45,16 @@ export default function Home() {
   }, [address, gladiatorData]);
   return (
     <div className="relative min-h-screen bg-[#2a2c31] overflow-hidden">
+      <Navbar />
       {/* Background smoke effect */}
       <div className="absolute inset-0 bg-black">
         <div className="absolute inset-0 opacity-30 bg-[url('/fog3.png')] bg-cover"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="relative z-10 pt-10 flex flex-col min-h-screen">
         {/* Header */}
         <header className="container mx-auto px-6 py-6 flex justify-between items-center">
-          <div className="w-16 h-16">
+          {/* <div className="w-16 h-16">
             <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
               <path
                 d="M50,0 C77.6142,0 100,22.3858 100,50 C100,77.6142 77.6142,100 50,100 C22.3858,100 0,77.6142 0,50 C0,22.3858 22.3858,0 50,0 Z M50,20 C33.4315,20 20,33.4315 20,50 C20,66.5685 33.4315,80 50,80 C66.5685,80 80,66.5685 80,50 C80,33.4315 66.5685,20 50,20 Z M65,35 L35,65 M35,35 L65,65"
@@ -61,7 +63,7 @@ export default function Home() {
                 fill="none"
               />
             </svg>
-          </div>
+          </div> */}
 
           {/* <div className="flex gap-6">
             <Link href="#" className="text-white hover:text-gray-300">
@@ -72,13 +74,13 @@ export default function Home() {
             </Link>
           </div> */}
 
-          <button className="text-white">
+          {/* <button className="text-white">
             <div className="w-8 h-6 flex flex-col justify-between">
               <span className="w-full h-0.5 bg-white"></span>
               <span className="w-full h-0.5 bg-white"></span>
               <span className="w-full h-0.5 bg-white"></span>
             </div>
-          </button>
+          </button> */}
         </header>
 
         {/* Main content */}
@@ -87,16 +89,47 @@ export default function Home() {
           <div className="w-full md:w-1/2 flex flex-col justify-center py-12">
             <div className="relative">
               <div className="absolute -z-10 text-[#3a3c41] text-[12rem] font-bold leading-none -top-20 -left-6">
-                HONOR
+                {gladiatorMetadata?.name.toUpperCase()}
               </div>
               <h1 className="text-white text-6xl md:text-7xl font-bold mb-6">{gladiatorMetadata?.name}</h1>
               <p className="text-gray-300 mb-8 max-w-md">
                 {gladiatorMetadata?.backstory}
               </p>
-              <Link href="#" className="inline-flex items-center text-white group">
-                <span className="mr-2">Learn more</span>
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
+              
+              {/* Stats Section */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8 pe-10">
+                <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
+                  <div className="text-gray-400 text-sm mb-1">Attack</div>
+                  <div className="text-white text-2xl font-bold">{gladiatorMetadata?.attackValue}</div>
+                </div>
+                <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
+                  <div className="text-gray-400 text-sm mb-1">Defense</div>
+                  <div className="text-white text-2xl font-bold">{gladiatorMetadata?.defenceValue}</div>
+                </div>
+                <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
+                  <div className="text-gray-400 text-sm mb-1">Speed</div>
+                  <div className="text-white text-2xl font-bold">{gladiatorMetadata?.speedValue}</div>
+                </div>
+                <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
+                  <div className="text-gray-400 text-sm mb-1">Gender</div>
+                  <div className="text-white text-2xl font-bold capitalize">{gladiatorMetadata?.gender}</div>
+                </div>
+                <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
+                  <div className="text-gray-400 text-sm mb-1">Moveset</div>
+                  <div className="flex flex-wrap gap-2">
+                    {gladiatorMetadata?.moveset?.map((move: string, index: number) => (
+                      <span key={index} className="text-white text-sm bg-[#2a2c31] px-2 py-1 rounded">
+                        {move}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* <Link href="#" className="inline-flex items-center text-white group"> */}
+                {/* <span className="mr-2">Learn more</span> */}
+                {/* <span className="group-hover:translate-x-1 transition-transform">→</span> */}
+              {/* </Link> */}
             </div>
 
             {/* Last Fights Section */}
@@ -133,7 +166,7 @@ export default function Home() {
 
             {/* Scroll indicator */}
             <div className="mt-12 flex justify-center md:justify-start">
-              <div className="animate-bounce">
+              {/* <div className="animate-bounce">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M12 5V19M12 19L5 12M12 19L19 12"
@@ -143,7 +176,7 @@ export default function Home() {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -162,7 +195,7 @@ export default function Home() {
             </div> */}
 
             {/* Main image */}
-            <div className="h-full">
+            <div className="h-full relative py-20">
               <Image
                 src={gladiatorMetadata?.imageUrl ?? "/placeholder.svg?height=900&width=600"}
                 width={600}
@@ -171,6 +204,7 @@ export default function Home() {
                 className="h-full object-cover rounded-lg"
                 priority
               />
+              <div className="absolute inset-0 bg-black opacity-50 rounded-lg"></div>
             </div>
 
             {/* Vertical text */}
