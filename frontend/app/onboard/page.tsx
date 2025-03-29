@@ -1,22 +1,64 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Shield, Sword } from "lucide-react";
 import { useMintChar } from "@/components/useMintChar";
+import { useAccount, useReadContract } from "wagmi";
+import { gladiatorAbi, gladiatorAddress } from "../abi";
 
 export default function GladiatorOnboarding() {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("male");
   const [isMinting, setIsMinting] = useState(false);
   const [mintURI, setMintURI] = useState("");
+  const [claimed, setClaimed] = useState(false);
+  const { address } = useAccount();
+
+  const {
+    data,
+    isSuccess,
+    isPending,
+    refetch: refetchClaimBool,
+  } = useReadContract({
+    abi: gladiatorAbi,
+    address: gladiatorAddress,
+    functionName: "hasClaimedNFT",
+    args: [address],
+  });
+
+  useEffect(() => {
+    console.log(
+      "Setting up refetch interval for fetching if gladiator alr claimed:"
+    );
+
+    const interval = setInterval(() => {
+      refetchClaimBool()
+        .then((result: any) => {
+          console.log("Result: ", result);
+          setClaimed(true);
+        })
+        .catch((error: any) => {
+          console.error("Error during refetch: ", error);
+        });
+    }, 5000);
+
+    return () => {
+      console.log("Clearing refetch interval.\n");
+      clearInterval(interval);
+    };
+  }, [refetchClaimBool]);
 
   async function handleMint() {
     console.log("Minting...");
     setIsMinting(true);
+    if (claimed) {
+      alert("User has already claimed!\n");
+      return;
+    }
     try {
       const res = await fetch("/api/gladiator/generate", {
         method: "POST",
