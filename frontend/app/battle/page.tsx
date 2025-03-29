@@ -1,4 +1,4 @@
-export const Battle = () => {
+const Battle = () => {
   return (
     <div>
       <h1>Battle</h1>
@@ -6,3 +6,5 @@ export const Battle = () => {
     </div>
   );
 };
+
+export default Battle;
