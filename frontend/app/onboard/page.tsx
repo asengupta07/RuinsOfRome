@@ -9,6 +9,12 @@ import { Shield, Sword } from "lucide-react";
 import { useMintChar } from "@/components/useMintChar";
 import { useAccount, useReadContract } from "wagmi";
 import { gladiatorAbi, gladiatorAddress } from "../abi";
+import { PinataSDK } from "pinata-web3";
+
+const pinata = new PinataSDK({
+  pinataJwt: process.env.NEXT_PUBLIC_PINATA_JWT,
+  pinataGateway: process.env.NEXT_PUBLIC_PINATA_GATEWAY,
+});
 
 export default function GladiatorOnboarding() {
   const [name, setName] = useState("");
@@ -19,12 +25,7 @@ export default function GladiatorOnboarding() {
   const { address } = useAccount();
   const mintChar = useMintChar();
 
-  const {
-    data,
-    isSuccess,
-    isPending,
-    refetch: refetchClaimBool,
-  } = useReadContract({
+  const { data, refetch: refetchClaimBool } = useReadContract({
     abi: gladiatorAbi,
     address: gladiatorAddress,
     functionName: "hasClaimedNFT",
@@ -55,6 +56,7 @@ export default function GladiatorOnboarding() {
 
   async function handleMint() {
     console.log("Minting...");
+    // if (!claimed) {
     setIsMinting(true);
     try {
       const res = await fetch("/api/gladiator/generate", {
@@ -65,12 +67,15 @@ export default function GladiatorOnboarding() {
         body: JSON.stringify({ name, gender }),
       });
       const data = await res.json();
-      console.log("Minting response:", data);
+      console.log("Backend response:", data);
+      const pinataRes = await pinata.upload.json(data);
+      const ipfsUrl = `https://ipfs.io/ipfs/${pinataRes.IpfsHash}`;
+      console.log("File uploaded to IPFS:", ipfsUrl);
 
       if (data.success) {
         console.log("Minting successful!");
         setMintURI(data);
-        const mintData = await mintChar(JSON.stringify(data));
+        const mintData = await mintChar(ipfsUrl);
         console.log("Minting data:", mintData);
         if (mintData) {
           console.log("Minting completed successfully!");
@@ -81,6 +86,9 @@ export default function GladiatorOnboarding() {
       console.error("Error minting gladiator:", error);
       setIsMinting(false);
     }
+    // } else {
+    //   console.error("Error: Already Claimed.");
+    // }
   }
 
   return (
