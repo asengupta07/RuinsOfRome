@@ -107,7 +107,7 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             >
-              <Link href="/battle">
+              <Link href="/onboard">
                 <Button className="bg-transparent hover:bg-transparent text-stone-100 px-8 py-6 text-lg font-serif relative group overflow-hidden rounded-md border border-stone-700">
                   <span className="relative z-10">Begin the Journey</span>
                   <span className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-10 transition-all duration-300"></span>

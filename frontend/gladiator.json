@@ -1,6 +1,7 @@
 {
     "name": "Gladiator",
     "description": "A fearless warrior in the arena. This NFT represents a unique gladiator with various attributes.",
+    "backstory": "string",
     "image": "ipfs://your-image-hash",
     "attributes": [
         {
