@@ -1,0 +1,1186 @@
+[
+    {
+        "name": "Jupiter, King of Gods",
+        "description": "King of the gods, ruler of the heavens. A tier 1, celestial god commanding lightning and storms.",
+        "image": "ipfs://[CID-placeholder]/jupiter.png",
+        "external_url": "https://celestials-collection.example/jupiter",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 1
+            },
+            {
+                "trait_type": "Attack",
+                "value": 10
+            },
+            {
+                "trait_type": "Defense",
+                "value": 8
+            },
+            {
+                "trait_type": "Speed",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Lightning",
+                "spell_power": 95
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Smite",
+                "spell_power": 85
+            },
+            {
+                "trait_type": "Tertiary Spell",
+                "value": "Tempest",
+                "spell_power": 90
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 31
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Lightning",
+            "rarity_score": 92
+        }
+    },
+    {
+        "name": "Neptune, Lord of the Sea",
+        "description": "God of the sea, earthquakes, and storms. A tier 1 celestial deity with dominion over water and earth.",
+        "image": "ipfs://[CID-placeholder]/neptune.png",
+        "external_url": "https://celestials-collection.example/neptune",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 1
+            },
+            {
+                "trait_type": "Defense",
+                "value": 9
+            },
+            {
+                "trait_type": "Wisdom",
+                "value": 7
+            },
+            {
+                "trait_type": "Curse Resistance",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Whirlpool",
+                "spell_power": 90
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Earthquake",
+                "spell_power": 92
+            },
+            {
+                "trait_type": "Tertiary Spell",
+                "value": "Aether Blast",
+                "spell_power": 88
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 30
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Water",
+            "rarity_score": 90
+        }
+    },
+    {
+        "name": "Pluto, Ruler of the Underworld",
+        "description": "God of the underworld and wealth. A tier 1 celestial who commands the powers of darkness and death.",
+        "image": "ipfs://[CID-placeholder]/pluto.png",
+        "external_url": "https://celestials-collection.example/pluto",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 1
+            },
+            {
+                "trait_type": "Stealth",
+                "value": 8
+            },
+            {
+                "trait_type": "Shield",
+                "value": 7
+            },
+            {
+                "trait_type": "Fury",
+                "value": 9
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Necrotic Touch",
+                "spell_power": 96
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Abyssal Chain",
+                "spell_power": 89
+            },
+            {
+                "trait_type": "Tertiary Spell",
+                "value": "Poison",
+                "spell_power": 85
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 31
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Death",
+            "rarity_score": 91
+        }
+    },
+    {
+        "name": "Juno, Queen of Heaven",
+        "description": "Queen of the gods, protector of marriage. A tier 2 celestial goddess with powers of protection and divine judgment.",
+        "image": "ipfs://[CID-placeholder]/juno.png",
+        "external_url": "https://celestials-collection.example/juno",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Divine Protection",
+                "value": 9
+            },
+            {
+                "trait_type": "Heal",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Smite",
+                "spell_power": 75
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Aether Blast",
+                "spell_power": 70
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 17
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Light",
+            "rarity_score": 85
+        }
+    },
+    {
+        "name": "Mars, The Warmonger",
+        "description": "God of war and destruction. A tier 2 celestial known for unmatched brutality in battle.",
+        "image": "ipfs://[CID-placeholder]/mars.png",
+        "external_url": "https://celestials-collection.example/mars",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Attack",
+                "value": 12
+            },
+            {
+                "trait_type": "Fury",
+                "value": 10
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Wrath",
+                "spell_power": 80
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Smite",
+                "spell_power": 75
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 19
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Fire",
+            "rarity_score": 86
+        }
+    },
+    {
+        "name": "Minerva, Goddess of Wisdom",
+        "description": "Goddess of wisdom and strategy. A tier 2 celestial with unmatched tactical prowess.",
+        "image": "ipfs://[CID-placeholder]/minerva.png",
+        "external_url": "https://celestials-collection.example/minerva",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Wisdom",
+                "value": 9
+            },
+            {
+                "trait_type": "Divine Protection",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Rewind",
+                "spell_power": 72
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Aether Blast",
+                "spell_power": 68
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 18
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Air",
+            "rarity_score": 83
+        }
+    },
+    {
+        "name": "Apollo, The Shining One",
+        "description": "God of the sun, prophecy, and healing. A tier 2 celestial with mastery over light and divination.",
+        "image": "ipfs://[CID-placeholder]/apollo.png",
+        "external_url": "https://celestials-collection.example/apollo",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Heal",
+                "value": 10
+            },
+            {
+                "trait_type": "Wisdom",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Smite",
+                "spell_power": 78
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Aether Blast",
+                "spell_power": 72
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 19
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Light",
+            "rarity_score": 84
+        }
+    },
+    {
+        "name": "Diana, Huntress of the Moon",
+        "description": "Goddess of the hunt and the moon. A tier 2 celestial with uncanny precision and stealth.",
+        "image": "ipfs://[CID-placeholder]/diana.png",
+        "external_url": "https://celestials-collection.example/diana",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Stealth",
+                "value": 9
+            },
+            {
+                "trait_type": "Speed",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Icebolt",
+                "spell_power": 74
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Abyssal Chain",
+                "spell_power": 70
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 17
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Ice",
+            "rarity_score": 82
+        }
+    },
+    {
+        "name": "Mercury, Divine Messenger",
+        "description": "Messenger of the gods, patron of travelers. A tier 2 celestial with unrivaled speed.",
+        "image": "ipfs://[CID-placeholder]/mercury.png",
+        "external_url": "https://celestials-collection.example/mercury",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Speed",
+                "value": 11
+            },
+            {
+                "trait_type": "Stealth",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Lightning",
+                "spell_power": 76
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Rewind",
+                "spell_power": 72
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 18
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Air",
+            "rarity_score": 83
+        }
+    },
+    {
+        "name": "Vulcan, Master of the Forge",
+        "description": "God of fire and blacksmiths. A tier 2 celestial with command over flames and craftsmanship.",
+        "image": "ipfs://[CID-placeholder]/vulcan.png",
+        "external_url": "https://celestials-collection.example/vulcan",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Defense",
+                "value": 10
+            },
+            {
+                "trait_type": "Fury",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Fireball",
+                "spell_power": 80
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Inferno",
+                "spell_power": 85
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 20
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Fire",
+            "rarity_score": 85
+        }
+    },
+    {
+        "name": "Ceres, Mother of Harvest",
+        "description": "Goddess of agriculture and harvest. A tier 2 celestial with power over growth and sustenance.",
+        "image": "ipfs://[CID-placeholder]/ceres.png",
+        "external_url": "https://celestials-collection.example/ceres",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Heal",
+                "value": 9
+            },
+            {
+                "trait_type": "Shield",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Earthquake",
+                "spell_power": 75
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Poison",
+                "spell_power": 70
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 17
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Earth",
+            "rarity_score": 81
+        }
+    },
+    {
+        "name": "Vesta, Keeper of the Flame",
+        "description": "Goddess of the hearth and sacred fire. A tier 2 celestial with protective powers.",
+        "image": "ipfs://[CID-placeholder]/vesta.png",
+        "external_url": "https://celestials-collection.example/vesta",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Shield",
+                "value": 10
+            },
+            {
+                "trait_type": "Divine Protection",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Aether Blast",
+                "spell_power": 72
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Fireball",
+                "spell_power": 75
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 16
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Fire",
+            "rarity_score": 82
+        }
+    },
+    {
+        "name": "Venus, Embodiment of Beauty",
+        "description": "Goddess of love and beauty. A tier 3 celestial with subtle but powerful influence.",
+        "image": "ipfs://[CID-placeholder]/venus.png",
+        "external_url": "https://celestials-collection.example/venus",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Stealth",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Poison",
+                "spell_power": 60
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 7
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Air",
+            "rarity_score": 75
+        }
+    },
+    {
+        "name": "Janus, Guardian of Passages",
+        "description": "God of beginnings and doorways. A tier 3 celestial with power over transitions and paths.",
+        "image": "ipfs://[CID-placeholder]/janus.png",
+        "external_url": "https://celestials-collection.example/janus",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Wisdom",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Rewind",
+                "spell_power": 65
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 8
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Time",
+            "rarity_score": 76
+        }
+    },
+    {
+        "name": "Flora, Bringer of Spring",
+        "description": "Goddess of flowers and spring. A tier 3 celestial with regenerative abilities.",
+        "image": "ipfs://[CID-placeholder]/flora.png",
+        "external_url": "https://celestials-collection.example/flora",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Heal",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Poison",
+                "spell_power": 58
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 7
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Nature",
+            "rarity_score": 74
+        }
+    },
+    {
+        "name": "Fortuna, Lady Luck",
+        "description": "Goddess of luck and fortune. A tier 3 celestial who can alter fate itself.",
+        "image": "ipfs://[CID-placeholder]/fortuna.png",
+        "external_url": "https://celestials-collection.example/fortuna",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Fortune",
+                "value": 9
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Tempest",
+                "spell_power": 62
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 7
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Fate",
+            "rarity_score": 78
+        }
+    },
+    {
+        "name": "Proserpina, Queen of Shadows",
+        "description": "Queen of the underworld. A tier 3 celestial with power over death and rebirth.",
+        "image": "ipfs://[CID-placeholder]/proserpina.png",
+        "external_url": "https://celestials-collection.example/proserpina",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Stealth",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Necrotic Touch",
+                "spell_power": 65
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 6
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Death",
+            "rarity_score": 75
+        }
+    },
+    {
+        "name": "Bacchus, Lord of Revelry",
+        "description": "God of wine and madness. A tier 3 celestial who can induce frenzy in allies and foes.",
+        "image": "ipfs://[CID-placeholder]/bacchus.png",
+        "external_url": "https://celestials-collection.example/bacchus",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Fury",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Wrath",
+                "spell_power": 68
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 7
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Chaos",
+            "rarity_score": 77
+        }
+    },
+    {
+        "name": "Bellona, Warbringer",
+        "description": "Goddess of war. A tier 3 celestial with expertise in combat and offense.",
+        "image": "ipfs://[CID-placeholder]/bellona.png",
+        "external_url": "https://celestials-collection.example/bellona",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Attack",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Smite",
+                "spell_power": 65
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 6
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Fire",
+            "rarity_score": 76
+        }
+    },
+    {
+        "name": "Saturn (God), Timekeeper",
+        "description": "God of time and agriculture. A tier 3 celestial with influence over growth cycles.",
+        "image": "ipfs://[CID-placeholder]/saturn-god.png",
+        "external_url": "https://celestials-collection.example/saturn-god",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "God"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Wisdom",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Rewind",
+                "spell_power": 67
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 7
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Time",
+            "rarity_score": 77
+        }
+    },
+    {
+        "name": "Saturn (Titan), Lord of Time",
+        "description": "King of the Titans, god of time and harvest. A tier 1 primordial force with immense power.",
+        "image": "ipfs://[CID-placeholder]/saturn-titan.png",
+        "external_url": "https://celestials-collection.example/saturn-titan",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 1
+            },
+            {
+                "trait_type": "Attack",
+                "value": 11
+            },
+            {
+                "trait_type": "Wisdom",
+                "value": 9
+            },
+            {
+                "trait_type": "Fury",
+                "value": 10
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Rewind",
+                "spell_power": 98
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Earthquake",
+                "spell_power": 94
+            },
+            {
+                "trait_type": "Tertiary Spell",
+                "value": "Meteor",
+                "spell_power": 96
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 31
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Time",
+            "rarity_score": 93
+        }
+    },
+    {
+        "name": "Ops, Mother of Abundance",
+        "description": "Titaness of abundance and Saturn's consort. A tier 1 primordial being with nurturing power.",
+        "image": "ipfs://[CID-placeholder]/ops.png",
+        "external_url": "https://celestials-collection.example/ops",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 1
+            },
+            {
+                "trait_type": "Heal",
+                "value": 10
+            },
+            {
+                "trait_type": "Shield",
+                "value": 9
+            },
+            {
+                "trait_type": "Fortune",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Aether Blast",
+                "spell_power": 92
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Poison",
+                "spell_power": 88
+            },
+            {
+                "trait_type": "Tertiary Spell",
+                "value": "Tempest",
+                "spell_power": 90
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 28
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Earth",
+            "rarity_score": 91
+        }
+    },
+    {
+        "name": "Oceanus, The Endless Sea",
+        "description": "Titan of the world-encircling river. A tier 2 primordial being with dominion over water.",
+        "image": "ipfs://[CID-placeholder]/oceanus.png",
+        "external_url": "https://celestials-collection.example/oceanus",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Defense",
+                "value": 10
+            },
+            {
+                "trait_type": "Curse Resistance",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Whirlpool",
+                "spell_power": 82
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Tempest",
+                "spell_power": 85
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 20
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Water",
+            "rarity_score": 87
+        }
+    },
+    {
+        "name": "Hyperion, Pillar of Light",
+        "description": "Titan of celestial light and the sun. A tier 2 primordial being with radiant power.",
+        "image": "ipfs://[CID-placeholder]/hyperion.png",
+        "external_url": "https://celestials-collection.example/hyperion",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Attack",
+                "value": 9
+            },
+            {
+                "trait_type": "Speed",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Fireball",
+                "spell_power": 84
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Lightning",
+                "spell_power": 86
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 19
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Light",
+            "rarity_score": 86
+        }
+    },
+    {
+        "name": "Iapetus, Father of Mortality",
+        "description": "Titan of mortality and father of Prometheus. A tier 2 primordial being with profound influence.",
+        "image": "ipfs://[CID-placeholder]/iapetus.png",
+        "external_url": "https://celestials-collection.example/iapetus",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 2
+            },
+            {
+                "trait_type": "Defense",
+                "value": 9
+            },
+            {
+                "trait_type": "Fury",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Wrath",
+                "spell_power": 83
+            },
+            {
+                "trait_type": "Secondary Spell",
+                "value": "Smite",
+                "spell_power": 80
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 17
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Death",
+            "rarity_score": 85
+        }
+    },
+    {
+        "name": "Themis, Scale of Justice",
+        "description": "Titaness of divine law and order. A tier 3 primordial being with power over cosmic balance.",
+        "image": "ipfs://[CID-placeholder]/themis.png",
+        "external_url": "https://celestials-collection.example/themis",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Wisdom",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Rewind",
+                "spell_power": 70
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 7
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Order",
+            "rarity_score": 78
+        }
+    },
+    {
+        "name": "Rhea, Mother of Gods",
+        "description": "Mother of the gods, Titaness of fertility. A tier 3 primordial being with nurturing energy.",
+        "image": "ipfs://[CID-placeholder]/rhea.png",
+        "external_url": "https://celestials-collection.example/rhea",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Heal",
+                "value": 8
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Aether Blast",
+                "spell_power": 68
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 7
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Earth",
+            "rarity_score": 77
+        }
+    },
+    {
+        "name": "Mnemosyne, Keeper of Memory",
+        "description": "Titaness of memory and language. A tier 3 primordial being with power over knowledge.",
+        "image": "ipfs://[CID-placeholder]/mnemosyne.png",
+        "external_url": "https://celestials-collection.example/mnemosyne",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Wisdom",
+                "value": 9
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Rewind",
+                "spell_power": 72
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 8
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Mind",
+            "rarity_score": 79
+        }
+    },
+    {
+        "name": "Crius, Master of Stars",
+        "description": "Titan of constellations and celestial cycles. A tier 3 primordial being with cosmic influence.",
+        "image": "ipfs://[CID-placeholder]/crius.png",
+        "external_url": "https://celestials-collection.example/crius",
+        "attributes": [
+            {
+                "trait_type": "Type",
+                "value": "Titan"
+            },
+            {
+                "trait_type": "Tier",
+                "value": 3
+            },
+            {
+                "trait_type": "Speed",
+                "value": 7
+            },
+            {
+                "trait_type": "Primary Spell",
+                "value": "Lightning",
+                "spell_power": 69
+            },
+            {
+                "trait_type": "Spell Power",
+                "value": 7
+            }
+        ],
+        "properties": {
+            "category": "Celestial",
+            "elemental_affinity": "Cosmic",
+            "rarity_score": 76
+        }
+    }
+]

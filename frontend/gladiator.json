@@ -1,0 +1,36 @@
+{
+    "name": "Gladiator",
+    "description": "A fearless warrior in the arena. This NFT represents a unique gladiator with various attributes.",
+    "image": "ipfs://your-image-hash",
+    "attributes": [
+        {
+            "trait_type": "XP",
+            "value": 1
+        },
+        {
+            "trait_type": "MXP",
+            "value": 0
+        },
+        {
+            "trait_type": "Attack",
+            "value": 50
+        },
+        {
+            "trait_type": "Defence",
+            "value": 40
+        },
+        {
+            "trait_type": "Speed",
+            "value": 30
+        },
+        {
+            "trait_type": "Moveset",
+            "value": [
+                "Slash",
+                "Shield Block",
+                "Lunge",
+                "Counter Strike"
+            ]
+        }
+    ]
+}
