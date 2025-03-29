@@ -17,6 +17,7 @@ export default function GladiatorOnboarding() {
   const [mintURI, setMintURI] = useState("");
   const [claimed, setClaimed] = useState(false);
   const { address } = useAccount();
+  const mintChar = useMintChar();
 
   const {
     data,
@@ -55,10 +56,6 @@ export default function GladiatorOnboarding() {
   async function handleMint() {
     console.log("Minting...");
     setIsMinting(true);
-    // if (!claimed) {
-    //   alert("User has already claimed!\n");
-    //   return;
-    // }
     try {
       const res = await fetch("/api/gladiator/generate", {
         method: "POST",
@@ -73,9 +70,8 @@ export default function GladiatorOnboarding() {
       if (data.success) {
         console.log("Minting successful!");
         setMintURI(data);
-        const mintData = await useMintChar(JSON.stringify(mintURI));
+        const mintData = await mintChar(JSON.stringify(data));
         console.log("Minting data:", mintData);
-        // Fix once API
         if (mintData) {
           console.log("Minting completed successfully!");
         }
@@ -83,6 +79,7 @@ export default function GladiatorOnboarding() {
       }
     } catch (error) {
       console.error("Error minting gladiator:", error);
+      setIsMinting(false);
     }
   }
 

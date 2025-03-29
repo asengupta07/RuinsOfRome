@@ -128,6 +128,7 @@ export async function POST(request: NextRequest) {
     const response = await generate(prompt);
     let characterLore = parseUntilJson(response);
     if (!characterLore.description || !characterLore.backstory) {
+        console.log("Failed to generate character, retrying...");
         const retryResponse = await generate(prompt);
         characterLore = parseUntilJson(retryResponse);
         if (!characterLore.description || !characterLore.backstory) {
