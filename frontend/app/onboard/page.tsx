@@ -55,10 +55,10 @@ export default function GladiatorOnboarding() {
   async function handleMint() {
     console.log("Minting...");
     setIsMinting(true);
-    if (claimed) {
-      alert("User has already claimed!\n");
-      return;
-    }
+    // if (!claimed) {
+    //   alert("User has already claimed!\n");
+    //   return;
+    // }
     try {
       const res = await fetch("/api/gladiator/generate", {
         method: "POST",
@@ -70,16 +70,15 @@ export default function GladiatorOnboarding() {
       const data = await res.json();
       console.log("Minting response:", data);
 
-      if (data.ok) {
+      if (data.success) {
         console.log("Minting successful!");
-        // TODO - set the tokenURI
-        // setMintURI({ ...data.mintURI });
-        const data = await useMintChar(mintURI);
-        console.log("Minting data:", data);
+        setMintURI(data);
+        const mintData = await useMintChar(JSON.stringify(mintURI));
+        console.log("Minting data:", mintData);
         // Fix once API
-        // if (data) {
-        //   console.log("Minting completed successfully!");
-        // }
+        if (mintData) {
+          console.log("Minting completed successfully!");
+        }
         setIsMinting(false);
       }
     } catch (error) {
