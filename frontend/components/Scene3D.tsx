@@ -12,15 +12,11 @@ export default function Scene3D() {
   // Create a dark material
   const darkMaterial = new THREE.MeshStandardMaterial({
     color: '#000000',
-    metalness: 0.2,
-    roughness: 0.9,
+    metalness: 0.8,
+    roughness: 1,
+    envMapIntensity: 1.5,
     emissive: '#000000',
-    emissiveIntensity: 0,
-    normalScale: new THREE.Vector2(0.5, 0.5),
-    envMapIntensity: 0.5,
-    flatShading: true,
-    dithering: true,
-    side: THREE.DoubleSide
+    emissiveIntensity: 0
   })
 
   useFrame((state, delta) => {
@@ -32,8 +28,25 @@ export default function Scene3D() {
         scrollOffset * Math.PI * 2,
         0.1
       )
+      
+      // Scale up as we scroll down
+      const targetScale = 1 + (scrollOffset * 3) // Scale from 5 to 8
+      modelRef.current.scale.setScalar(THREE.MathUtils.lerp(
+        modelRef.current.scale.x,
+        targetScale,
+        0.1
+      ))
+      
+      // Move downward as we scroll
+      const targetY = -2 - (scrollOffset * 10) // Move from -2 to -6
+      modelRef.current.position.y = THREE.MathUtils.lerp(
+        modelRef.current.position.y,
+        targetY,
+        0.1
+      )
+      
       // Add slight floating animation
-      modelRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.1
+      modelRef.current.position.y += Math.sin(state.clock.elapsedTime) * 0.001
     }
   })
 
@@ -49,7 +62,7 @@ export default function Scene3D() {
           <primitive 
             object={gltf.scene} 
             scale={5}
-            position={[0, -2, 0]}
+            position={[0, 0, 0]}
             material={darkMaterial}
           />
         </group>

@@ -46,7 +46,7 @@ export default function Home() {
       </section>
 
       {/* Featured Sections */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-[#0a0a0a]">
+      {/* <section className="py-20 px-4 md:px-8 lg:px-16 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="group relative overflow-hidden border border-stone-800 hover:border-stone-700 transition-all">
             <div className="aspect-[4/5] relative">
@@ -74,10 +74,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Audio Archive Section */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-stone-900/50">
+      {/* <section className="py-20 px-4 md:px-8 lg:px-16 bg-stone-900/50">
         <div className="max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-stone-800/50 border border-stone-700 mb-6">
             <Scroll className="h-4 w-4 text-stone-400" />
@@ -93,7 +93,7 @@ export default function Home() {
             Browse Archive
           </Button>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }
