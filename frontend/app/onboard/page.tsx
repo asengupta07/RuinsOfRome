@@ -33,6 +33,9 @@ export default function GladiatorOnboarding() {
   });
 
   useEffect(() => {
+    if (data) {
+      console.log("Claim check result: ", data);
+    }
     console.log(
       "Setting up refetch interval for fetching if gladiator alr claimed:"
     );
@@ -40,8 +43,8 @@ export default function GladiatorOnboarding() {
     const interval = setInterval(() => {
       refetchClaimBool()
         .then((result: any) => {
-          console.log("Claim check result: ", result);
-          setClaimed(result);
+          console.log("Claim check result 2: ", result.data);
+          setClaimed(result.data);
         })
         .catch((error: any) => {
           console.error("Error during claim check: ", error);
