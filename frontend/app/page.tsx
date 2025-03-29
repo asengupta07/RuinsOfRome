@@ -3,10 +3,11 @@
 import { useEffect, useState, useRef } from "react";
 import { Scroll, Book, Compass, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar";
 import { Canvas } from "@react-three/fiber";
 import Scene3D from "@/components/Scene3D";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -97,9 +98,11 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             >
-              <Button className="bg-stone-800 hover:bg-stone-700 text-stone-100 px-8 py-6 rounded-none text-lg font-serif">
-                Begin the Journey
-              </Button>
+              <Link href="/battle">
+                <Button className="bg-stone-800 hover:bg-stone-700 text-stone-100 px-8 py-6 rounded-none text-lg font-serif">
+                  Begin the Journey
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </motion.section>
