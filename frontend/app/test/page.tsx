@@ -64,7 +64,7 @@ const mintTest = () => {
   };
 
   const newURI = JSON.stringify(tokenURI);
-
+  const URI = "https://celestials-collection.example/jupiter";
   async function handleCelMint() {
     console.log("Celestial Mint Started");
     const res = await writeContractAsync({
@@ -84,8 +84,10 @@ const mintTest = () => {
       abi: gladiatorAbi,
       address: gladiatorAddress,
       functionName: "mintGladiator",
-      args: [newURI],
+      args: [URI],
     });
+
+    console.log(tx);
   }
 
   return (
