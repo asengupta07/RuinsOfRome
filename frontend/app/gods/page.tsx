@@ -105,28 +105,10 @@ export default function Home() {
     args: [address],
   }) as any;
 
-  const { data: godTokenURIs } = useReadContracts({
-    contracts: celestialData?.map((tokenId: number) => ({
-      abi: celestialAbi,
-      address: celestialAddress,
-      functionName: "tokenURI",
-      args: [tokenId],
-    })) || [],
-  });
-
-  useEffect(() => {
-    if (godTokenURIs) {
-      const processedData = godTokenURIs.map(uri => {
-        try {
-          return JSON.parse(uri.result as string);
-        } catch (e) {
-          console.error("Failed to parse god data:", e);
-          return null;
-        }
-      }).filter(Boolean);
-      godsData = processedData;
-    }
-  }, [godTokenURIs]);
+  if (celestialData) {
+    console.log("celestialData", celestialData);
+    godsData = celestialData.map((json: string) => JSON.parse(json));
+  }
 
   const [selectedGodIndex, setSelectedGodIndex] = useState(0)
   const selectedGod = godsData[selectedGodIndex]
@@ -234,7 +216,7 @@ export default function Home() {
                 {/* Category badge */}
                 <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full">
                   <span className="text-amber-400 text-xs uppercase font-semibold">
-                    {selectedGod?.properties.category}
+                    {selectedGod?.attributes.find((a: { trait_type: string }) => a.trait_type === "Type")?.value}
                   </span>
                 </div>
               </div>

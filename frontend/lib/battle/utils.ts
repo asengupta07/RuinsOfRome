@@ -101,7 +101,7 @@ export const isGladiatorTurn = (
 };
 
 // Function to get placeholder image for gods
-export const getGodPlaceholderImage = (): string => {
+export const getGodPlaceholderImage = (godName: string): string => {
   // Just return a single placeholder for all gods
   return "/god-placeholder.svg";
 };
@@ -146,14 +146,18 @@ export const triggerConfetti = (): void => {
 };
 
 // Calculate initial gladiator stats
-export const generateGladiator = async (isHuman: boolean, gladiatorData: any): Promise<Gladiator> => {
+export const generateGladiator = async (isHuman: boolean, gladiatorData: any, godsData: any): Promise<Gladiator> => {
   const processGladiatorData = async (uri: string) => {
     const metadata = await fetch(uri);
     const metadataJson = await metadata.json();
     return metadataJson;
   }
 
-  const gladiatorDataJson = await processGladiatorData(gladiatorData);
+  const gladiatorDataJSON = await processGladiatorData(gladiatorData);
+  const gladiatorDataJson = {
+    ...gladiatorDataJSON,
+    gods: godsData,
+  }
   console.log("Gladiator Data JSON: ", gladiatorDataJson);
 
   const moveset = gladiatorDataJson.moveset;
@@ -164,6 +168,9 @@ export const generateGladiator = async (isHuman: boolean, gladiatorData: any): P
   const attack = movesetConfig.find((config: any) => config.name === att);
   const defense = movesetConfig.find((config: any) => config.name === def);
   const passive = movesetConfig.find((config: any) => config.name === pass);
+  const gods = gladiatorDataJson.gods;
+
+  console.log("GODS: ", gods);
   console.log("Passive: ", passive);
   console.log("Attack: ", attack);
   console.log("Defense: ", defense);
@@ -193,19 +200,19 @@ export const generateGladiator = async (isHuman: boolean, gladiatorData: any): P
       ],
       gods: [
         {
-          name: "Jupiter",
-          icon: "/jupiter.png",
-          rarity: "Legendary",
+          name: gods[0].name,
+          icon: gods[0].image,
+          rarity: gods[0].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 1 ? "Rare" : gods[0].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 2 ? "Epic" : gods[0].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 3 ? "Legendary" : "Mythic",
         },
         {
-          name: "Mars",
-          icon: "/mars.png",
-          rarity: "Epic",
+          name: gods[1].name,
+          icon: gods[1].image,
+          rarity: gods[1].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 1 ? "Rare" : gods[1].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 2 ? "Epic" : gods[1].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 3 ? "Legendary" : "Mythic",
         },
         {
-          name: "Mercury",
-          icon: "/mercury.png",
-          rarity: "Rare",
+          name: gods[2].name,
+          icon: gods[2].image,
+          rarity: gods[2].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 1 ? "Rare" : gods[2].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 2 ? "Epic" : gods[2].attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value === 3 ? "Legendary" : "Mythic",
         },
       ],
       image: gladiatorDataJson.imageUrl,

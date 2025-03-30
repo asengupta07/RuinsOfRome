@@ -113,7 +113,7 @@ export default function Home() {
                 className="h-full object-cover rounded-lg"
                 priority
               />
-              <div className="absolute inset-0 bg-black opacity-50 rounded-lg"></div>
+              <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
             </div>
 
             {/* Vertical text */}
