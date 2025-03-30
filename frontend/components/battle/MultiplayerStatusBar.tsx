@@ -56,7 +56,6 @@ export const MultiplayerStatusBar = ({
         <span className="text-sm text-slate-300">{statusMessage}</span>
         <Button
           size="sm"
-          variant="outline"
           className="text-xs border-slate-700 text-slate-300 hover:bg-slate-800"
           onClick={handleLeaveRoom}
         >

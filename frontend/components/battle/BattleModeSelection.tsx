@@ -91,10 +91,7 @@ export const BattleModeSelection = ({
             </p>
           </CardContent>
           <CardFooter className="flex justify-center pt-1 pb-4">
-            <Button
-              variant="outline"
-              className="bg-emerald-900/60 border-emerald-700 text-emerald-400 hover:bg-emerald-800/60"
-            >
+            <Button className="bg-emerald-900/60 border-emerald-700 text-emerald-400 hover:bg-emerald-800/60">
               Start AI Battle
             </Button>
           </CardFooter>
@@ -121,10 +118,7 @@ export const BattleModeSelection = ({
             </p>
           </CardContent>
           <CardFooter className="flex justify-center pt-1 pb-4">
-            <Button
-              variant="outline"
-              className="bg-emerald-900/60 border-emerald-700 text-emerald-400 hover:bg-emerald-800/60"
-            >
+            <Button className="bg-emerald-900/60 border-emerald-700 text-emerald-400 hover:bg-emerald-800/60">
               Battle Friends
             </Button>
           </CardFooter>

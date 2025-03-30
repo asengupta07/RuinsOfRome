@@ -286,7 +286,6 @@ export default function GodsPage() {
                           {god.name}
                         </CardTitle>
                         <Badge
-                          variant="outline"
                           className={`${getTextColor(
                             god.tier
                           )} ${getBorderColor(god.tier)}`}
@@ -360,10 +359,7 @@ export default function GodsPage() {
                                     {spell.icon}
                                     <span className="ml-2">{spell.name}</span>
                                   </CardTitle>
-                                  <Badge
-                                    variant="outline"
-                                    className="text-teal-300 border-teal-700"
-                                  >
+                                  <Badge className="text-teal-300 border-teal-700">
                                     {spell.cooldown}
                                   </Badge>
                                 </div>
