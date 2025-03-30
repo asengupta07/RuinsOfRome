@@ -115,7 +115,6 @@ export const CreateRoomUI = ({
       </Card>
 
       <Button
-        variant="outline"
         className="mt-4 border-emerald-700 text-emerald-400 hover:bg-emerald-900/60"
         onClick={onCancel}
       >

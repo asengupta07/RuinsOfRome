@@ -99,7 +99,6 @@ export const JoinRoomUI = ({
         <CardFooter className="flex justify-center">
           {isConnecting ? (
             <Button
-              variant="outline"
               className="w-full border-emerald-700 text-emerald-400 hover:bg-emerald-900/60"
               onClick={onBackToSelection}
             >
@@ -119,7 +118,6 @@ export const JoinRoomUI = ({
 
       {!isConnecting && (
         <Button
-          variant="outline"
           className="mt-4 border-emerald-700 text-emerald-400 hover:bg-emerald-900/60"
           onClick={onBackToSelection}
         >

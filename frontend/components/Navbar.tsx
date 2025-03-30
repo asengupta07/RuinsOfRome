@@ -54,6 +54,12 @@ export default function Navbar() {
               Colosseum
             </Link>
             <Link
+              href="/chronicles"
+              className="text-stone-300 hover:text-white transition-colors"
+            >
+              Chronicles
+            </Link>
+            <Link
               href="/about"
               className="text-stone-300 hover:text-white transition-colors"
             >
