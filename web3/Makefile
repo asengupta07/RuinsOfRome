@@ -8,7 +8,7 @@ deploy_Gladiator:
 	npx hardhat run ignition/modules/gladiator.ts --network fuji
 
 verify_Celestial:
-	npx hardhat verify --network fuji 0x07Ae0160782818702261F443042316F090A15AeD
+	npx hardhat verify --network fuji 0x3Ff9e7e9FD2dEAB2fA771760Eaf0fC16DF918B72
 
 verify_Gladiator:
-	npx hardhat verify --network fuji 0x2F3168e0b8B00eB6641CEE7b7C3163cF057E33FA
+	npx hardhat verify --network fuji 0xc9BeCfcd5993AfA9299d127B712343e067085Db3

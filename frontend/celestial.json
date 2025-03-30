@@ -3,7 +3,6 @@
     "name": "Jupiter, King of Gods",
     "description": "King of the gods, ruler of the heavens. A tier 1, celestial god commanding lightning and storms.",
     "image": "ipfs://[CID-placeholder]/jupiter.png",
-    "external_url": "https://celestials-collection.example/jupiter",
     "attributes": [
       {
         "trait_type": "Type",

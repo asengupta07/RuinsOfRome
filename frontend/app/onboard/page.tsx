@@ -75,10 +75,10 @@ export default function GladiatorOnboarding() {
 
   async function handleMint() {
     console.log("Minting...");
-    if (claimed) {
-      console.error("Error: Already Claimed.");
-      return;
-    }
+    // if (claimed) {
+    //   console.error("Error: Already Claimed.");
+    //   return;
+    // }
 
     setIsMinting(true);
     try {
@@ -101,6 +101,40 @@ export default function GladiatorOnboarding() {
       console.log("File uploaded to IPFS:", ipfsUrl);
 
       setMintURI(ipfsUrl);
+
+      const celRes = await fetch("/api/celestial/init", {
+        method: "GET",
+      });
+
+      const celData = await celRes.json();
+      console.log("Initial Gods:", celData);
+
+      if (!celData) {
+        throw new Error("Failed to generate intial god data");
+      }
+
+      await Promise.all(
+        celData.map(async (god: any) => {
+          const res = await fetch("/api/celestial/mintInit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: god.name,
+              description: god.description,
+              imageUrl: god.image,
+              attributes: god.attributes,
+              properties: god.properties,
+              address: address,
+            }),
+          });
+
+          const data = await res.json();
+          console.log("Server Response:", data);
+        })
+      );
+
       const tx = await writeContractAsync({
         abi: gladiatorAbi,
         address: gladiatorAddress,
@@ -108,7 +142,6 @@ export default function GladiatorOnboarding() {
         args: [mintURI],
       });
       console.log("Minting transaction:", tx);
-
       if (tx) {
         console.log("Minting completed successfully!");
         // The transaction hash is returned, we can use it to track the transaction

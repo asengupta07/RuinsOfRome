@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./_providers/rainbowkit";
+import ConvexClientProviders from "@/providers/ConvexClientProviders";
 
 export const metadata: Metadata = {
   title: "RoR",
@@ -22,7 +23,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         > */}
-        <Providers>{children}</Providers>
+        <ConvexClientProviders>
+          <Providers>{children}</Providers>
+        </ConvexClientProviders>
         {/* </ThemeProvider> */}
       </body>
     </html>
