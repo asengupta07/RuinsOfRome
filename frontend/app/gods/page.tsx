@@ -232,7 +232,7 @@ export default function GodsPage() {
           }`}
         >
           <div
-            className="absolute inset-0 bg-cover bg-top"
+            className="absolute inset-0 bg-cover bg-[center_25%]"
             style={{ backgroundImage: `url(${displayedGod.image})` }}
           />
           <div
@@ -315,7 +315,7 @@ export default function GodsPage() {
                 {/* God image with gradient overlay */}
                 <div className="relative h-80 overflow-hidden">
                   <div
-                    className="absolute inset-0 bg-cover bg-top"
+                    className="absolute inset-0 bg-cover bg-[center_25%]"
                     style={{ backgroundImage: `url(${selectedGod.image})` }}
                   />
                   <div
