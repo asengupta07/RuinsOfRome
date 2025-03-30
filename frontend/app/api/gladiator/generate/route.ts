@@ -168,37 +168,7 @@ export async function POST(request: NextRequest) {
   const defenceValue = BASE_DEFENCE + Math.random() * 10;
   const speedValue = BASE_SPEED + Math.random() * 10;
   const imageUrl = await generateImage(characterLore.description);
-  const PRIVATE_KEY = process.env.NEXT_PRIVATE_KEY;
-  const RPC = process.env.NEXT_RPC;
 
-  console.log("RPC", RPC);
-  console.log("PRIVATE_KEY", PRIVATE_KEY);
-
-  try {
-    if (!PRIVATE_KEY || !RPC) {
-      return NextResponse.json(
-        { error: "Missing environment variables" },
-        { status: 500 }
-      );
-    }
-    const provider = new ethers.JsonRpcProvider(RPC);
-    const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-    const contract = new ethers.Contract(
-      celestialAddress,
-      celestialAbi,
-      wallet
-    );
-    console.log(wallet?.address);
-    const balance = await contract.balanceOf(wallet.address);
-    console.log("Connected to Ethereum provider and contract", balance);
-    const res = await contract.mintNFT(wallet?.address);
-  } catch (error) {
-    console.error("Error connecting to Ethereum provider:", error);
-    return NextResponse.json(
-      { error: "Failed to connect to Ethereum provider" },
-      { status: 500 }
-    );
-  }
   return NextResponse.json({
     name,
     gender,
