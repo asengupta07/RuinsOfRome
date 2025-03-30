@@ -113,27 +113,29 @@ export default function GladiatorOnboarding() {
         throw new Error("Failed to generate intial god data");
       }
 
-      await Promise.all(
-        celData.map(async (god: any) => {
-          const res = await fetch("/api/celestial/mintInit", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: god.name,
-              description: god.description,
-              imageUrl: god.image,
-              attributes: god.attributes,
-              properties: god.properties,
-              address: address,
-            }),
-          });
+      // Mint celestial NFTs sequentially
+      for (const god of celData) {
+        const res = await fetch("/api/celestial/mintInit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: god.name,
+            description: god.description,
+            imageUrl: god.image,
+            attributes: god.attributes,
+            properties: god.properties,
+            address: address,
+          }),
+        });
 
-          const data = await res.json();
-          console.log("Server Response:", data);
-        })
-      );
+        const data = await res.json();
+        console.log("Server Response:", data);
+        
+        // Add a small delay between transactions to ensure proper sequencing
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
 
       const tx = await writeContractAsync({
         abi: gladiatorAbi,
