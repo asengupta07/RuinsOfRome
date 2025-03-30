@@ -1,5 +1,5 @@
-export const celestialAddress = "0xA6082a633f645768e79d530c1959cC98222f519D";
-export const gladiatorAddress = "0xa0826155F64BED8CE28B815F2F4949cA4817c94B";
+export const celestialAddress = "0x14Df5a95729215AcE473Df74aCd9619E301048D9";
+export const gladiatorAddress = "0x3a11e676F587B3020692be9738B1b1288b50A1aF";
 
 export const celestialAbi = [
   {
@@ -289,9 +289,9 @@ export const celestialAbi = [
     name: "getNFTs",
     outputs: [
       {
-        internalType: "uint256[]",
+        internalType: "string[]",
         name: "",
-        type: "uint256[]",
+        type: "string[]",
       },
     ],
     stateMutability: "view",
