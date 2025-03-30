@@ -42,16 +42,16 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center space-x-8 font-serif">
             <Link
-              href="/catalogue"
+              href="/gods"
               className="text-stone-300 hover:text-white transition-colors"
             >
-              Catalogue
+              Gods & Titans
             </Link>
             <Link
-              href="/exhibits"
+              href="/battle"
               className="text-stone-300 hover:text-white transition-colors"
             >
-              Exhibits
+              Colosseum
             </Link>
             <Link
               href="/about"

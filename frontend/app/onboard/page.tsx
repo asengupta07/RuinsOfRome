@@ -10,6 +10,7 @@ import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import { gladiatorAbi, gladiatorAddress } from "../abi";
 import { PinataSDK } from "pinata-web3";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { redirect } from "next/navigation";
 
 const pinata = new PinataSDK({
   pinataJwt: process.env.NEXT_PUBLIC_PINATA_JWT,
@@ -132,9 +133,9 @@ export default function GladiatorOnboarding() {
 
         const data = await res.json();
         console.log("Server Response:", data);
-        
+
         // Add a small delay between transactions to ensure proper sequencing
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 2000));
       }
 
       const tx = await writeContractAsync({
@@ -148,6 +149,8 @@ export default function GladiatorOnboarding() {
         console.log("Minting completed successfully!");
         // The transaction hash is returned, we can use it to track the transaction
         console.log("Transaction hash:", tx);
+        setIsMinting(false);
+        redirect("/battle");
       }
     } catch (error) {
       console.error("Error minting gladiator:", error);
@@ -288,7 +291,7 @@ export default function GladiatorOnboarding() {
               <div className="absolute h-32 w-32 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-teal-500/30 rounded-full animate-ping-slow" />
             </div>
             <h2 className="text-3xl font-bold text-teal-300 mb-4 animate-glow">
-              GAIA FORGES YOUR CHAMPION
+              GAIA IS FORGING YOUR CHAMPION
             </h2>
             <p className="text-teal-100 text-lg">
               The Earth Mother breathes life into your gladiator. Soon you will
