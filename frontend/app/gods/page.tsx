@@ -1,425 +1,412 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bolt, Shield, Skull, Sparkles, Sword, Zap } from "lucide-react";
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Navbar from "@/components/Navbar"
+import { celestialAbi, celestialAddress } from "@/app/abi"
+import { useAccount, useReadContract, useReadContracts } from "wagmi"
 
-type GodTier = 1 | 2 | 3;
+// Sample data
+// const godsData = [
+//   {
+//     "name": "flora",
+//     "description": "Goddess of flowers and spring.",
+//     "image": "https://corcel.b-cdn.net/e2691b4f-185d-4450-a964-2881eeaace4d.webp",
+//     "attributes": [
+//       {
+//         "trait_type": "Type",
+//         "value": "god"
+//       },
+//       {
+//         "trait_type": "Tier",
+//         "value": 3
+//       },
+//       {
+//         "trait_type": "heal",
+//         "value": 7
+//       },
+//       {
+//         "trait_type": "poison",
+//         "value": 7
+//       }
+//     ],
+//     "properties": {
+//       "category": "celestial",
+//       "rarity_score": 24
+//     }
+//   },
+//   {
+//     "name": "fortuna",
+//     "description": "Goddess of luck and fortune.",
+//     "image": "https://corcel.b-cdn.net/361e57e5-0b0b-4ea4-a2d6-35eb17a27086.webp",
+//     "attributes": [
+//       {
+//         "trait_type": "Type",
+//         "value": "god"
+//       },
+//       {
+//         "trait_type": "Tier",
+//         "value": 3
+//       },
+//       {
+//         "trait_type": "fortune",
+//         "value": 9
+//       },
+//       {
+//         "trait_type": "tempest",
+//         "value": 7
+//       }
+//     ],
+//     "properties": {
+//       "category": "celestial",
+//       "rarity_score": 21
+//     }
+//   },
+//   {
+//     "name": "saturn",
+//     "description": "God of time and agriculture.",
+//     "image": "https://corcel.b-cdn.net/fa7206f1-81c8-4958-8936-397b1f383435.webp",
+//     "attributes": [
+//       {
+//         "trait_type": "Type",
+//         "value": "god"
+//       },
+//       {
+//         "trait_type": "Tier",
+//         "value": 3
+//       },
+//       {
+//         "trait_type": "wisdom",
+//         "value": 8
+//       },
+//       {
+//         "trait_type": "rewind",
+//         "value": 7
+//       }
+//     ],
+//     "properties": {
+//       "category": "celestial",
+//       "rarity_score": 24
+//     }
+//   }
+// ]
+let godsData: any[] = [];
+type God = typeof godsData[0]
+type Attribute = God['attributes'][0]
 
-interface Spell {
-  name: string;
-  description: string;
-  cooldown: string;
-  icon: React.ReactNode;
-}
+export default function Home() {
+  const { address } = useAccount();
+  const { data: celestialData } = useReadContract({
+    abi: celestialAbi,
+    address: celestialAddress,
+    functionName: "getNFTs",
+    args: [address],
+  }) as any;
 
-interface Buff {
-  name: string;
-  description: string;
-  value: string;
-  icon: React.ReactNode;
-}
+  const { data: godTokenURIs } = useReadContracts({
+    contracts: celestialData?.map((tokenId: number) => ({
+      abi: celestialAbi,
+      address: celestialAddress,
+      functionName: "tokenURI",
+      args: [tokenId],
+    })) || [],
+  });
 
-interface God {
-  id: number;
-  name: string;
-  description: string;
-  tier: GodTier;
-  image: string;
-  spells: Spell[];
-  buffs: Buff[];
-}
+  useEffect(() => {
+    if (godTokenURIs) {
+      const processedData = godTokenURIs.map(uri => {
+        try {
+          return JSON.parse(uri.result as string);
+        } catch (e) {
+          console.error("Failed to parse god data:", e);
+          return null;
+        }
+      }).filter(Boolean);
+      godsData = processedData;
+    }
+  }, [godTokenURIs]);
 
-// Hardcoded gods data
-const godsData: God[] = [
-  {
-    id: 1,
-    name: "Mars",
-    description: "God of War and Guardian of Agriculture",
-    tier: 1,
-    image: "/gods/mars.webp",
-    spells: [
-      {
-        name: "War Cry",
-        description:
-          "Your gladiator unleashes a mighty roar, intimidating opponents and increasing attack power.",
-        cooldown: "3 Turns",
-        icon: <Skull className="h-5 w-5" />,
-      },
-      {
-        name: "Shield Wall",
-        description:
-          "Call upon Mars to strengthen your defenses, reducing incoming damage.",
-        cooldown: "2 Turns",
-        icon: <Shield className="h-5 w-5" />,
-      },
-    ],
-    buffs: [
-      {
-        name: "Warrior's Spirit",
-        description: "Permanent increase to attack power",
-        value: "+15%",
-        icon: <Sword className="h-5 w-5" />,
-      },
-      {
-        name: "Battle Hardened",
-        description: "Chance to resist stun effects",
-        value: "+20%",
-        icon: <Shield className="h-5 w-5" />,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Minerva",
-    description: "Goddess of Wisdom, War, Art, and Strategy",
-    tier: 2,
-    image: "/gods/minerva.jpg",
-    spells: [
-      {
-        name: "Strategic Insight",
-        description:
-          "Analyze your opponent's next move, giving you a tactical advantage.",
-        cooldown: "4 Turns",
-        icon: <Sparkles className="h-5 w-5" />,
-      },
-      {
-        name: "Divine Wisdom",
-        description:
-          "Minerva blesses you with wisdom, increasing critical hit chance.",
-        cooldown: "3 Turns",
-        icon: <Zap className="h-5 w-5" />,
-      },
-    ],
-    buffs: [
-      {
-        name: "Tactical Mind",
-        description: "Chance to counter-attack when dodging",
-        value: "+25%",
-        icon: <Bolt className="h-5 w-5" />,
-      },
-      {
-        name: "Wisdom's Protection",
-        description: "Reduces magic damage taken",
-        value: "-20%",
-        icon: <Shield className="h-5 w-5" />,
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Jupiter",
-    description: "King of the Gods, God of Sky and Thunder",
-    tier: 3,
-    image: "/gods/jupiter.jpg",
-    spells: [
-      {
-        name: "Thunderbolt",
-        description:
-          "Call down a powerful bolt of lightning to strike your enemy.",
-        cooldown: "5 Turns",
-        icon: <Bolt className="h-5 w-5" />,
-      },
-      {
-        name: "Divine Authority",
-        description:
-          "Assert Jupiter's authority, stunning your opponent for 1 turn.",
-        cooldown: "6 Turns",
-        icon: <Sparkles className="h-5 w-5" />,
-      },
-    ],
-    buffs: [
-      {
-        name: "King's Blessing",
-        description: "All stats increased",
-        value: "+10%",
-        icon: <Sparkles className="h-5 w-5" />,
-      },
-      {
-        name: "Thunder's Might",
-        description: "Chance to deal lightning damage on hit",
-        value: "+15%",
-        icon: <Bolt className="h-5 w-5" />,
-      },
-    ],
-  },
-];
+  const [selectedGodIndex, setSelectedGodIndex] = useState(0)
+  const selectedGod = godsData[selectedGodIndex]
 
-// Helper function to get glow color based on tier
-function getGlowColor(tier: GodTier) {
-  switch (tier) {
-    case 1:
-      return "from-orange-500/30 to-orange-700/30";
-    case 2:
-      return "from-purple-500/30 to-purple-700/30";
-    case 3:
-      return "from-blue-500/30 to-blue-700/30";
-    default:
-      return "";
+  const nextGod = () => {
+    setSelectedGodIndex((prev) => (prev + 1) % godsData.length)
   }
-}
 
-// Helper function to get border color based on tier
-function getBorderColor(tier: GodTier) {
-  switch (tier) {
-    case 1:
-      return "border-orange-500";
-    case 2:
-      return "border-purple-500";
-    case 3:
-      return "border-blue-500";
-    default:
-      return "";
+  const prevGod = () => {
+    setSelectedGodIndex((prev) => (prev - 1 + godsData.length) % godsData.length)
   }
-}
-
-// Helper function to get text color based on tier
-function getTextColor(tier: GodTier) {
-  switch (tier) {
-    case 1:
-      return "text-orange-400";
-    case 2:
-      return "text-purple-400";
-    case 3:
-      return "text-blue-400";
-    default:
-      return "";
-  }
-}
-
-export default function GodsPage() {
-  const [selectedGod, setSelectedGod] = useState<God | null>(godsData[0]);
-  const [displayedGod, setDisplayedGod] = useState<God | null>(godsData[0]);
-  const [isFadingOut, setIsFadingOut] = useState(false);
-  const [isFadingIn, setIsFadingIn] = useState(false);
-
-  // Handle god selection and transition
-  const handleGodSelection = (god: God) => {
-    if (god.id === displayedGod?.id) return; // Skip if the same god is selected
-
-    // Step 1: Start fade out
-    setIsFadingOut(true);
-
-    // Step 2: After fade out completes, update the displayed god and start fade in
-    setTimeout(() => {
-      setDisplayedGod(god);
-      setSelectedGod(god);
-      setIsFadingOut(false);
-      setIsFadingIn(true);
-
-      // Step 3: After fade in completes, reset the fade in state
-      setTimeout(() => {
-        setIsFadingIn(false);
-      }, 500);
-    }, 500);
-  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b060a] text-teal-100 pb-20 relative">
-      {/* Background Image with Transition */}
-      {displayedGod && (
+    <div className="relative min-h-screen bg-gradient-to-b from-[#000000] to-[#000000] overflow-hidden">
+      <Navbar />
+      {/* Background effects */}
+      <div className="absolute -z-10 inset-0">
         <div
-          className={`fixed inset-0 z-0 transition-opacity duration-500 ${
-            isFadingOut ? "opacity-0" : isFadingIn ? "opacity-0" : "opacity-100"
-          }`}
-        >
+          className="absolute inset-0 opacity-20 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url(${selectedGod?.image})`,
+            filter: 'blur(20px)'
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#000000] opacity-70"></div>
+      </div>
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 opacity-30 bg-[url('/fog3.png?height=1080&width=1920')] bg-cover"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#000000] opacity-80"></div>
+      </div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 20 }).map((_, i) => (
           <div
-            className="absolute inset-0 bg-cover bg-[center_25%]"
-            style={{ backgroundImage: `url(${displayedGod.image})` }}
-          />
-          <div
-            className="absolute inset-0"
+            key={i}
+            className="absolute rounded-full bg-white opacity-10"
             style={{
-              background:
-                "linear-gradient(to bottom, rgba(11, 6, 10, 0.4) 0%, rgba(11, 6, 10, 0.6) 60%, rgba(11, 6, 10, 1) 100%)",
+              width: `${Math.random() * 4 + 1}px`,
+              height: `${Math.random() * 4 + 1}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animation: `float ${Math.random() * 10 + 10}s linear infinite`,
+              animationDelay: `${Math.random() * 5}s`
             }}
           />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-      )}
+        ))}
+      </div>
 
-      {/* Content (with higher z-index) */}
-      <div className="relative z-10">
-        {/* Header */}
-        <div className="text-center pt-20 pb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-teal-300 mb-4 tracking-wide">
-            YOUR DIVINE PATRONS
+      {/* Header */}
+      <header className="relative z-10 pt-24 px-4">
+        <div className="container mx-auto">
+          <h1 className="text-white text-center text-3xl md:text-4xl font-bold tracking-tight">
+            <span className="bg-clip-text text-transparent bg-white font-bold text-4xl md:text-5xl">
+              Your Patreon Gods & Titans
+            </span>
           </h1>
-          <p className="text-teal-100 text-lg max-w-2xl mx-auto">
-            The gods favor your gladiator and grant their divine powers. Choose
-            wisely which deity to call upon in battle.
+          <p className="text-center text-gray-400 mt-2 max-w-xl mx-auto text-sm">
+            Explore the divine beings that have bestowed their blessings and favour upon your champion!
           </p>
         </div>
+      </header>
 
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 px-4">
-          {/* Left side - God selection */}
-          <div className="lg:col-span-1 space-y-4">
-            <h2 className="text-2xl font-bold text-teal-300 mb-4">Your Gods</h2>
-            <div className="space-y-4">
-              {godsData.map((god) => (
-                <div
-                  key={god.id}
-                  onClick={() => handleGodSelection(god)}
-                  className={`cursor-pointer transition-all duration-300 
-                    ${
-                      selectedGod?.id === god.id
-                        ? "scale-105"
-                        : "scale-100 opacity-80"
-                    }`}
-                >
-                  <Card
-                    className={`border-2 ${getBorderColor(
-                      god.tier
-                    )} bg-stone-900/80 hover:bg-stone-800/80 backdrop-blur-sm`}
-                  >
-                    <CardHeader className="pb-2">
-                      <div className="flex justify-between items-center">
-                        <CardTitle className={`${getTextColor(god.tier)}`}>
-                          {god.name}
-                        </CardTitle>
-                        <Badge
-                          className={`${getTextColor(
-                            god.tier
-                          )} ${getBorderColor(god.tier)}`}
-                        >
-                          Tier {god.tier}
-                        </Badge>
-                      </div>
-                      <CardDescription className="text-teal-100/70">
-                        {god.description}
-                      </CardDescription>
-                    </CardHeader>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* Main content */}
+      <main className="relative z-10 container mx-auto px-4 py-4 flex flex-col lg:flex-row items-center gap-4 lg:gap-8">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedGod?.name}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="w-full lg:w-1/2 flex justify-center"
+          >
+            {/* God image container */}
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-600 rounded-lg opacity-75 blur-sm"></div>
+              <div className="relative w-[300px] h-[400px] lg:w-[400px] lg:h-[500px] rounded-lg overflow-hidden bg-gray-800">
+                <Image
+                  src={selectedGod?.image || "/fog3.png"}
+                  alt={selectedGod?.name || "God"}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="400px"
+                  quality={90}
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-[#000000] opacity-30"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f1a] to-transparent opacity-90"></div>
 
-          {/* Right side - Selected god details */}
-          {selectedGod && (
-            <div className="lg:col-span-2">
-              <div
-                className={`relative rounded-lg overflow-hidden border-2 ${getBorderColor(
-                  selectedGod.tier
-                )} bg-stone-900/80 backdrop-blur-sm h-full`}
-              >
-                {/* God image with gradient overlay */}
-                <div className="relative h-80 overflow-hidden">
-                  <div
-                    className="absolute inset-0 bg-cover bg-[center_25%]"
-                    style={{ backgroundImage: `url(${selectedGod.image})` }}
-                  />
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-t ${getGlowColor(
-                      selectedGod.tier
-                    )}`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-6">
-                    <h2
-                      className={`text-4xl font-bold ${getTextColor(
-                        selectedGod.tier
-                      )}`}
-                    >
-                      {selectedGod.name}
-                    </h2>
-                    <p className="text-teal-100 text-lg mt-2">
-                      {selectedGod.description}
-                    </p>
+
+                {/* Tier indicator */}
+                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-amber-400 text-xs uppercase font-semibold">Tier</span>
+                    <div className="flex">
+                      {Array.from({ length: Number(selectedGod?.attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value || 0) }).map((_, i) => (
+                        <div key={i} className="w-1.5 h-1.5 rounded-full bg-amber-400 ml-0.5"></div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* God powers section */}
-                <div className="p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Divine Spells section */}
-                    <div>
-                      <h3 className="text-2xl font-bold text-teal-300 mb-4 flex items-center">
-                        <Sparkles className="mr-2 h-5 w-5 text-teal-500" />
-                        Divine Spells
-                      </h3>
-                      <ScrollArea className="h-64">
-                        <div className="space-y-4">
-                          {selectedGod.spells.map((spell, index) => (
-                            <Card
-                              key={index}
-                              className="bg-stone-800/60 border-teal-700/40 backdrop-blur-sm"
-                            >
-                              <CardHeader className="pb-2">
-                                <div className="flex justify-between items-center">
-                                  <CardTitle className="text-teal-200 text-lg flex items-center">
-                                    {spell.icon}
-                                    <span className="ml-2">{spell.name}</span>
-                                  </CardTitle>
-                                  <Badge className="text-teal-300 border-teal-700">
-                                    {spell.cooldown}
-                                  </Badge>
-                                </div>
-                              </CardHeader>
-                              <CardContent>
-                                <p className="text-teal-100/80">
-                                  {spell.description}
-                                </p>
-                              </CardContent>
-                            </Card>
-                          ))}
-                        </div>
-                      </ScrollArea>
-                    </div>
-
-                    {/* Divine Buffs section */}
-                    <div>
-                      <h3 className="text-2xl font-bold text-teal-300 mb-4 flex items-center">
-                        <Zap className="mr-2 h-5 w-5 text-teal-500" />
-                        Divine Buffs
-                      </h3>
-                      <ScrollArea className="h-64">
-                        <div className="space-y-4">
-                          {selectedGod.buffs.map((buff, index) => (
-                            <Card
-                              key={index}
-                              className="bg-stone-800/60 border-teal-700/40 backdrop-blur-sm"
-                            >
-                              <CardHeader className="pb-2">
-                                <div className="flex justify-between items-center">
-                                  <CardTitle className="text-teal-200 text-lg flex items-center">
-                                    {buff.icon}
-                                    <span className="ml-2">{buff.name}</span>
-                                  </CardTitle>
-                                  <Badge
-                                    className={`${getTextColor(
-                                      selectedGod.tier
-                                    )}`}
-                                  >
-                                    {buff.value}
-                                  </Badge>
-                                </div>
-                              </CardHeader>
-                              <CardContent>
-                                <p className="text-teal-100/80">
-                                  {buff.description}
-                                </p>
-                              </CardContent>
-                            </Card>
-                          ))}
-                        </div>
-                      </ScrollArea>
-                    </div>
-                  </div>
+                {/* Category badge */}
+                <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full">
+                  <span className="text-amber-400 text-xs uppercase font-semibold">
+                    {selectedGod?.properties.category}
+                  </span>
                 </div>
               </div>
             </div>
-          )}
+          </motion.div>
+
+          <motion.div
+            key={`details-${selectedGod?.name}`}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full lg:w-1/2 flex flex-col"
+          >
+            <div className="relative">
+              <div className="absolute -z-10 text-[#1e1e2d] text-[12rem] font-bold leading-none -top-20 -left-6 opacity-60">
+                {selectedGod?.name.toUpperCase()}
+              </div>
+
+              <h2 className="text-white text-6xl md:text-7xl font-bold mb-4 capitalize">
+                {selectedGod?.name}
+              </h2>
+
+              <p className="text-gray-300 mb-8 max-w-lg text-lg">
+                {selectedGod?.description}
+              </p>
+
+              {/* Attributes Section */}
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                {selectedGod?.attributes
+                  .filter((attr: { trait_type: string }) => attr.trait_type !== "Type" && attr.trait_type !== "Tier")
+                  .map((attr: { trait_type: string }) => (
+                    <AttributeCard key={attr.trait_type} attribute={attr} />
+                  ))}
+              </div>
+
+              {/* Rarity score */}
+              <div className="bg-gradient-to-r from-gray-900/40 to-transparent p-4 rounded-lg backdrop-blur-sm border border-purple-500/20 mb-8">
+                <div className="flex items-center justify-between">
+                  <div className="text-gray-400 text-sm">Rarity Score</div>
+                  <div className="text-amber-400 text-2xl font-bold">{selectedGod?.properties.rarity_score}</div>
+                </div>
+                <div className="mt-2 w-full bg-gray-700/30 rounded-full h-2">
+                  <div
+                    className="bg-gradient-to-r from-purple-500 to-amber-500 h-2 rounded-full"
+                    style={{ width: `${(selectedGod?.properties.rarity_score / 30) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </main>
+
+      {/* God selector */}
+      <div className="relative z-10 container mx-auto px-4 pb-8">
+        <div className="flex justify-center items-center gap-2">
+          <button
+            onClick={prevGod}
+            className="p-2 rounded-full bg-gray-800/50 hover:bg-amber-900/50 transition-colors border border-gray-700 hover:border-amber-500"
+          >
+            <ChevronLeft className="text-white" />
+          </button>
+
+          <div className="flex gap-3">
+            {godsData.map((god, index) => (
+              <button
+                key={god.name}
+                onClick={() => setSelectedGodIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all ${index === selectedGodIndex
+                    ? "bg-amber-400 scale-125"
+                    : "bg-gray-600 hover:bg-gray-400"
+                  }`}
+                aria-label={`Select ${god.name}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={nextGod}
+            className="p-2 rounded-full bg-gray-800/50 hover:bg-amber-900/50 transition-colors border border-gray-700 hover:border-amber-500"
+          >
+            <ChevronRight className="text-white" />
+          </button>
+        </div>
+
+        {/* God thumbnails */}
+        <div className="mt-4 flex justify-center gap-2">
+          {godsData.map((god, index) => (
+            <button
+              key={god.name}
+              onClick={() => setSelectedGodIndex(index)}
+              className={`relative px-5 group ${index === selectedGodIndex ? "scale-110 z-10" : "opacity-70 hover:opacity-100"
+                } transition-all duration-300`}
+            >
+              {/* <div className={`absolute -inset-1 rounded-lg ${
+                index === selectedGodIndex 
+                  ? "bg-gradient-to-r from-amber-400 to-purple-600 opacity-100" 
+                  : "bg-gray-700 group-hover:bg-gradient-to-r group-hover:from-amber-400/50 group-hover:to-purple-600/50"
+              } blur-sm transition-all`}></div> */}
+              <div className="relative px-5 w-20 h-20 md:w-20 md:h-20 rounded-lg overflow-hidden">
+                <Image
+                  src={god.image || "/fog3.png"}
+                  alt={god.name || "God"}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className={`absolute -bottom-6 left-0 right-0 text-center text-xs font-medium capitalize ${index === selectedGodIndex ? "text-amber-400" : "text-gray-400"
+                }`}>
+                {god.name}
+              </div>
+            </button>
+          ))}
         </div>
       </div>
+
+      {/* Custom styles */}
+      <style jsx global>{`
+        @keyframes float {
+          0% {
+            transform: translateY(0) translateX(0);
+          }
+          50% {
+            transform: translateY(-20px) translateX(10px);
+          }
+          100% {
+            transform: translateY(0) translateX(0);
+          }
+        }
+      `}</style>
     </div>
-  );
+  )
+}
+
+function AttributeCard({ attribute }: { attribute: Attribute }) {
+  const getAttributeColor = (type: string) => {
+    const colors = {
+      heal: "from-green-600 to-emerald-400",
+      poison: "from-purple-600 to-fuchsia-400",
+      fortune: "from-amber-600 to-yellow-400",
+      tempest: "from-blue-600 to-cyan-400",
+      wisdom: "from-indigo-600 to-blue-400",
+      rewind: "from-rose-600 to-pink-400",
+      default: "from-gray-600 to-gray-400"
+    }
+
+    return colors[type as keyof typeof colors] || colors.default
+  }
+
+  return (
+    <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800">
+      <div className="p-4">
+        {/* <div className="text-gray-400 text-sm mb-1 capitalize">{attribute.trait_type}</div> */}
+        <div className="flex items-center justify-between">
+          <div className="text-white text-2xl font-bold">{attribute.trait_type.charAt(0).toUpperCase() + attribute.trait_type.slice(1)}</div>
+          <div className="flex items-center gap-0.5">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <div
+                key={i}
+                className={`w-1 h-4 rounded-sm ${i < Number(attribute.value)
+                  ? `bg-gradient-to-t ${getAttributeColor(attribute.trait_type)}`
+                  : "bg-gray-700"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+        <div
+          className={`h-1 bg-gradient-to-r ${getAttributeColor(attribute.trait_type)}`}
+        ></div>
+      </div>
+    </div>
+  )
 }
