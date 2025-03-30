@@ -73,7 +73,7 @@ export const VictoryModal = ({
           <div className="flex gap-4 items-center mb-8">
             <div className="flex-shrink-0 w-20 h-20 bg-slate-700 rounded-full border-4 border-emerald-600 p-1 overflow-hidden">
               <Image
-                src="/marcus.png"
+                src={humanGladiator.image}
                 alt="Human Gladiator"
                 width={80}
                 height={80}

@@ -28,6 +28,7 @@ export interface Gladiator {
   passive: Passive;
   abilities: Ability[];
   gods: God[];
+  image: string;
 }
 
 export interface BattleState {

@@ -50,37 +50,7 @@ export default function Home() {
         <div className="absolute inset-0 opacity-30 bg-[url('/fog3.png')] bg-cover"></div>
       </div>
 
-      <div className="relative z-10 pt-10 flex flex-col min-h-screen">
-        {/* Header */}
-        <header className="container mx-auto px-6 py-6 flex justify-between items-center">
-          {/* <div className="w-16 h-16">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
-              <path
-                d="M50,0 C77.6142,0 100,22.3858 100,50 C100,77.6142 77.6142,100 50,100 C22.3858,100 0,77.6142 0,50 C0,22.3858 22.3858,0 50,0 Z M50,20 C33.4315,20 20,33.4315 20,50 C20,66.5685 33.4315,80 50,80 C66.5685,80 80,66.5685 80,50 C80,33.4315 66.5685,20 50,20 Z M65,35 L35,65 M35,35 L65,65"
-                stroke="white"
-                strokeWidth="5"
-                fill="none"
-              />
-            </svg>
-          </div> */}
-
-          {/* <div className="flex gap-6">
-            <Link href="#" className="text-white hover:text-gray-300">
-              <Twitter size={24} />
-            </Link>
-            <Link href="#" className="text-white hover:text-gray-300">
-              <Instagram size={24} />
-            </Link>
-          </div> */}
-
-          {/* <button className="text-white">
-            <div className="w-8 h-6 flex flex-col justify-between">
-              <span className="w-full h-0.5 bg-white"></span>
-              <span className="w-full h-0.5 bg-white"></span>
-              <span className="w-full h-0.5 bg-white"></span>
-            </div>
-          </button> */}
-        </header>
+      <div className="relative z-10 pt-20 flex flex-col min-h-screen">
 
         {/* Main content */}
         <main className="container mx-auto px-6 flex-grow flex flex-col md:flex-row">
@@ -124,74 +94,14 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              {/* <Link href="#" className="inline-flex items-center text-white group"> */}
-                {/* <span className="mr-2">Learn more</span> */}
-                {/* <span className="group-hover:translate-x-1 transition-transform">→</span> */}
-              {/* </Link> */}
             </div>
 
-            {/* Last Fights Section */}
-            {/* <div className="mt-20">
-              <h2 className="text-white text-2xl font-bold mb-6">Last Fights</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative">
-                  <Image
-                    src={"/placeholder.svg?height=200&width=300"}
-                    width={300}
-                    height={200}
-                    alt="Wilder vs Ortiz 2"
-                    className="rounded-md brightness-75"
-                  />
-                  <p className="absolute bottom-3 left-3 text-white text-sm">Wilder vs Ortiz 2</p>
-                </div>
-                <div className="relative">
-                  <Image
-                    src="/placeholder.svg?height=200&width=300"
-                    width={300}
-                    height={200}
-                    alt="Wilder vs Briseal"
-                    className="rounded-md brightness-75"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                      <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[16px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
-                    </div>
-                  </div>
-                  <p className="absolute bottom-3 left-3 text-white text-sm">Wilder vs Briseal</p>
-                </div>
-              </div>
-            </div> */}
-
-            {/* Scroll indicator */}
             <div className="mt-12 flex justify-center md:justify-start">
-              {/* <div className="animate-bounce">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M12 5V19M12 19L5 12M12 19L19 12"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div> */}
             </div>
           </div>
 
           {/* Right content - Hero image */}
           <div className="w-full md:w-1/2 relative">
-            {/* Circular text */}
-            {/* <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4 w-64 h-64 md:w-80 md:h-80">
-              <svg viewBox="0 0 100 100" width="100%" height="100%">
-                <path id="curve" d="M 0,50 A 50,50 0 1 1 100,50 A 50,50 0 1 1 0,50 Z" fill="none" />
-                <text fill="white" fontSize="8">
-                  <textPath xlinkHref="#curve" startOffset="0%">
-                    WBC HEAVYWEIGHT CHAMP OF THE WORLD
-                  </textPath>
-                </text>
-              </svg>
-            </div> */}
 
             {/* Main image */}
             <div className="h-full relative py-20">

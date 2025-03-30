@@ -142,7 +142,7 @@ export default function GladiatorOnboarding() {
         abi: gladiatorAbi,
         address: gladiatorAddress,
         functionName: "mintGladiator",
-        args: [mintURI],
+        args: [ipfsUrl],
       });
       console.log("Minting transaction:", tx);
       if (tx) {
@@ -150,7 +150,7 @@ export default function GladiatorOnboarding() {
         // The transaction hash is returned, we can use it to track the transaction
         console.log("Transaction hash:", tx);
         setIsMinting(false);
-        redirect("/battle");
+        redirect("/dashboard");
       }
     } catch (error) {
       console.error("Error minting gladiator:", error);
