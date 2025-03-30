@@ -1,0 +1,139 @@
+POST http://localhost:3000/api/celestial/decide
+Content-Type: application/json
+
+{
+    "celestial1": {
+    "name": "Jupiter, King of Gods",
+    "description": "King of the gods, ruler of the heavens. A tier 1, celestial god commanding lightning and storms.",
+    "image": "ipfs://[CID-placeholder]/jupiter.png",
+    "attributes": [
+      {
+        "trait_type": "Type",
+        "value": "God"
+      },
+      {
+        "trait_type": "Tier",
+        "value": 1
+      },
+      {
+        "trait_type": "Attack",
+        "value": 10
+      },
+      {
+        "trait_type": "Defense",
+        "value": 8
+      },
+      {
+        "trait_type": "Speed",
+        "value": 7
+      },
+      {
+        "trait_type": "Lightning",
+        "value": 95
+      },
+      {
+        "trait_type": "Fire",
+        "value": 85
+      },
+      {
+        "trait_type": "Poison",
+        "value": 88
+      }
+    ],
+    "properties": {
+      "category": "Celestial",
+      "elemental_affinity": "Lightning",
+      "rarity_score": 92
+    }
+  },
+  "celestial2": {
+    "name": "Neptune, Lord of the Sea",
+    "description": "God of the sea, earthquakes, and storms. A tier 1 celestial deity with dominion over water and earth.",
+    "image": "ipfs://[CID-placeholder]/neptune.png",
+    "external_url": "https://celestials-collection.example/neptune",
+    "attributes": [
+      {
+        "trait_type": "Type",
+        "value": "God"
+      },
+      {
+        "trait_type": "Tier",
+        "value": 1
+      },
+      {
+        "trait_type": "Defense",
+        "value": 9
+      },
+      {
+        "trait_type": "Wisdom",
+        "value": 7
+      },
+      {
+        "trait_type": "Curse Resistance",
+        "value": 8
+      },
+      {
+        "trait_type": "Water",
+        "value": 90
+      },
+      {
+        "trait_type": "Earthquake",
+        "value": 92
+      },
+      {
+        "trait_type": "Aether Blast",
+        "value": 88
+      }
+    ],
+    "properties": {
+      "category": "Celestial",
+      "elemental_affinity": "Water",
+      "rarity_score": 90
+    }
+  },
+  "celestial3": {
+    "name": "Pluto, Ruler of the Underworld",
+    "description": "God of the underworld and wealth. A tier 1 celestial who commands the powers of darkness and death.",
+    "image": "ipfs://[CID-placeholder]/pluto.png",
+    "external_url": "https://celestials-collection.example/pluto",
+    "attributes": [
+      {
+        "trait_type": "Type",
+        "value": "God"
+      },
+      {
+        "trait_type": "Tier",
+        "value": 1
+      },
+      {
+        "trait_type": "Stealth",
+        "value": 8
+      },
+      {
+        "trait_type": "Shield",
+        "value": 7
+      },
+      {
+        "trait_type": "Fury",
+        "value": 9
+      },
+      {
+        "trait_type": "Necrotic Touch",
+        "value": 96
+      },
+      {
+        "trait_type": "Abyssal Chain",
+        "value": 89
+      },
+      {
+        "trait_type": "Poison",
+        "value": 85
+      }
+    ],
+    "properties": {
+      "category": "Celestial",
+      "elemental_affinity": "Death",
+      "rarity_score": 91
+    }
+  }
+}

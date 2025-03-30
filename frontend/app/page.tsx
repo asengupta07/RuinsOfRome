@@ -64,6 +64,9 @@ export default function Home() {
       style={{ height: scrollHeight }}
     >
       <Navbar />
+      <div className="absolute inset-0 bg-black">
+        <div className="absolute inset-0 opacity-10 bg-[url('/fog3.png')] bg-cover"></div>
+      </div>
 
       {/* 3D Background - Fixed position to cover entire scrollable area */}
       <div className="fixed inset-0 z-0">

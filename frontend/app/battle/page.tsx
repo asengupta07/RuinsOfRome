@@ -21,7 +21,7 @@ export default function BattlePage() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  // State variables
+  // State variabless
   const [battleStarted, setBattleStarted] = useState(false);
   const [currentTurn, setCurrentTurn] = useState<string>("");
   const [humanHealth, setHumanHealth] = useState(100);
