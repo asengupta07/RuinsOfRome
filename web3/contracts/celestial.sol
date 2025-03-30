@@ -22,19 +22,6 @@ contract Celestial is ERC721URIStorage {
         owner = msg.sender;
     }
 
-    // modifier onlyOwner() {
-    //     if (
-    //         msg.sender != owner ||
-    //         msg.sender != address(0xe34b40f38217f9Dc8c3534735f7f41B2cDA73A75) ||
-    //         msg.sender != address(0x6af90FF366aE23f4Bb719a56eBc910aF4C169aCE) ||
-    //         msg.sender != address(0xF23be0fbE9DEf26570278F91f3F150Af015a3ECf) ||
-    //         msg.sender != address(0xF5E93e4eEDbb1235B0FB200fd77068Cb9938eF4f)
-    //     ) {
-    //         revert Celestial__OnlyOwner();
-    //     }
-    //     _;
-    // }
-
     function mintNFT(address to, string memory tokenURI) public {
         uint256 tokenId = _nextTokenId;
         _safeMint(to, tokenId);

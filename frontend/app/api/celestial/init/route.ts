@@ -1,22 +1,28 @@
-import { NextResponse, NextRequest } from 'next/server';
-import { config } from '@/lib/config';
-import { generate, generateImage } from '@/functions/generate';
+import { NextResponse, NextRequest } from "next/server";
+import { config } from "@/lib/config";
+import { generate, generateImage } from "@/functions/generate";
 
 export async function GET(request: NextRequest) {
-    const celestials = config.celestials;
-    const initialCelestials = celestials.filter(c => c.tier === 3)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
+  const celestials = config.celestials;
+  const initialCelestials = celestials
+    .filter((c) => c.tier === 3)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
 
-    const initCelestials = await Promise.all(initialCelestials.map(async c => {
-        const descriptionPrompt = `Create a vivid and unique description of ${c.name}, a ${c.type} in ancient mythology.
-        Include details about their appearance, powers (${Object.keys(c.spells).join(", ")}), 
+  const initCelestials = await Promise.all(
+    initialCelestials.map(async (c) => {
+      const descriptionPrompt = `Create a vivid and unique description of ${
+        c.name
+      }, a ${c.type} in ancient mythology.
+        Include details about their appearance, powers (${Object.keys(
+          c.spells
+        ).join(", ")}), 
         and special abilities (${Object.keys(c.buffs).join(", ")}).
         Place them in an epic and memorable scene that captures their essence.`;
 
-        const generatedDescription = await generate(descriptionPrompt);
+      const generatedDescription = await generate(descriptionPrompt);
 
-        const imagePrompt = `Create a majestic and ethereal illustration of a mythological deity:
+      const imagePrompt = `Create a majestic and ethereal illustration of a mythological deity:
         
         Character: ${c.name}, ${c.type} of ${c.description}
         Scene Description: ${generatedDescription}
@@ -29,7 +35,7 @@ export async function GET(request: NextRequest) {
         - Background should reflect their domain and powers
         - Epic scale and composition`;
 
-        const imageUrl = await generateImage(imagePrompt);
+      const imageUrl = await generateImage(imagePrompt);
 
         return {
             name: c.name,
@@ -60,5 +66,5 @@ export async function GET(request: NextRequest) {
         };
     }));
 
-    return NextResponse.json(initCelestials);
+  return NextResponse.json(initCelestials);
 }
