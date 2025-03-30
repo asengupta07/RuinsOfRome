@@ -43,7 +43,6 @@ export const VictoryModal = ({
     story: string;
   } | null>(null);
   const [showStory, setShowStory] = useState(false);
-  const [showStoryView, setShowStoryView] = useState(false);
 
   // Generate battle story when the victory modal is shown
   useEffect(() => {
@@ -77,7 +76,7 @@ export const VictoryModal = ({
 
   // Toggle story view
   const toggleStory = () => {
-    setShowStoryView(!showStoryView);
+    setShowStory(!showStory);
   };
 
   // Navigate to chronicles page
@@ -117,26 +116,58 @@ export const VictoryModal = ({
 
         {/* Modal body */}
         <div className="p-6">
-          <div className="flex gap-4 items-center mb-8">
-            <div className="flex-shrink-0 w-20 h-20 bg-slate-700 rounded-full border-4 border-emerald-600 p-1 overflow-hidden">
-              <Image
-                src={humanGladiator.image}
-                alt="Human Gladiator"
-                width={80}
-                height={80}
-                className="object-cover rounded-full"
-              />
-            </div>
-            <div className="flex-1">
-              <div className="flex justify-between">
-                <h3 className="text-lg font-semibold text-white">
-                  {humanGladiator.name}
+          {showStory ? (
+            <div className="bg-slate-700/50 rounded-lg p-5 mb-6">
+              <div className="text-center mb-4">
+                <h3 className="text-lg font-bold text-emerald-500">
+                  Chapter {battleStory?.chapter || "?"}
                 </h3>
-                <span className="text-sm text-emerald-400">VICTORIOUS</span>
               </div>
-              <p className="text-sm text-slate-300 mb-2">
-                Defeated {aiGladiator.name} with {humanHealth} HP remaining
-              </p>
+              <div className="text-white bg-slate-900/80 p-4 rounded-md border border-emerald-800 mb-4">
+                {battleStory ? (
+                  <p className="italic font-serif leading-relaxed">
+                    {battleStory.story}
+                  </p>
+                ) : (
+                  <div className="flex items-center justify-center py-4">
+                    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-emerald-500"></div>
+                    <span className="ml-2">Chronicling your victory...</span>
+                  </div>
+                )}
+              </div>
+              <div className="flex justify-between">
+                <Button variant="outline" size="sm" onClick={toggleStory}>
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Rewards
+                </Button>
+                <Button variant="outline" size="sm" onClick={goToChronicles}>
+                  <Book className="mr-2 h-4 w-4" />
+                  View All Chronicles
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="flex gap-4 items-center mb-8">
+                <div className="flex-shrink-0 w-20 h-20 bg-slate-700 rounded-full border-4 border-emerald-600 p-1 overflow-hidden">
+                  <Image
+                    src={humanGladiator.image}
+                    alt="Human Gladiator"
+                    width={80}
+                    height={80}
+                    className="object-cover rounded-full"
+                  />
+                </div>
+                <div className="flex-1">
+                  <div className="flex justify-between">
+                    <h3 className="text-lg font-semibold text-white">
+                      {humanGladiator.name}
+                    </h3>
+                    <span className="text-sm text-emerald-400">VICTORIOUS</span>
+                  </div>
+                  <p className="text-sm text-slate-300 mb-2">
+                    Defeated {aiGladiator.name} with {humanHealth} HP remaining
+                  </p>
 
                   <div className="relative h-2 bg-slate-700 rounded-full overflow-hidden">
                     <div className="absolute inset-0 bg-slate-700"></div>
@@ -224,6 +255,7 @@ export const VictoryModal = ({
               {battleStory && (
                 <div className="flex justify-center mb-4">
                   <Button
+                    variant="outline"
                     className="border-emerald-700 text-emerald-400 hover:bg-emerald-900/60 flex items-center gap-2"
                     onClick={goToChronicles}
                   >
