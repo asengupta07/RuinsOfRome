@@ -1,4 +1,4 @@
-import { Trophy, X, Book, ArrowLeft } from "lucide-react";
+import { Trophy, X, Book } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Gladiator } from "@/lib/battle/types";
@@ -169,102 +169,95 @@ export const VictoryModal = ({
                     Defeated {aiGladiator.name} with {humanHealth} HP remaining
                   </p>
 
-                  <div className="relative h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="absolute inset-0 bg-slate-700"></div>
-                    <div
-                      className="absolute h-full bg-emerald-500 transition-all duration-1000 ease-out"
-                      style={{ width: `${expProgress}%` }}
-                    ></div>
-                    <div
-                      className={`absolute h-full bg-emerald-300 transition-all duration-1000 ease-out ${
-                        showExpAnimation ? "opacity-100" : "opacity-0"
-                      }`}
-                      style={{
-                        width: `${
-                          (((currentPlayerExp % expToNextLevel) + earnedExp) /
-                            expToNextLevel) *
-                          100
-                        }%`,
-                        maxWidth: "100%",
-                      }}
-                    ></div>
-                  </div>
-                  <div className="flex justify-between text-xs mt-1">
-                    <span>Level {playerLevel}</span>
-                    {levelUp && showExpAnimation && (
-                      <span className="text-emerald-400 animate-pulse">
-                        ↑ Level {newLevel}
-                      </span>
-                    )}
-                    <span>
-                      {currentPlayerExp % expToNextLevel}/{expToNextLevel} XP
-                    </span>
-                  </div>
-                </div>
+              <div className="relative h-2 bg-slate-700 rounded-full overflow-hidden">
+                <div className="absolute inset-0 bg-slate-700"></div>
+                <div
+                  className="absolute h-full bg-emerald-500 transition-all duration-1000 ease-out"
+                  style={{ width: `${expProgress}%` }}
+                ></div>
+                <div
+                  className={`absolute h-full bg-emerald-300 transition-all duration-1000 ease-out ${
+                    showExpAnimation ? "opacity-100" : "opacity-0"
+                  }`}
+                  style={{
+                    width: `${
+                      (((currentPlayerExp % expToNextLevel) + earnedExp) /
+                        expToNextLevel) *
+                      100
+                    }%`,
+                    maxWidth: "100%",
+                  }}
+                ></div>
               </div>
+              <div className="flex justify-between text-xs mt-1">
+                <span>Level {playerLevel}</span>
+                {levelUp && showExpAnimation && (
+                  <span className="text-emerald-400 animate-pulse">
+                    ↑ Level {newLevel}
+                  </span>
+                )}
+                <span>
+                  {currentPlayerExp % expToNextLevel}/{expToNextLevel} XP
+                </span>
+              </div>
+            </div>
+          </div>
 
-              {/* Rewards section */}
-              <div className="bg-slate-700/50 rounded-lg p-5 mb-6">
-                <h3 className="text-lg font-semibold text-center mb-4 text-emerald-400">
-                  Rewards
-                </h3>
+          {/* Rewards section */}
+          <div className="bg-slate-700/50 rounded-lg p-5 mb-6">
+            <h3 className="text-lg font-semibold text-center mb-4 text-emerald-400">
+              Rewards
+            </h3>
 
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-300">Experience:</span>
-                    <div className="flex items-center">
-                      <span className="text-white mr-2">
-                        {currentPlayerExp}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-slate-300">Experience:</span>
+                <div className="flex items-center">
+                  <span className="text-white mr-2">{currentPlayerExp}</span>
+                  {showExpAnimation && (
+                    <>
+                      <span className="text-white mx-1">+</span>
+                      <span className="text-lg font-bold text-emerald-400 animate-in slide-in-from-bottom-3 fade-in duration-500">
+                        {earnedExp}
                       </span>
-                      {showExpAnimation && (
-                        <>
-                          <span className="text-white mx-1">+</span>
-                          <span className="text-lg font-bold text-emerald-400 animate-in slide-in-from-bottom-3 fade-in duration-500">
-                            {earnedExp}
-                          </span>
-                          <span className="text-white mx-1">=</span>
-                          <span className="text-lg font-bold text-emerald-400 animate-in slide-in-from-right-3 fade-in duration-700 delay-300">
-                            {newTotalExp}
-                          </span>
-                        </>
-                      )}
-                    </div>
-                  </div>
-
-                  {levelUp && showExpAnimation && (
-                    <div className="bg-emerald-500/20 p-3 rounded-md text-center animate-in slide-in-from-bottom-5 fade-in duration-700 delay-500">
-                      <span className="text-lg font-bold text-emerald-400">
-                        LEVEL UP!
+                      <span className="text-white mx-1">=</span>
+                      <span className="text-lg font-bold text-emerald-400 animate-in slide-in-from-right-3 fade-in duration-700 delay-300">
+                        {newTotalExp}
                       </span>
-                      <div className="text-sm text-slate-300">
-                        Your gladiator has reached level {newLevel}
-                      </div>
-                    </div>
+                    </>
                   )}
-
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-300">Glory Points:</span>
-                    <span className="text-lg font-bold text-emerald-400">
-                      +25
-                    </span>
-                  </div>
                 </div>
               </div>
 
-              {/* Battle Story button - changed to redirect to chronicles page */}
-              {battleStory && (
-                <div className="flex justify-center mb-4">
-                  <Button
-                    variant="outline"
-                    className="border-emerald-700 text-emerald-400 hover:bg-emerald-900/60 flex items-center gap-2"
-                    onClick={goToChronicles}
-                  >
-                    <Book className="h-4 w-4" />
-                    Read Battle Chronicles
-                  </Button>
+              {levelUp && showExpAnimation && (
+                <div className="bg-emerald-500/20 p-3 rounded-md text-center animate-in slide-in-from-bottom-5 fade-in duration-700 delay-500">
+                  <span className="text-lg font-bold text-emerald-400">
+                    LEVEL UP!
+                  </span>
+                  <div className="text-sm text-slate-300">
+                    Your gladiator has reached level {newLevel}
+                  </div>
                 </div>
               )}
-            </>
+
+              <div className="flex justify-between items-center">
+                <span className="text-slate-300">Glory Points:</span>
+                <span className="text-lg font-bold text-emerald-400">+25</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Battle Story button */}
+          {battleStory && (
+            <div className="flex justify-center mb-4">
+              <Button
+                className="border-emerald-700 text-emerald-400 hover:bg-emerald-900/60 flex items-center gap-2"
+                onClick={goToChronicles}
+              >
+                <Book className="h-4 w-4" />
+                Read Battle Chronicles
+              </Button>
+            </div>
           )}
 
           <Button

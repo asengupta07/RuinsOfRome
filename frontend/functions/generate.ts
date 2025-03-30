@@ -1,9 +1,10 @@
 import Groq from "groq-sdk";
 
-const model = process.env.GROQ_MODEL || "deepseek-r1-distill-qwen-32b";
+const model = process.env.GROQ_MODEL || process.env.NEXT_PUBLIC_GROQ_MODEL || "deepseek-r1-distill-qwen-32b";
 
 const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
+    apiKey: process.env.GROQ_API_KEY || process.env.NEXT_PUBLIC_GROQ_API_KEY || "",
+    dangerouslyAllowBrowser: true
 });
 
 
@@ -23,7 +24,7 @@ async function generateImage(prompt: string): Promise<string> {
     const response = await fetch('https://api.corcel.io/v1/image/vision/text-to-image', {
         method: 'POST',
         headers: {
-            'Authorization': process.env.CORCEL_API_KEY || '',
+            'Authorization': process.env.CORCEL_API_KEY || process.env.NEXT_PUBLIC_CORCEL_API_KEY || '',
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },

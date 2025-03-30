@@ -68,7 +68,7 @@ export const BattleArena = ({
           {/* Gods Owned Column */}
           <div className="flex flex-col justify-center gap-4 w-1/4">
             {humanGladiator.gods.map((god, index) => (
-              <GodCard key={index} god={god} />
+              <GodCard key={index} god={god} isHuman={true} />
             ))}
           </div>
 
@@ -105,7 +105,7 @@ export const BattleArena = ({
           {/* Gods Owned Column */}
           <div className="flex flex-col justify-center gap-4 w-1/4">
             {aiGladiator.gods.map((god, index) => (
-              <GodCard key={index} god={god} />
+              <GodCard key={index} god={god} isHuman={false} />
             ))}
           </div>
 

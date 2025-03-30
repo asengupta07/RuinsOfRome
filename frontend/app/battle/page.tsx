@@ -52,7 +52,7 @@ import { BattleArena } from "@/components/battle/BattleArena";
 import { VictoryModal } from "@/components/battle/VictoryModal";
 import { DefeatModal } from "@/components/battle/DefeatModal";
 import { useAccount } from "wagmi";
-import { gladiatorAbi } from "../abi";
+import { celestialAbi, celestialAddress, gladiatorAbi } from "../abi";
 import { useReadContract } from "wagmi";
 import { gladiatorAddress } from "../abi";
 
@@ -98,20 +98,31 @@ export default function BattlePage() {
     args: [address],
   });
 
+  const { data: celestialData } = useReadContract({
+    abi: celestialAbi,
+    address: celestialAddress,
+    functionName: "getNFTs",
+    args: [address],
+  }) as any;
+
+  console.log("celestialData", celestialData);
+
   const [humanGladiator, setHumanGladiator] = useState<Gladiator | null>(null);
   const [aiGladiator, setAiGladiator] = useState<Gladiator | null>(null);
 
   useEffect(() => {
     const initGladiators = async () => {
-      if (gladiatorData) {
-        const human = await generateGladiator(true, gladiatorData);
-        const ai = await generateGladiator(false, gladiatorData);
+      if (gladiatorData && celestialData) {
+        const parsedCelestialData = celestialData.map((uri: string) => JSON.parse(uri));
+        console.log("parsedCelestialData", parsedCelestialData);
+        const human = await generateGladiator(true, gladiatorData, parsedCelestialData);
+        const ai = await generateGladiator(false, gladiatorData, parsedCelestialData);
         setHumanGladiator(human);
         setAiGladiator(ai);
       }
     };
     initGladiators();
-  }, [gladiatorData]);
+  }, [gladiatorData, celestialData]);
 
   // Individual state setters for battle state properties
   const setBattleStarted = (value: boolean) =>
