@@ -4,7 +4,7 @@ import Providers from "./_providers/rainbowkit";
 import ConvexClientProviders from "@/providers/ConvexClientProviders";
 
 export const metadata: Metadata = {
-  title: "RoR",
+  title: "Ruins of Rome",
   description: "Fight for Blessings",
 };
 
@@ -17,16 +17,9 @@ export default function RootLayout({
         <link rel="icon" href="/logo1.png" />
       </head>
       <body className={`antialiased bg-[#000]`}>
-        {/* <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        > */}
         <ConvexClientProviders>
           <Providers>{children}</Providers>
         </ConvexClientProviders>
-        {/* </ThemeProvider> */}
       </body>
     </html>
   );

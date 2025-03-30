@@ -33,13 +33,15 @@ export async function POST(request: NextRequest) {
     });
 
     try {
-      console.log("Wallet Address", wallet.address);
-      console.log("Connected to Ethereum provider and contract");
-      console.log("Minting NFT with URI:", uri);
-      console.log("Minting NFT to address:", address);
+      // console.log("Wallet Address", wallet.address);
+      // console.log("Connected to Ethereum provider and contract");
+      // console.log("Minting NFT with URI:", uri);
+      // console.log("Minting NFT to address:", address);
 
-      const res = await contract.mintNFT(address, uri);
-      console.log(res);
+      console.log("Starting minting process...");
+      const tx = await contract.mintNFT(address, uri);
+      const res = await tx.wait();
+      console.log("Minting done for address:", address, "for contract");
     } catch (error) {
       console.error("Error connecting to Ethereum provider:", error);
       return NextResponse.json(

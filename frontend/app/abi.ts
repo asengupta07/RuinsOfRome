@@ -1,4 +1,4 @@
-export const celestialAddress = "0x3Ff9e7e9FD2dEAB2fA771760Eaf0fC16DF918B72";
+export const celestialAddress = "0x8c7dFe9936024FdDF5B8Be08bb959074516f26dA";
 export const gladiatorAddress = "0xc9BeCfcd5993AfA9299d127B712343e067085Db3";
 
 export const celestialAbi = [
@@ -273,6 +273,25 @@ export const celestialAbi = [
         internalType: "address",
         name: "",
         type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "addy",
+        type: "address",
+      },
+    ],
+    name: "getNFTs",
+    outputs: [
+      {
+        internalType: "uint256[]",
+        name: "",
+        type: "uint256[]",
       },
     ],
     stateMutability: "view",

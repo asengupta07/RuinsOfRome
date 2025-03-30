@@ -28,4 +28,26 @@ contract Celestial is ERC721URIStorage {
         _setTokenURI(tokenId, tokenURI);
         _nextTokenId++;
     }
+
+    function getNFTs(address addy) public view returns (uint256[] memory) {
+        if (addy == address(0)) revert("Invalid address");
+        
+        uint256[] memory tokens = new uint256[](_nextTokenId);
+        uint256 tokenCount = 0;
+        
+        for(uint256 i = 0; i < _nextTokenId; i++) {
+            if(ownerOf(i) == addy) {
+                tokens[tokenCount] = i;
+                tokenCount++;
+            }
+        }
+
+        // Create correctly sized array
+        uint256[] memory result = new uint256[](tokenCount);
+        for(uint256 i = 0; i < tokenCount; i++) {
+            result[i] = tokens[i];
+        }
+        
+        return result;
+    }
 }
