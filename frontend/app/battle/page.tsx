@@ -344,7 +344,7 @@ export default function BattlePage() {
         }}
       >
         {/* Header - Smaller to maximize battle area */}
-        <div className="w-full py-2 px-4 z-10">
+        <div className="w-full py-2 px-4 z-20 border-b border-emerald-900/50 bg-black/70 backdrop-blur-sm">
           <Navbar />
         </div>
 
@@ -352,7 +352,7 @@ export default function BattlePage() {
         <Toaster />
 
         {/* Main Battle Area - Flex to maximize viewport usage */}
-        <main className="flex-1 flex flex-col justify-center w-full max-w-screen-2xl mx-auto px-4 py-2">
+        <main className="flex-1 flex flex-col justify-center w-full max-w-screen-2xl mx-auto px-4 py-6 mt-2 relative">
           {/* Mode Selection UI */}
           {battleMode === "select" && (
             <BattleModeSelection

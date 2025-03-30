@@ -8,10 +8,13 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isBattlePage = pathname === "/battle";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +26,14 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-sm border-b border-stone-800">
+    <nav
+      className={cn(
+        "bg-black/50 backdrop-blur-sm",
+        isBattlePage
+          ? "relative"
+          : "fixed top-0 left-0 right-0 z-50 border-b border-stone-800"
+      )}
+    >
       <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-16">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="text-2xl font-serif">
@@ -93,4 +103,3 @@ function MobileNavLink({
     </Link>
   );
 }
-

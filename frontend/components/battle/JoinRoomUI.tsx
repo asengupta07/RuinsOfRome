@@ -67,7 +67,7 @@ export const JoinRoomUI = ({
         </p>
       </div>
 
-      <Card className="w-full max-w-md bg-gradient-to-b from-slate-800/90 to-slate-900/90 border-2 border-emerald-600">
+      <Card className="w-full max-w-md bg-gradient-to-b from-slate-800/90 to-slate-900/90 border-2 border-emerald-600 relative z-10">
         <CardHeader>
           <h2 className="text-xl font-bold text-center text-emerald-400">
             {isConnecting ? "Connecting to Battle..." : "Enter Room Code"}

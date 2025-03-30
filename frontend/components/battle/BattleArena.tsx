@@ -62,7 +62,7 @@ export const BattleArena = ({
         />
       )}
 
-      <div className="flex flex-row justify-between items-center h-full">
+      <div className="flex flex-row justify-between items-center h-full relative z-10">
         {/* Left Side - Human Gladiator with Gods */}
         <div className="flex flex-row h-full py-4 w-5/12 gap-4">
           {/* Gods Owned Column */}
@@ -93,7 +93,7 @@ export const BattleArena = ({
 
         {/* Center - VS Symbol */}
         <div className="flex flex-col items-center justify-center h-full w-2/12 relative">
-          <div className="relative z-10">
+          <div className="relative z-20">
             <div className="text-6xl font-extrabold text-emerald-600 bg-slate-900/60 p-6 rounded-full border-4 border-emerald-700 shadow-lg shadow-emerald-900/30 transform rotate-0 hover:rotate-12 transition-all">
               VS
             </div>

@@ -46,7 +46,7 @@ export const PlayerRoomSelection = ({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full relative z-10">
         {/* Create Room Option */}
         <Card
           className="bg-gradient-to-b from-slate-800/90 to-slate-900/90 border-2 border-emerald-700 hover:border-emerald-500 transition-all cursor-pointer transform hover:scale-105"

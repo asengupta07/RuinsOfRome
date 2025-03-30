@@ -28,14 +28,17 @@ export const CreateRoomUI = ({
   // In a real app, this would come from your WebSocket or other real-time service
   useEffect(() => {
     if (roomId && !opponentJoined) {
-      const timer = setTimeout(() => {
-        setOpponentJoined(true);
-        toast({
-          title: "Opponent Joined!",
-          description: "An opponent has joined your room. Battle begins!",
-          variant: "default",
-        });
-      }, Math.floor(Math.random() * 5000) + 5000); // Random between 5-10 seconds
+      const timer = setTimeout(
+        () => {
+          setOpponentJoined(true);
+          toast({
+            title: "Opponent Joined!",
+            description: "An opponent has joined your room. Battle begins!",
+            variant: "default",
+          });
+        },
+        Math.floor(Math.random() * 5000) + 5000
+      ); // Random between 5-10 seconds
 
       return () => clearTimeout(timer);
     }
@@ -74,7 +77,7 @@ export const CreateRoomUI = ({
         </p>
       </div>
 
-      <Card className="w-full max-w-md bg-gradient-to-b from-slate-800/90 to-slate-900/90 border-2 border-emerald-600">
+      <Card className="w-full max-w-md bg-gradient-to-b from-slate-800/90 to-slate-900/90 border-2 border-emerald-600 relative z-10">
         <CardHeader>
           <h2 className="text-xl font-bold text-center text-emerald-400">
             Your Room Code
