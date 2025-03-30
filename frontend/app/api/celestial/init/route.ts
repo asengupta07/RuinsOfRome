@@ -36,6 +36,14 @@ export async function GET(request: NextRequest) {
             description: c.description,
             image: imageUrl,
             attributes: [
+                {
+                    trait_type: "Type",
+                    value: c.type
+                },
+                {
+                    trait_type: "Tier",
+                    value: c.tier
+                },
                 ...Object.entries(c.buffs).map(([name, value]) => ({
                     trait_type: name,
                     value: value
