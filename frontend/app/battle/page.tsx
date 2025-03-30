@@ -51,6 +51,10 @@ import { JoinRoomUI } from "@/components/battle/JoinRoomUI";
 import { BattleArena } from "@/components/battle/BattleArena";
 import { VictoryModal } from "@/components/battle/VictoryModal";
 import { DefeatModal } from "@/components/battle/DefeatModal";
+import { useAccount } from "wagmi";
+import { gladiatorAbi } from "../abi";
+import { useReadContract } from "wagmi";
+import { gladiatorAddress } from "../abi";
 
 export default function BattlePage() {
   const { toast } = useToast();
@@ -86,8 +90,28 @@ export default function BattlePage() {
   });
 
   // Generate gladiator instances
-  const [humanGladiator] = useState<Gladiator>(() => generateGladiator(true));
-  const [aiGladiator] = useState<Gladiator>(() => generateGladiator(false));
+  const { address } = useAccount();
+  const { data: gladiatorData } = useReadContract({
+    abi: gladiatorAbi,
+    address: gladiatorAddress, 
+    functionName: "getGladiatorForPlayer",
+    args: [address],
+  });
+
+  const [humanGladiator, setHumanGladiator] = useState<Gladiator | null>(null);
+  const [aiGladiator, setAiGladiator] = useState<Gladiator | null>(null);
+
+  useEffect(() => {
+    const initGladiators = async () => {
+      if (gladiatorData) {
+        const human = await generateGladiator(true, gladiatorData);
+        const ai = await generateGladiator(false, gladiatorData);
+        setHumanGladiator(human);
+        setAiGladiator(ai);
+      }
+    };
+    initGladiators();
+  }, [gladiatorData]);
 
   // Individual state setters for battle state properties
   const setBattleStarted = (value: boolean) =>
@@ -174,11 +198,11 @@ export default function BattlePage() {
 
         // AI takes first turn automatically
         const randomAbility =
-          aiGladiator.abilities[
-            Math.floor(Math.random() * aiGladiator.abilities.length)
+          aiGladiator?.abilities[
+            Math.floor(Math.random() * aiGladiator?.abilities.length)
           ];
 
-        handleAbilityClick(aiGladiator.name, randomAbility.name);
+        handleAbilityClick(aiGladiator?.name, randomAbility?.name);
       }, 1500);
 
       return () => clearTimeout(timer);
@@ -228,7 +252,7 @@ export default function BattlePage() {
           setHumanDefenseBonus(0);
           toast({
             title: "Buff Expired",
-            description: `${humanGladiator.name}'s defense bonus has worn off.`,
+            description: `${humanGladiator?.name}'s defense bonus has worn off.`,
             variant: "default",
           });
         }
@@ -237,7 +261,7 @@ export default function BattlePage() {
           setAiDefenseBonus(0);
           toast({
             title: "Buff Expired",
-            description: `${aiGladiator.name}'s defense bonus has worn off.`,
+            description: `${aiGladiator?.name}'s defense bonus has worn off.`,
             variant: "default",
           });
         }

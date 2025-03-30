@@ -58,6 +58,8 @@ export const GladiatorCard = ({
   // Determine if this gladiator is shaking from being hit
   const isShaking = targetShake === (isHuman ? "human" : "ai");
 
+  // console.log("Gladiatoroooo: ", gladiator);
+
   return (
     <div className="flex items-center relative">
       {/* Attack animation */}
@@ -82,7 +84,7 @@ export const GladiatorCard = ({
             {/* Gladiator Image */}
             <div className="aspect-square relative bg-slate-900 rounded-md overflow-hidden border border-slate-700">
               <Image
-                src={isHuman ? "/marcus.png" : "/stoicism.png"}
+                src={isHuman ? gladiator.image : "/stoicism.png"}
                 alt={`${isHuman ? "Human" : "AI"} Gladiator`}
                 height={200}
                 width={200}

@@ -11,6 +11,7 @@ import { gladiatorAbi, gladiatorAddress } from "../abi";
 import { PinataSDK } from "pinata-web3";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const pinata = new PinataSDK({
   pinataJwt: process.env.NEXT_PUBLIC_PINATA_JWT,
@@ -18,6 +19,7 @@ const pinata = new PinataSDK({
 });
 
 export default function GladiatorOnboarding() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [gender, setGender] = useState("male");
   const [isMinting, setIsMinting] = useState(false);
@@ -142,7 +144,7 @@ export default function GladiatorOnboarding() {
         abi: gladiatorAbi,
         address: gladiatorAddress,
         functionName: "mintGladiator",
-        args: [mintURI],
+        args: [ipfsUrl],
       });
       console.log("Minting transaction:", tx);
       if (tx) {
@@ -150,7 +152,7 @@ export default function GladiatorOnboarding() {
         // The transaction hash is returned, we can use it to track the transaction
         console.log("Transaction hash:", tx);
         setIsMinting(false);
-        redirect("/battle");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.error("Error minting gladiator:", error);

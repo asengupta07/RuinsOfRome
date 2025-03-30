@@ -1,5 +1,9 @@
+import { gladiatorAbi } from "@/app/abi";
+import { gladiatorAddress } from "@/app/abi";
 import { Gladiator } from "./types";
 import confetti from "canvas-confetti";
+import { useAccount, useReadContract } from "wagmi";
+import { config } from "../config";
 
 // Random number generator function
 export const getRandomInRange = (min: number, max: number): number => {
@@ -142,28 +146,48 @@ export const triggerConfetti = (): void => {
 };
 
 // Calculate initial gladiator stats
-export const generateGladiator = (isHuman: boolean): Gladiator => {
-  if (isHuman) {
-    return {
-      name: "Marcus Aurelius",
-      attack: getRandomInRange(90, 100),
-      defense: getRandomInRange(60, 75),
+export const generateGladiator = async (isHuman: boolean, gladiatorData: any): Promise<Gladiator> => {
+  const processGladiatorData = async (uri: string) => {
+    const metadata = await fetch(uri);
+    const metadataJson = await metadata.json();
+    return metadataJson;
+  }
+
+  const gladiatorDataJson = await processGladiatorData(gladiatorData);
+  console.log("Gladiator Data JSON: ", gladiatorDataJson);
+
+  const moveset = gladiatorDataJson.moveset;
+  const movesetConfig = config.moves;
+  const pass = moveset.find((move: string) => movesetConfig.find(config => config.type === 'passive' && config.name === move));
+  const att = moveset.find((move: string) => movesetConfig.find(config => config.type === 'attack' && config.name === move));
+  const def = moveset.find((move: string) => movesetConfig.find(config => config.type === 'defense' && config.name === move));
+  const attack = movesetConfig.find((config: any) => config.name === att);
+  const defense = movesetConfig.find((config: any) => config.name === def);
+  const passive = movesetConfig.find((config: any) => config.name === pass);
+  console.log("Passive: ", passive);
+  console.log("Attack: ", attack);
+  console.log("Defense: ", defense);
+  if (isHuman && passive && attack && defense) {
+    const gladiator = {
+      name: gladiatorDataJson.name,
+      attack: gladiatorDataJson.attackValue,
+      defense: gladiatorDataJson.defenceValue,
       health: 100,
-      speed: getRandomInRange(60, 80),
+      speed: gladiatorDataJson.speedValue,
       passive: {
-        name: "Stoic Resilience",
-        description: "Reduces damage taken when below 30% health",
+        name: passive.name,
+        description: passive.description,
         icon: "/passive-stoic.svg",
       },
       abilities: [
         {
-          name: "Gladius Strike",
-          description: "A powerful strike with the gladius",
+          name: attack.name,
+          description: attack.description,
           icon: "/ability-gladius.svg",
         },
         {
-          name: "Roman Formation",
-          description: "Increase defense for 2 turns",
+          name: defense.name,
+          description: defense.description,
           icon: "/ability-formation.svg",
         },
       ],
@@ -184,14 +208,17 @@ export const generateGladiator = (isHuman: boolean): Gladiator => {
           rarity: "Rare",
         },
       ],
-    };
+      image: gladiatorDataJson.imageUrl,
+    } as Gladiator;
+    console.log("Gladiator: ", gladiator);
+    return gladiator;
   } else {
-    return {
+    const gladiatorAI = {
       name: "Digitalis Maximus",
-      attack: getRandomInRange(90, 100),
-      defense: getRandomInRange(60, 75),
+      attack: getRandomInRange(32, 48),
+      defense: getRandomInRange(32, 48),
       health: 100,
-      speed: getRandomInRange(60, 80),
+      speed: getRandomInRange(32, 48),
       passive: {
         name: "Algorithm Adaptation",
         description: "Learns from opponent's moves, increasing counter damage",
@@ -226,6 +253,9 @@ export const generateGladiator = (isHuman: boolean): Gladiator => {
           rarity: "Rare",
         },
       ],
-    };
+      image: "/digitalis-maximus.png",
+    } as Gladiator;
+    console.log("Gladiator AI: ", gladiatorAI);
+    return gladiatorAI;
   }
 };
