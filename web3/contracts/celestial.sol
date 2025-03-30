@@ -36,7 +36,7 @@ contract Celestial is ERC721URIStorage {
         uint256 tokenCount = 0;
         
         for(uint256 i = 0; i < _nextTokenId; i++) {
-            if(_exists(i) && ownerOf(i) == addy) {
+            if(ownerOf(i) == addy) {
                 tokens[tokenCount] = i;
                 tokenCount++;
             }
