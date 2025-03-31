@@ -33,10 +33,9 @@ const PERSONALITY_TYPES = [
   "Offensive by nature, always ready to attack and is not afraid to take risks.",
   "Defensive by nature, always ready to defend themselves and is not afraid to take risks.",
 ];
-const BASE_ATTACK = 50;
-const BASE_DEFENCE = 50;
-const BASE_SPEED = 50;
-const BASE_MOVES = 3;
+const BASE_ATTACK = 60;
+const BASE_DEFENCE = 60;
+const BASE_SPEED = 60;
 const ATTACK_MOVES = ["melee", "ranged"];
 const DEFENCE_MOVES = ["fortify", "heal"];
 const PASSIVE_MOVES = [

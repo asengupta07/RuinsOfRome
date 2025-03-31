@@ -1,8 +1,5 @@
-import { gladiatorAbi } from "@/app/abi";
-import { gladiatorAddress } from "@/app/abi";
 import { Gladiator } from "./types";
 import confetti from "canvas-confetti";
-import { useAccount, useReadContract } from "wagmi";
 import { config } from "../config";
 
 // Random number generator function
@@ -101,7 +98,7 @@ export const isGladiatorTurn = (
 };
 
 // Function to get placeholder image for gods
-export const getGodPlaceholderImage = (godName: string): string => {
+export const getGodPlaceholderImage = (): string => {
   // Just return a single placeholder for all gods
   return "/god-placeholder.svg";
 };

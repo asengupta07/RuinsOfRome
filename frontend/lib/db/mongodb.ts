@@ -17,7 +17,7 @@ declare global {
 // MongoDB connection string
 // In a real app, use .env.local to store this
 const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/ruinsofrome";
+  process.env.MONGODB_URI || "shiii i was about to push this damn";
 
 // Define the connection interface
 interface Cached {

@@ -128,7 +128,7 @@ export default function Home() {
           className="h-screen flex items-center justify-center px-4 md:px-8 lg:px-16"
         >
           <div className="max-w-6xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-stone-800/50 border border-stone-700 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-stone-800/50 border rounded-2xl border-stone-700 mb-6">
               <History className="h-4 w-4 text-stone-400" />
               <span className="text-sm font-medium text-stone-300">
                 Divine Inspiration
@@ -136,29 +136,29 @@ export default function Home() {
             </div>
 
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 font-bold">
-              The Power of <span className="text-amber-400">Gods</span>
+              Strategic <span className="text-amber-400">Combat</span>
             </h2>
 
             <p className="text-lg md:text-xl text-stone-300 max-w-3xl mb-8 leading-relaxed">
-              Ancient sculptors captured the essence of divinity, creating
-              timeless representations of gods and goddesses that embodied the
-              ideals and aspirations of their civilizations.
+              Engage in thrilling turn-based battles against other players or AI opponents. 
+              Trade and collect unique gladiators and divine artifacts on the blockchain, 
+              while making strategic decisions that shape your destiny in the arena.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-              <div className="bg-stone-900/50 border border-stone-800 p-6">
-                <h3 className="text-xl font-serif mb-3">Zeus & Olympians</h3>
+              <div className="bg-stone-900/50 border rounded-2xl border-stone-800 p-6">
+                <h3 className="text-xl font-serif mb-3">Gladiators & Gods</h3>
                 <p className="text-stone-400">
-                  The Greek pantheon inspired some of the most magnificent
-                  sculptures in human history, defining classical aesthetics.
+                  Engage in strategic turn-based combat where your gladiator's fate
+                  is determined by skill, divine favor, and blockchain-verified battles.
                 </p>
               </div>
 
-              <div className="bg-stone-900/50 border border-stone-800 p-6">
-                <h3 className="text-xl font-serif mb-3">Egyptian Deities</h3>
+              <div className="bg-stone-900/50 border rounded-2xl border-stone-800 p-6">
+                <h3 className="text-xl font-serif mb-3">Roman Deities</h3>
                 <p className="text-stone-400">
-                  From Anubis to Osiris, Egyptian sculptors created stylized yet
-                  powerful representations of their complex pantheon.
+                  Call upon the powers of ancient gods to enhance your gladiator's abilities,
+                  with each blessing recorded immutably on the blockchain.
                 </p>
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function Home() {
           className="h-screen flex items-center justify-center px-4 md:px-8 lg:px-16"
         >
           <div className="max-w-6xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-stone-800/50 border border-stone-700 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-stone-800/50 border rounded-2xl border-stone-700 mb-6">
               <Book className="h-4 w-4 text-stone-400" />
               <span className="text-sm font-medium text-stone-300">
                 Eternal Stories
@@ -183,9 +183,9 @@ export default function Home() {
             </h2>
 
             <p className="text-lg md:text-xl text-stone-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-              From ancient myths to historical events, sculptors have preserved
-              our collective stories in stone and bronze, creating a tangible
-              connection to our shared past.
+              Every battle tells a unique story, with dynamic narration and stunning visuals
+              bringing your gladiator's journey to life. Watch as your tactical decisions and
+              divine interventions unfold into an epic saga crafted exclusively for you.
             </p>
 
             <div className="flex justify-center gap-4 mt-8">

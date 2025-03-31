@@ -144,6 +144,31 @@ export const handleAbilityActivation = (
     startBattleFn();
   }
 
+  if (
+    gladiatorName === humanGladiator.name &&
+    abilityName === "heal"
+  ) {
+    // Apply healing to the human gladiator
+    const healing = Math.floor(humanGladiator.health + (humanGladiator.health * 0.3)); // 30% of base health
+    setHumanHealth(Math.min(100, healing));
+    
+    toast({
+      title: "Healing Applied!",
+      description: `${humanGladiator.name} heals for ${healing > 100 ? 100 : healing} health!`,
+      variant: "default",
+    });
+    
+    // Show healing animation
+    setShowExpAnimation(true);
+
+    // Clear healing animation after a short delay
+    setTimeout(() => {
+      setShowExpAnimation(false);
+    }, 1000);
+
+    return;
+  }
+
   // Apply defensive buffs if the ability is a defensive one
   if (
     gladiatorName === humanGladiator.name &&
