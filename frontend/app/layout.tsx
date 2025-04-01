@@ -12,11 +12,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo1.png" />
       </head>
-      <body className={`antialiased bg-[#000]`}>
+      <body className={`antialiased bg-[#000]`} suppressHydrationWarning>
         <ConvexClientProviders>
           <Providers>{children}</Providers>
         </ConvexClientProviders>
