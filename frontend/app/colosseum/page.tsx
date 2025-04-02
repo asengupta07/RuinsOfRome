@@ -128,6 +128,42 @@ function processPassives(player: Player, currentState: BattleState) {
   });
 }
 
+const generateRandomBlessing = (player: Player): { celestialIndex: number; blessing: string } | null => {
+  // 30% chance of blessing
+  const chance = Math.random();
+  console.log("Chance", chance);
+  if (chance > 0.3) return null;
+
+  // Get random celestial
+  const celestialIndex = Math.floor(Math.random() * player.celestials.length);
+  const celestial = player.celestials[celestialIndex];
+  
+  if (!celestial) return null;
+
+  // Get random buff or spell from celestial
+  const buffKeys = Object.keys(celestial.buffs);
+  const spellKeys = Object.keys(celestial.spells);
+  
+  if (buffKeys.length === 0 && spellKeys.length === 0) return null;
+
+  // 70% chance of buff, 30% chance of spell
+  const blessingType = Math.random() < 0.7 ? 'buff' : 'move';
+  
+  let value: string;
+  if (blessingType === 'buff') {
+    value = buffKeys[Math.floor(Math.random() * buffKeys.length)];
+  } else {
+    value = spellKeys[Math.floor(Math.random() * spellKeys.length)];
+  }
+
+  return {
+    celestialIndex,
+    blessing: value,
+  };
+};
+
+
+
 function executeAttack(attacker: Player, defender: Player, move: Move, state: BattleState) {
   let damage = attacker.stats.attack * (0.9 + Math.random() * 0.2); // Random between 90-110% of base attack
 
@@ -363,7 +399,41 @@ function executeBattleMove(
   if (targetCelestialIndex !== undefined && spellName) {
     const celestial = attacker.celestials[targetCelestialIndex];
     if (celestial) {
-      executeCelestialSpell(attacker, defender, celestial, spellName, newState);
+      // Check if the spellName is a buff
+      const validBuffs = [
+        "attack", "defense", "speed", "heal", "shield", "stealth", "fury",
+        "divine_protection", "wisdom", "curse_resistance", "fortune"
+      ];
+
+      if (validBuffs.includes(spellName)) {
+        // Add buff to activeBuffs
+        const buffValue = celestial.buffs[spellName] || 0;
+        attacker.activeBuffs.push({
+          name: spellName,
+          value: buffValue,
+          duration: 2, // Buff lasts for 2 turns
+          description: spellName.replace('_', ' ').charAt(0).toUpperCase() + spellName.replace('_', ' ').slice(1)
+        });
+
+        // Add thematic log message
+        const buffMessages = {
+          attack: `${celestial.name} blesses ${attacker.name} with divine strength!`,
+          defense: `${celestial.name} grants ${attacker.name} divine protection!`,
+          speed: `${celestial.name} bestows ${attacker.name} with godly swiftness!`,
+          stealth: `${celestial.name} shrouds ${attacker.name} in divine shadows!`,
+          fury: `${celestial.name} fills ${attacker.name} with divine rage!`,
+          divine_protection: `${celestial.name} surrounds ${attacker.name} with divine aura!`,
+          wisdom: `${celestial.name} enlightens ${attacker.name} with divine wisdom!`,
+          curse_resistance: `${celestial.name} shields ${attacker.name} from dark forces!`,
+          fortune: `${celestial.name} blesses ${attacker.name} with divine fortune!`
+        };
+
+        newState.log.push(buffMessages[spellName as keyof typeof buffMessages] || 
+          `${celestial.name} blesses ${attacker.name} with divine power!`);
+      } else {
+        // Handle as a spell
+        executeCelestialSpell(attacker, defender, celestial, spellName, newState);
+      }
     }
   }
 
@@ -452,14 +522,6 @@ const generateAiOpponent = (): { character: Character; gods: God[] } => {
         description: "God of time and agriculture.",
         image: "https://corcel.b-cdn.net/9eff2be2-74ec-4077-8cd4-2326a8a90640.webp",
         attributes: [
-          {
-            trait_type: "Type",
-            value: "god"
-          },
-          {
-            trait_type: "Tier",
-            value: 3
-          },
           {
             trait_type: "wisdom",
             value: 8
@@ -712,18 +774,19 @@ const BlessingEffect = ({
   targetRef: React.RefObject<HTMLDivElement>
 }) => {
   const [particles, setParticles] = useState<
-    Array<{ id: number; x: number; y: number; size: number; speed: number; color: string }>
+    Array<{ id: number; x: number; y: number; size: number; speed: number; color: string; rotation: number }>
   >([])
 
   useEffect(() => {
     if (isActive && godName) {
       // Create particles when blessing is active
-      const newParticles = Array.from({ length: 20 }).map((_, i) => ({
+      const newParticles = Array.from({ length: 30 }).map((_, i) => ({
         id: i,
         x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 6 + 2,
+        y: 0, // Start from top
+        size: Math.random() * 8 + 4,
         speed: Math.random() * 2 + 1,
+        rotation: Math.random() * 360,
         color: ["#FFD700", "#FFA500", "#FF8C00", "#FF4500", "#FFFFFF"][Math.floor(Math.random() * 5)],
       }))
 
@@ -756,7 +819,9 @@ const BlessingEffect = ({
             backgroundColor: particle.color,
             left: `${particle.x}%`,
             top: `${particle.y}%`,
-            animationDuration: `${2 / particle.speed}s`,
+            transform: `rotate(${particle.rotation}deg)`,
+            animation: `blessing-particle-fall ${2 / particle.speed}s ease-out forwards`,
+            boxShadow: `0 0 ${particle.size}px ${particle.color}`,
           }}
         />
       ))}
@@ -864,8 +929,12 @@ export default function GladiatorBattle() {
   // Dummy functions
   const fetchGods = (): God[] => {
     const godsData = celestialData.map((json: string) => JSON.parse(json))
-    console.log("godsData", godsData)
-    return godsData as God[]
+    const godsDataFiltered = godsData.map((god: God) => ({
+      ...god,
+      attributes: god.attributes.filter((attr: Attribute) => attr.trait_type !== "Type" && attr.trait_type !== "Tier")
+    }))
+    console.log("godsData", godsDataFiltered)
+    return godsDataFiltered as God[]
   }
 
   const fetchPlayerCharacter = async () => {
@@ -918,10 +987,13 @@ export default function GladiatorBattle() {
       // Add a delay to make AI turn feel more natural
       const aiTurnTimeout = setTimeout(() => {
         const aiMove = chooseRandomMove(aiOpponent.character.moveset)
+        const blessing = generateRandomBlessing(battleState.ai)
         const newState = executeBattleMove(
           battleState,
           aiMove,
-          2 // AI player
+          2, // AI player,
+          blessing?.celestialIndex,
+          blessing?.blessing
         )
         setBattleState(newState)
 
@@ -949,23 +1021,75 @@ export default function GladiatorBattle() {
     if (!playerCharacter || !aiOpponent) return
 
     // Convert gods to celestials
-    const playerCelestials = selectedGods.map(god => ({
-      name: god.name,
-      type: 'god' as const,
-      tier: god.properties.rarity_score,
-      description: god.description,
-      buffs: god.attributes.reduce((acc, attr) => ({ ...acc, [attr.trait_type]: attr.value }), {}),
-      spells: god.attributes.reduce((acc, attr) => ({ ...acc, [attr.trait_type]: attr.value }), {}),
-    }))
+    const playerCelestials = selectedGods.map(god => {
+      // Define valid buff and spell names from config
+      const validBuffs = [
+        "attack", "defense", "speed", "heal", "shield", "stealth", "fury",
+        "divine_protection", "wisdom", "curse_resistance", "fortune"
+      ];
+      const validSpells = [
+        "fireball", "inferno", "icebolt", "lightning", "poison", "stun",
+        "whirlpool", "earthquake", "meteor", "wrath", "smite", "rewind",
+        "necrotic_touch", "aether_blast", "abyssal_chain", "tempest"
+      ];
 
-    const aiCelestials = aiOpponent.gods.map(god => ({
-      name: god.name,
-      type: 'god' as const,
-      tier: god.properties.rarity_score,
-      description: god.description,
-      buffs: god.attributes.reduce((acc, attr) => ({ ...acc, [attr.trait_type]: attr.value }), {}),
-      spells: god.attributes.reduce((acc, attr) => ({ ...acc, [attr.trait_type]: attr.value }), {}),
-    }))
+      // Separate attributes into buffs and spells
+      const buffs: Record<string, number> = {};
+      const spells: Record<string, number> = {};
+
+      god.attributes.forEach(attr => {
+        const traitName = attr.trait_type.toLowerCase();
+        if (validBuffs.includes(traitName)) {
+          buffs[traitName] = attr.value as number;
+        } else if (validSpells.includes(traitName)) {
+          spells[traitName] = attr.value as number;
+        }
+      });
+
+      return {
+        name: god.name,
+        type: 'god' as const,
+        tier: god.properties.rarity_score,
+        description: god.description,
+        buffs,
+        spells,
+      };
+    });
+
+    const aiCelestials = aiOpponent.gods.map(god => {
+      // Define valid buff and spell names from config
+      const validBuffs = [
+        "attack", "defense", "speed", "heal", "shield", "stealth", "fury",
+        "divine_protection", "wisdom", "curse_resistance", "fortune"
+      ];
+      const validSpells = [
+        "fireball", "inferno", "icebolt", "lightning", "poison", "stun",
+        "whirlpool", "earthquake", "meteor", "wrath", "smite", "rewind",
+        "necrotic_touch", "aether_blast", "abyssal_chain", "tempest"
+      ];
+
+      // Separate attributes into buffs and spells
+      const buffs: Record<string, number> = {};
+      const spells: Record<string, number> = {};
+
+      god.attributes.forEach(attr => {
+        const traitName = attr.trait_type.toLowerCase();
+        if (validBuffs.includes(traitName)) {
+          buffs[traitName] = attr.value as number;
+        } else if (validSpells.includes(traitName)) {
+          spells[traitName] = attr.value as number;
+        }
+      });
+
+      return {
+        name: god.name,
+        type: 'god' as const,
+        tier: god.properties.rarity_score,
+        description: god.description,
+        buffs,
+        spells,
+      };
+    });
 
     // Initialize battle state
     const initialState: BattleState = {
@@ -1024,12 +1148,19 @@ export default function GladiatorBattle() {
   // Handle player move
   const handlePlayerMove = (move: string) => {
     if (battleState.turn % 2 !== 1 || battleState.battleEnded) return
-
+    const blessing = generateRandomBlessing(battleState.human)
     const newState = executeBattleMove(
       battleState,
       move,
-      1 // Player 1
+      1, // Player 1
+      blessing?.celestialIndex,
+      blessing?.blessing
     )
+
+    // Add impact effect for attack moves
+    if (move !== 'heal') {
+      handleAttackImpact(aiRef)
+    }
 
     setBattleState(newState)
 
@@ -1243,7 +1374,7 @@ export default function GladiatorBattle() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <h2 className="text-4xl font-bold text-center mb-2 text-amber-500">The Gladiators</h2>
           <p className="text-center text-gray-300 mb-8">
-            Today's match: {playerCharacter.name} vs {aiOpponent.character.name}
+            Today&apos;s match: {playerCharacter.name} vs {aiOpponent.character.name}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -1873,6 +2004,16 @@ export default function GladiatorBattle() {
     )
   }
 
+  // Add this function to handle attack impact animation
+  const handleAttackImpact = (targetRef: RefObject<HTMLDivElement | null>) => {
+    if (targetRef.current) {
+      targetRef.current.classList.add('attack-impact')
+      setTimeout(() => {
+        targetRef.current?.classList.remove('attack-impact')
+      }, 500)
+    }
+  }
+
   return (
     <div className="h-screen bg-gray-950 text-white relative overflow-hidden flex flex-col">
       {/* Background effects */}
@@ -1963,7 +2104,7 @@ export default function GladiatorBattle() {
         </div> */}
 
         {/* Step content */}
-        <div className="h-[calc(100vh-8rem)] overflow-y-hidden">
+        <div className="h-[calc(100vh-8rem)] overflow-y-auto">
           {step === 1 && renderGodSelection()}
           {step === 2 && renderCharacterPreview()}
           {step === 3 && renderBattle()}
@@ -1998,29 +2139,29 @@ export default function GladiatorBattle() {
           background-color: #111827;
         }
 
-        @keyframes blessing-particle {
+        @keyframes blessing-particle-fall {
           0% {
-            opacity: 0;
-            transform: scale(0);
-          }
-          50% {
             opacity: 1;
-            transform: scale(1);
+            transform: translateY(0) rotate(0deg);
           }
           100% {
             opacity: 0;
-            transform: scale(0);
+            transform: translateY(100px) rotate(360deg);
           }
         }
 
         .blessing-particle {
-          animation: blessing-particle 2s ease-out forwards;
+          animation: blessing-particle-fall 2s ease-out forwards;
         }
 
         .blessing-beam {
           position: absolute;
           height: 4px;
-          background: linear-gradient(90deg, rgba(255,215,0,0.8) 0%, rgba(255,255,255,0.9) 50%, rgba(255,215,0,0.8) 100%);
+          background: linear-gradient(90deg, 
+            rgba(255,215,0,0.8) 0%, 
+            rgba(255,255,255,0.9) 50%, 
+            rgba(255,215,0,0.8) 100%
+          );
           top: 50%;
           transform-origin: left center;
           animation: beam-pulse 2s ease-out;
@@ -2052,6 +2193,28 @@ export default function GladiatorBattle() {
             opacity: 0;
             transform: scaleX(1);
           }
+        }
+
+        @keyframes attack-impact {
+          0% {
+            transform: translateX(0);
+          }
+          25% {
+            transform: translateX(-5px);
+          }
+          50% {
+            transform: translateX(5px);
+          }
+          75% {
+            transform: translateX(-3px);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+
+        .attack-impact {
+          animation: attack-impact 0.5s ease-out;
         }
       `}</style>
     </div>
