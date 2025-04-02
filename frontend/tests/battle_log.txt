@@ -1,0 +1,836 @@
+
+=== Initial state ===
+{
+  "human": {
+    "id": 1,
+    "stats": {
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "jupiter",
+        "type": "god",
+        "tier": 1,
+        "description": "King of the gods, ruler of the heavens.",
+        "buffs": {
+          "attack": 10,
+          "defense": 8,
+          "speed": 7
+        },
+        "spells": {
+          "lightning": 12,
+          "smite": 10,
+          "tempest": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "melee",
+        "type": "attack",
+        "description": "Melee attack"
+      },
+      {
+        "name": "fortify",
+        "type": "defense",
+        "description": "Fortify your defenses"
+      },
+      {
+        "name": "glass_cannon",
+        "type": "passive",
+        "description": "You have attack buffs"
+      }
+    ]
+  },
+  "ai": {
+    "id": 2,
+    "stats": {
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "mars",
+        "type": "god",
+        "tier": 2,
+        "description": "God of war and destruction.",
+        "buffs": {
+          "attack": 12,
+          "fury": 10
+        },
+        "spells": {
+          "wrath": 10,
+          "smite": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "ranged",
+        "type": "attack",
+        "description": "Ranged attack"
+      },
+      {
+        "name": "heal",
+        "type": "defense",
+        "description": "Heal yourself"
+      },
+      {
+        "name": "berserk",
+        "type": "passive",
+        "description": "You have a fury buff"
+      }
+    ]
+  },
+  "turn": 1,
+  "environment": "day",
+  "log": []
+}
+
+=== After player move ===
+{
+  "human": {
+    "id": 1,
+    "stats": {
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "jupiter",
+        "type": "god",
+        "tier": 1,
+        "description": "King of the gods, ruler of the heavens.",
+        "buffs": {
+          "attack": 10,
+          "defense": 8,
+          "speed": 7
+        },
+        "spells": {
+          "lightning": 12,
+          "smite": 10,
+          "tempest": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "melee",
+        "type": "attack",
+        "description": "Melee attack"
+      },
+      {
+        "name": "fortify",
+        "type": "defense",
+        "description": "Fortify your defenses"
+      },
+      {
+        "name": "glass_cannon",
+        "type": "passive",
+        "description": "You have attack buffs"
+      }
+    ]
+  },
+  "ai": {
+    "id": 2,
+    "stats": {
+      "health": 91.5,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "mars",
+        "type": "god",
+        "tier": 2,
+        "description": "God of war and destruction.",
+        "buffs": {
+          "attack": 12,
+          "fury": 10
+        },
+        "spells": {
+          "wrath": 10,
+          "smite": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "ranged",
+        "type": "attack",
+        "description": "Ranged attack"
+      },
+      {
+        "name": "heal",
+        "type": "defense",
+        "description": "Heal yourself"
+      },
+      {
+        "name": "berserk",
+        "type": "passive",
+        "description": "You have a fury buff"
+      }
+    ]
+  },
+  "turn": 2,
+  "environment": "day",
+  "log": [
+    "Player dealt 8.5 damage to AI"
+  ]
+}
+
+=== After AI move ===
+{
+  "human": {
+    "id": 1,
+    "stats": {
+      "health": 94,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "jupiter",
+        "type": "god",
+        "tier": 1,
+        "description": "King of the gods, ruler of the heavens.",
+        "buffs": {
+          "attack": 10,
+          "defense": 8,
+          "speed": 7
+        },
+        "spells": {
+          "lightning": 12,
+          "smite": 10,
+          "tempest": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "melee",
+        "type": "attack",
+        "description": "Melee attack"
+      },
+      {
+        "name": "fortify",
+        "type": "defense",
+        "description": "Fortify your defenses"
+      },
+      {
+        "name": "glass_cannon",
+        "type": "passive",
+        "description": "You have attack buffs"
+      }
+    ]
+  },
+  "ai": {
+    "id": 2,
+    "stats": {
+      "health": 91.5,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "mars",
+        "type": "god",
+        "tier": 2,
+        "description": "God of war and destruction.",
+        "buffs": {
+          "attack": 12,
+          "fury": 10
+        },
+        "spells": {
+          "wrath": 10,
+          "smite": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "ranged",
+        "type": "attack",
+        "description": "Ranged attack"
+      },
+      {
+        "name": "heal",
+        "type": "defense",
+        "description": "Heal yourself"
+      },
+      {
+        "name": "berserk",
+        "type": "passive",
+        "description": "You have a fury buff"
+      }
+    ]
+  },
+  "turn": 3,
+  "environment": "day",
+  "log": [
+    "Player dealt 8.5 damage to AI",
+    "AI dealt 6 damage to Player"
+  ]
+}
+
+=== After celestial ===
+{
+  "human": {
+    "id": 1,
+    "stats": {
+      "health": 94,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "jupiter",
+        "type": "god",
+        "tier": 1,
+        "description": "King of the gods, ruler of the heavens.",
+        "buffs": {
+          "attack": 10,
+          "defense": 8,
+          "speed": 7
+        },
+        "spells": {
+          "lightning": 12,
+          "smite": 10,
+          "tempest": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "melee",
+        "type": "attack",
+        "description": "Melee attack"
+      },
+      {
+        "name": "fortify",
+        "type": "defense",
+        "description": "Fortify your defenses"
+      },
+      {
+        "name": "glass_cannon",
+        "type": "passive",
+        "description": "You have attack buffs"
+      }
+    ]
+  },
+  "ai": {
+    "id": 2,
+    "stats": {
+      "health": 74,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "mars",
+        "type": "god",
+        "tier": 2,
+        "description": "God of war and destruction.",
+        "buffs": {
+          "attack": 12,
+          "fury": 10
+        },
+        "spells": {
+          "wrath": 10,
+          "smite": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "ranged",
+        "type": "attack",
+        "description": "Ranged attack"
+      },
+      {
+        "name": "heal",
+        "type": "defense",
+        "description": "Heal yourself"
+      },
+      {
+        "name": "berserk",
+        "type": "passive",
+        "description": "You have a fury buff"
+      }
+    ]
+  },
+  "turn": 4,
+  "environment": "day",
+  "log": [
+    "Player dealt 8.5 damage to AI",
+    "AI dealt 6 damage to Player",
+    "Player dealt 8.5 damage to AI",
+    "Celestial jupiter cast tempest for 9 damage"
+  ]
+}
+
+=== Initial state ===
+{
+  "human": {
+    "id": 1,
+    "name": "Marcus Aurelius",
+    "stats": {
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "jupiter",
+        "type": "god",
+        "tier": 1,
+        "description": "King of the gods, ruler of the heavens.",
+        "buffs": {
+          "attack": 10,
+          "defense": 8,
+          "speed": 7
+        },
+        "spells": {
+          "lightning": 12,
+          "smite": 10,
+          "tempest": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "melee",
+        "type": "attack",
+        "description": "Melee attack"
+      },
+      {
+        "name": "fortify",
+        "type": "defense",
+        "description": "Fortify your defenses"
+      },
+      {
+        "name": "glass_cannon",
+        "type": "passive",
+        "description": "You have attack buffs"
+      }
+    ]
+  },
+  "ai": {
+    "id": 2,
+    "name": "Julius Caesar",
+    "stats": {
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "mars",
+        "type": "god",
+        "tier": 2,
+        "description": "God of war and destruction.",
+        "buffs": {
+          "attack": 12,
+          "fury": 10
+        },
+        "spells": {
+          "wrath": 10,
+          "smite": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "ranged",
+        "type": "attack",
+        "description": "Ranged attack"
+      },
+      {
+        "name": "heal",
+        "type": "defense",
+        "description": "Heal yourself"
+      },
+      {
+        "name": "berserk",
+        "type": "passive",
+        "description": "You have a fury buff"
+      }
+    ]
+  },
+  "turn": 1,
+  "environment": "day",
+  "log": []
+}
+
+=== After player move ===
+{
+  "human": {
+    "id": 1,
+    "name": "Marcus Aurelius",
+    "stats": {
+      "health": 100,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "jupiter",
+        "type": "god",
+        "tier": 1,
+        "description": "King of the gods, ruler of the heavens.",
+        "buffs": {
+          "attack": 10,
+          "defense": 8,
+          "speed": 7
+        },
+        "spells": {
+          "lightning": 12,
+          "smite": 10,
+          "tempest": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "melee",
+        "type": "attack",
+        "description": "Melee attack"
+      },
+      {
+        "name": "fortify",
+        "type": "defense",
+        "description": "Fortify your defenses"
+      },
+      {
+        "name": "glass_cannon",
+        "type": "passive",
+        "description": "You have attack buffs"
+      }
+    ]
+  },
+  "ai": {
+    "id": 2,
+    "name": "Julius Caesar",
+    "stats": {
+      "health": 91.5,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "mars",
+        "type": "god",
+        "tier": 2,
+        "description": "God of war and destruction.",
+        "buffs": {
+          "attack": 12,
+          "fury": 10
+        },
+        "spells": {
+          "wrath": 10,
+          "smite": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "ranged",
+        "type": "attack",
+        "description": "Ranged attack"
+      },
+      {
+        "name": "heal",
+        "type": "defense",
+        "description": "Heal yourself"
+      },
+      {
+        "name": "berserk",
+        "type": "passive",
+        "description": "You have a fury buff"
+      }
+    ]
+  },
+  "turn": 2,
+  "environment": "day",
+  "log": [
+    "The blow from Marcus Aurelius lands true, dealing 8.5 damage to Julius Caesar!"
+  ]
+}
+
+=== After AI move ===
+{
+  "human": {
+    "id": 1,
+    "name": "Marcus Aurelius",
+    "stats": {
+      "health": 94,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "jupiter",
+        "type": "god",
+        "tier": 1,
+        "description": "King of the gods, ruler of the heavens.",
+        "buffs": {
+          "attack": 10,
+          "defense": 8,
+          "speed": 7
+        },
+        "spells": {
+          "lightning": 12,
+          "smite": 10,
+          "tempest": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "melee",
+        "type": "attack",
+        "description": "Melee attack"
+      },
+      {
+        "name": "fortify",
+        "type": "defense",
+        "description": "Fortify your defenses"
+      },
+      {
+        "name": "glass_cannon",
+        "type": "passive",
+        "description": "You have attack buffs"
+      }
+    ]
+  },
+  "ai": {
+    "id": 2,
+    "name": "Julius Caesar",
+    "stats": {
+      "health": 91.5,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "mars",
+        "type": "god",
+        "tier": 2,
+        "description": "God of war and destruction.",
+        "buffs": {
+          "attack": 12,
+          "fury": 10
+        },
+        "spells": {
+          "wrath": 10,
+          "smite": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "ranged",
+        "type": "attack",
+        "description": "Ranged attack"
+      },
+      {
+        "name": "heal",
+        "type": "defense",
+        "description": "Heal yourself"
+      },
+      {
+        "name": "berserk",
+        "type": "passive",
+        "description": "You have a fury buff"
+      }
+    ]
+  },
+  "turn": 3,
+  "environment": "day",
+  "log": [
+    "The blow from Marcus Aurelius lands true, dealing 8.5 damage to Julius Caesar!",
+    "Julius Caesar strikes Marcus Aurelius for 6 damage, like Mars himself!"
+  ]
+}
+
+=== After celestial ===
+{
+  "human": {
+    "id": 1,
+    "name": "Marcus Aurelius",
+    "stats": {
+      "health": 94,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "jupiter",
+        "type": "god",
+        "tier": 1,
+        "description": "King of the gods, ruler of the heavens.",
+        "buffs": {
+          "attack": 10,
+          "defense": 8,
+          "speed": 7
+        },
+        "spells": {
+          "lightning": 12,
+          "smite": 10,
+          "tempest": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "melee",
+        "type": "attack",
+        "description": "Melee attack"
+      },
+      {
+        "name": "fortify",
+        "type": "defense",
+        "description": "Fortify your defenses"
+      },
+      {
+        "name": "glass_cannon",
+        "type": "passive",
+        "description": "You have attack buffs"
+      }
+    ]
+  },
+  "ai": {
+    "id": 2,
+    "name": "Julius Caesar",
+    "stats": {
+      "health": 74,
+      "maxHealth": 100,
+      "shield": 0,
+      "attack": 10,
+      "defense": 8,
+      "speed": 7
+    },
+    "celestials": [
+      {
+        "name": "mars",
+        "type": "god",
+        "tier": 2,
+        "description": "God of war and destruction.",
+        "buffs": {
+          "attack": 12,
+          "fury": 10
+        },
+        "spells": {
+          "wrath": 10,
+          "smite": 9
+        }
+      }
+    ],
+    "activeBuffs": [],
+    "activeSpells": [],
+    "moves": [
+      {
+        "name": "ranged",
+        "type": "attack",
+        "description": "Ranged attack"
+      },
+      {
+        "name": "heal",
+        "type": "defense",
+        "description": "Heal yourself"
+      },
+      {
+        "name": "berserk",
+        "type": "passive",
+        "description": "You have a fury buff"
+      }
+    ]
+  },
+  "turn": 4,
+  "environment": "day",
+  "log": [
+    "The blow from Marcus Aurelius lands true, dealing 8.5 damage to Julius Caesar!",
+    "Julius Caesar strikes Marcus Aurelius for 6 damage, like Mars himself!",
+    "Marcus Aurelius's attack pierces Julius Caesar's defenses for 8.5 damage!",
+    "Celestial jupiter cast tempest for 9 damage"
+  ]
+}

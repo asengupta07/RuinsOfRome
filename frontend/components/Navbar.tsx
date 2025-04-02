@@ -54,16 +54,16 @@ export default function Navbar() {
               Gods & Titans
             </Link>
             <Link
-              href="/battle"
+              href="/colosseum"
               className="text-stone-300 hover:text-white transition-colors"
             >
               Colosseum
             </Link>
             <Link
-              href="/chronicles"
+              href="/lore"
               className="text-stone-300 hover:text-white transition-colors"
             >
-              Chronicles
+              Lore
             </Link>
             <Link
               href="/about"

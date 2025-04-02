@@ -114,33 +114,33 @@ export default function EpicReader() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-black">
       {/* Top Navigation Bar */}
-      <div className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-b z-10">
+      <div className="fixed top-0 left-0 right-0 bg-black/80 backdrop-blur-sm border-b border-zinc-800 z-10">
         <div className="flex items-center justify-between p-2 sm:p-4">
           <div className="flex items-center gap-2 sm:gap-4">
-            <Button variant="ghost" size="icon" onClick={() => window.history.back()}>
+            <Button variant="ghost" size="icon" onClick={() => window.history.back()} className="text-white hover:text-white hover:bg-white/10">
               <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
-            <Button variant="ghost" size="icon" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+            <Button variant="ghost" size="icon" onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="text-white hover:text-white hover:bg-white/10">
               {isSidebarOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
             </Button>
           </div>
           <div className="hidden md:block text-center font-serif">
-            <h1 className="text-lg font-bold">{epic?.title}</h1>
+            <h1 className="text-lg font-bold text-white">{epic?.title}</h1>
           </div>
           <div className="flex items-center gap-2">
-            <div className="hidden sm:flex items-center gap-2 text-sm me-4">
+            <div className="hidden sm:flex items-center gap-2 text-sm me-4 text-white">
               <BookOpen className="w-4 h-4" />
               <span className="font-medium">
                 Chapter {currentChapter + 1} of {epic?.chapters.length ?? 0}
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="icon" onClick={decreaseFontSize} className="h-8 w-8">
+              <Button variant="ghost" size="icon" onClick={decreaseFontSize} className="h-8 w-8 text-white hover:text-white hover:bg-white/10">
                 <Minus className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" onClick={increaseFontSize} className="h-8 w-8">
+              <Button variant="ghost" size="icon" onClick={increaseFontSize} className="h-8 w-8 text-white hover:text-white hover:bg-white/10">
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
@@ -153,7 +153,7 @@ export default function EpicReader() {
       <main className="fixed top-[73px] bottom-0 left-0 right-0">
         <div className="grid md:grid-cols-2 h-full">
           {/* Left Column - Illustration */}
-          <div className="hidden md:flex items-center justify-center p-4 bg-muted/30">
+          <div className="hidden md:flex items-center justify-center p-4 bg-zinc-900/30">
             <div className="relative w-full max-w-lg aspect-[3/4] rounded-lg overflow-hidden shadow-xl border">
               <Image
                 src={epic?.chapters[currentChapter].illustration || "/placeholder.svg?height=800&width=600"}
@@ -165,7 +165,7 @@ export default function EpicReader() {
           </div>
 
           {/* Right Column - Story Text */}
-          <div className="px-4 md:px-8 py-6 overflow-y-auto">
+          <div className="px-4 md:px-8 py-6 overflow-y-auto bg-black">
             {/* Mobile Illustration (shown only on small screens) */}
             <div className="md:hidden mb-6 flex justify-center">
               <div className="relative w-full max-w-sm aspect-[3/4] rounded-lg overflow-hidden shadow-lg border">
@@ -179,23 +179,23 @@ export default function EpicReader() {
             </div>
 
             <div className="max-w-prose mx-auto">
-              <h1 className="text-xl sm:text-2xl font-bold text-center font-serif md:hidden">{epic?.title}</h1>
-              <h2 className="text-lg sm:text-xl font-semibold text-center mt-2 font-serif">
+              <h1 className="text-xl sm:text-2xl font-bold text-center font-serif md:hidden text-white">{epic?.title}</h1>
+              <h2 className="text-lg sm:text-xl font-semibold text-center mt-2 font-serif text-white">
                 Chapter {currentChapter + 1}: {epic?.chapters[currentChapter].title}
               </h2>
-              <div className="flex justify-center items-center gap-4 mt-2 text-sm text-muted-foreground">
-                <button className="flex items-center gap-1 hover:text-primary">
+              <div className="flex justify-center items-center gap-4 mt-2 text-sm text-zinc-400">
+                <button className="flex items-center gap-1 hover:text-white">
                   <Bookmark className="w-4 h-4" />
                   <span>Bookmark</span>
                 </button>
-                <button className="flex items-center gap-1 hover:text-primary">
+                <button className="flex items-center gap-1 hover:text-white">
                   <Share2 className="w-4 h-4" />
                   <span>Share</span>
                 </button>
               </div>
-              <article className="prose dark:prose-invert prose-lg z-30 mt-6 max-w-none">
+              <article className="prose-invert prose-lg z-30 mt-6 max-w-none">
                 <div
-                  className="whitespace-pre-wrap font-serif text-justify"
+                  className="whitespace-pre-wrap font-serif text-justify text-white"
                   style={{ fontSize: `${fontSize}px`, lineHeight: "1.8" }}
                 >
                   {epic?.chapters[currentChapter].content + '\n\n\n\n'}
@@ -208,14 +208,14 @@ export default function EpicReader() {
 
       {/* Chapter Sidebar */}
       <div
-        className={`fixed top-[73px] z-50 left-0 bottom-0 w-64 sm:w-72 bg-background border-r transform transition-transform duration-200 ease-in-out ${
+        className={`fixed top-[73px] z-50 left-0 bottom-0 w-64 sm:w-72 bg-black border-r border-zinc-800 transform transition-transform duration-200 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } z-20`}
       >
         <ScrollArea className="h-full">
           <div className="p-4">
-            <h2 className="font-serif font-bold text-lg mb-1">{epic?.title}</h2>
-            <p className="text-sm text-muted-foreground mb-4">by {epic?.author}</p>
+            <h2 className="font-serif font-bold text-lg mb-1 text-white">{epic?.title}</h2>
+            <p className="text-sm text-zinc-400 mb-4">by {epic?.author}</p>
             <div className="space-y-1">
               {epic?.chapters.map((chapter, index) => (
                 <button
@@ -225,8 +225,8 @@ export default function EpicReader() {
                     setIsSidebarOpen(false)
                     window.scrollTo(0, 0)
                   }}
-                  className={`w-full text-left px-4 py-2 rounded-lg text-sm ${
-                    currentChapter === index ? "bg-primary/10 text-primary font-medium" : "hover:bg-muted"
+                  className={`w-full text-left px-4 py-2 rounded-lg text-sm text-white ${
+                    currentChapter === index ? "bg-zinc-800 text-white font-medium" : "hover:bg-zinc-800"
                   }`}
                 >
                   <div className="flex items-center">
@@ -241,13 +241,13 @@ export default function EpicReader() {
       </div>
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 border-t p-2 z-20 sm:p-4 bg-background/80 backdrop-blur-sm">
+      <div className="fixed bottom-0 left-0 right-0 border-t border-zinc-800 p-2 z-20 sm:p-4 bg-black/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto flex justify-between gap-4">
           <Button
             variant="outline"
             onClick={previousChapter}
             disabled={currentChapter === 0}
-            className="flex-1 sm:flex-none"
+            className="flex-1 sm:flex-none border-zinc-700 text-black hover:bg-zinc-500 hover:text-black"
           >
             <ChevronLeft className="w-4 h-4 mr-2" />
             <span className="hidden sm:inline">Previous Chapter</span>
@@ -257,7 +257,7 @@ export default function EpicReader() {
             variant="default"
             onClick={nextChapter}
             disabled={currentChapter === (epic?.chapters.length ?? 0) - 1}
-            className="flex-1 sm:flex-none"
+            className="flex-1 sm:flex-none bg-zinc-800 text-white hover:bg-zinc-500"
           >
             <span className="hidden sm:inline">Next Chapter</span>
             <span className="sm:hidden">Next</span>
