@@ -69,15 +69,15 @@ export default function Home() {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8 pe-10">
                 <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
                   <div className="text-gray-400 text-sm mb-1">Attack</div>
-                  <div className="text-white text-2xl font-bold">{gladiatorMetadata?.attackValue}</div>
+                  <div className="text-white text-2xl font-bold">{Math.round(gladiatorMetadata?.attackValue)}</div>
                 </div>
                 <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
                   <div className="text-gray-400 text-sm mb-1">Defense</div>
-                  <div className="text-white text-2xl font-bold">{gladiatorMetadata?.defenceValue}</div>
+                  <div className="text-white text-2xl font-bold">{Math.round(gladiatorMetadata?.defenceValue)}</div>
                 </div>
                 <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
                   <div className="text-gray-400 text-sm mb-1">Speed</div>
-                  <div className="text-white text-2xl font-bold">{gladiatorMetadata?.speedValue}</div>
+                  <div className="text-white text-2xl font-bold">{Math.round(gladiatorMetadata?.speedValue)}</div>
                 </div>
                 <div className="bg-[#3a3c41]/50 p-4 rounded-lg backdrop-blur-sm">
                   <div className="text-gray-400 text-sm mb-1">Gender</div>

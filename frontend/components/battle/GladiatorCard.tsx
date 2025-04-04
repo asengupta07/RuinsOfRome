@@ -97,7 +97,7 @@ export const GladiatorCard = ({
               <div className="flex items-center gap-2">
                 <Swords className="h-5 w-5 text-emerald-400" />
                 <span className="font-semibold text-white">Attack</span>
-                <span className="ml-auto text-white">{gladiator.attack}</span>
+                <span className="ml-auto text-white">{Math.round(gladiator.attack)}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-emerald-400" />
@@ -105,10 +105,10 @@ export const GladiatorCard = ({
                 <span className="ml-auto">
                   {defenseBonus > 0 ? (
                     <span className="text-emerald-400">
-                      {gladiator.defense + defenseBonus}
+                      {Math.round(gladiator.defense + defenseBonus)}
                     </span>
                   ) : (
-                    <span className="text-white">{gladiator.defense}</span>
+                    <span className="text-white">{Math.round(gladiator.defense)}</span>
                   )}
                   {defenseBonusTurns > 0 && defenseBonus > 0 && (
                     <span className="text-xs ml-1 text-emerald-300">
@@ -120,7 +120,7 @@ export const GladiatorCard = ({
               <div className="flex items-center gap-2">
                 <Footprints className="h-5 w-5 text-emerald-400" />
                 <span className="font-semibold text-white">Speed</span>
-                <span className="ml-auto text-white">{gladiator.speed}</span>
+                <span className="ml-auto text-white">{Math.round(gladiator.speed)}</span>
               </div>
             </div>
           </div>
