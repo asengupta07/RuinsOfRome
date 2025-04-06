@@ -266,7 +266,7 @@ function executeCelestialSpell(
 ) {
   const spellPower = celestial.spells[spellName]
   if (!spellPower) {
-    state.log.push(`Celestial ${celestial.name} doesn't know spell ${spellName}`)
+    state.log.push(`Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} doesn't know spell ${spellName}`)
     return
   }
 
@@ -302,7 +302,7 @@ function executeCelestialSpell(
 
       if (damage > 0) {
         defender.stats.health = Math.max(0, defender.stats.health - damage)
-        state.log.push(`Celestial ${celestial.name} cast ${spellName} for ${Math.round(damage)} damage`)
+        state.log.push(`Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} cast ${spellName} for ${Math.round(damage)} damage`)
       }
       break
 
@@ -315,7 +315,7 @@ function executeCelestialSpell(
         duration: 2,
         description: "Speed",
       })
-      state.log.push(`Celestial ${celestial.name} cast ${spellName}, slowing the enemy`)
+      state.log.push(`Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} cast ${spellName}, slowing the enemy`)
       break
 
     case "poison":
@@ -326,28 +326,28 @@ function executeCelestialSpell(
         duration: 3,
         description: "Poison",
       })
-      state.log.push(`Celestial ${celestial.name} cast ${spellName}, applying a damage over time effect`)
+      state.log.push(`Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} cast ${spellName}, applying a damage over time effect`)
       break
 
     case "heal":
     case "aether_blast":
       const healAmount = attacker.stats.maxHealth * (spellPower / 100) * (0.9 + Math.random() * 0.2) // Random between 90-110% of base heal
       attacker.stats.health = Math.min(attacker.stats.maxHealth, attacker.stats.health + healAmount)
-      state.log.push(`Celestial ${celestial.name} cast ${spellName}, healing for ${Math.round(healAmount)} HP`)
+      state.log.push(`Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} cast ${spellName}, healing for ${Math.round(healAmount)} HP`)
       break
 
     case "shield":
       const shieldAmount = attacker.stats.maxHealth * (spellPower / 100) * (0.9 + Math.random() * 0.2) // Random between 90-110% of base shield
       attacker.stats.shield += shieldAmount
-      state.log.push(`Celestial ${celestial.name} cast ${spellName}, granting ${Math.round(shieldAmount)} shield`)
+      state.log.push(`Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} cast ${spellName}, granting ${Math.round(shieldAmount)} shield`)
       break
 
     case "rewind":
-      state.log.push(`Celestial ${celestial.name} attempted to rewind time (special effect)`)
+      state.log.push(`Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} attempted to rewind time (special effect)`)
       break
 
     default:
-      state.log.push(`Celestial ${celestial.name} cast unknown spell ${spellName}`)
+      state.log.push(`Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} cast unknown spell ${spellName}`)
   }
 }
 
@@ -428,20 +428,20 @@ function executeBattleMove(
 
         // Add thematic log message
         const buffMessages = {
-          attack: `${celestial.name} blesses ${attacker.name} with divine strength!`,
-          defense: `${celestial.name} grants ${attacker.name} divine protection!`,
-          speed: `${celestial.name} bestows ${attacker.name} with godly swiftness!`,
-          stealth: `${celestial.name} shrouds ${attacker.name} in divine shadows!`,
-          fury: `${celestial.name} fills ${attacker.name} with divine rage!`,
-          divine_protection: `${celestial.name} surrounds ${attacker.name} with divine aura!`,
-          wisdom: `${celestial.name} enlightens ${attacker.name} with divine wisdom!`,
-          curse_resistance: `${celestial.name} shields ${attacker.name} from dark forces!`,
-          fortune: `${celestial.name} blesses ${attacker.name} with divine fortune!`,
+          attack: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} blesses ${attacker.name} with divine strength!`,
+          defense: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} grants ${attacker.name} divine protection!`,
+          speed: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} bestows ${attacker.name} with godly swiftness!`,
+          stealth: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} shrouds ${attacker.name} in divine shadows!`,
+          fury: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} fills ${attacker.name} with divine rage!`,
+          divine_protection: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} surrounds ${attacker.name} with divine aura!`,
+          wisdom: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} enlightens ${attacker.name} with divine wisdom!`,
+          curse_resistance: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} shields ${attacker.name} from dark forces!`,
+          fortune: `Celestial ${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} blesses ${attacker.name} with divine fortune!`,
         }
 
         newState.log.push(
           buffMessages[spellName as keyof typeof buffMessages] ||
-            `${celestial.name} blesses ${attacker.name} with divine power!`,
+            `${celestial.name.charAt(0).toUpperCase() + celestial.name.slice(1)} blesses ${attacker.name} with divine power!`,
         )
       } else {
         // Handle as a spell
@@ -840,11 +840,7 @@ const BlessingEffect = ({
   )
 }
 
-const sendBattleLogs = async (logs: string[]) => {
-  console.log("Sending battle logs to API:", logs)
-  // In a real implementation, this would be an API call
-  return { success: true }
-}
+
 
 // Main component
 export default function GladiatorBattle() {
@@ -930,8 +926,13 @@ export default function GladiatorBattle() {
     const lastLog = battleState.log[battleState.log.length - 1]
     if (lastLog && lastLog.includes("Celestial")) {
       const godName = lastLog.split(" ")[1]
-      setBlessingGod(godName)
-      setBlessingTarget(lastLog.includes("healing") ? "player" : "ai")
+      setBlessingGod(godName.toLowerCase())
+      setBlessingTarget(lastLog.includes("Maximus Decimus") ? "ai" : "player")
+
+      console.log("Last Log: ", lastLog)
+
+      console.log("Blessing God: ", godName)
+      console.log("Blessing Target: ", blessingTarget)
       setShowBlessingEffect(true)
 
       const timer = setTimeout(() => {
@@ -957,6 +958,17 @@ export default function GladiatorBattle() {
     }))
     console.log("godsData", godsDataFiltered)
     return godsDataFiltered as God[]
+  }
+  const sendBattleLogs = async (logs: string[], winner: string, humanName: string, aiName: string, humanCelestials: Celestial[], aiCelestials: Celestial[]) => {
+    console.log("Sending battle logs to API:", logs)
+    // In a real implementation, this would be an API call
+    const response = await fetch("/api/lore", {
+      method: "POST",
+      body: JSON.stringify({ address, logs, winner, humanName, aiName, humanCelestials, aiCelestials }),
+    })
+    const data = await response.json()
+    console.log("Lore data:", data)
+    return data
   }
 
   const fetchPlayerCharacter = async () => {
@@ -1214,7 +1226,9 @@ export default function GladiatorBattle() {
   // Handle player move
   const handlePlayerMove = (move: string) => {
     if (battleState.turn % 2 !== 1 || battleState.battleEnded) return
+    console.log("battleState", battleState.human)
     const blessing = generateRandomBlessing(battleState.human)
+    console.log("blessing", blessing)
     const newState = executeBattleMove(
       battleState,
       move,
@@ -1240,6 +1254,8 @@ export default function GladiatorBattle() {
   const handleBattleEnd = async (newState: BattleState) => {
     if (!newState.battleEnded) return
 
+    if (!newState.winner) return
+
     // Update battle state to ensure it's properly set
     setBattleState(newState)
     
@@ -1249,7 +1265,7 @@ export default function GladiatorBattle() {
     // Wait a moment for the state to update
     await new Promise((resolve) => setTimeout(resolve, 500))
 
-    await sendBattleLogs(newState.log)
+    await sendBattleLogs(newState.log, newState.winner, newState.human.name, newState.ai.name, newState.human.celestials, newState.ai.celestials)
     setStep(4)
 
     if (newState.winner === "player") {
@@ -2200,7 +2216,7 @@ export default function GladiatorBattle() {
     // Generate random rewards
     const mxpReward = Math.floor(Math.random() * 500) + 500
     const xpReward = Math.floor(Math.random() * 300) + 300
-    const hasGodFavour = Math.random() < 0.2 // 10% chance
+    const hasGodFavour = Math.random() < 0.1 // 10% chance
 
     setRewards({
       mxp: mxpReward,
