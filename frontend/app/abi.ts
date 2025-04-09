@@ -1,5 +1,5 @@
-export const celestialAddress = "0xa1068a7ccFC10e8Ca038d5C8169C942Fd593cD65";
-export const gladiatorAddress = "0x65F227c3243A5E42875b84170CD2f0E8ec6abD61";
+export const celestialAddress = "0xe8B3752d45b29dE75e2A164028FD0a5238aFC507";
+export const gladiatorAddress = "0x3065d9043C1dfb407acbAe393216478149f8E582";
 
 export const celestialAbi = [
   {
