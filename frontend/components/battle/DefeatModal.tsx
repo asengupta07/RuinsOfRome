@@ -190,7 +190,7 @@ export const DefeatModal = ({
                 <div className="space-y-3">
                   <div className="text-center text-slate-300">
                     <p className="mb-2">
-                      Train harder and return to the arena when you're ready.
+                      Train harder and return to the arena when you&apos;re ready.
                     </p>
                     <p className="text-sm text-slate-400">
                       Hint: Perhaps try a different strategy or improve your

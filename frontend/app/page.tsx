@@ -149,7 +149,7 @@ export default function Home() {
               <div className="bg-stone-900/50 border rounded-2xl border-stone-800 p-6">
                 <h3 className="text-xl font-serif mb-3">Gladiators & Gods</h3>
                 <p className="text-stone-400">
-                  Engage in strategic turn-based combat where your gladiator's fate
+                  Engage in strategic turn-based combat where your gladiator&apos;s fate
                   is determined by skill, divine favor, and blockchain-verified battles.
                 </p>
               </div>
@@ -157,7 +157,7 @@ export default function Home() {
               <div className="bg-stone-900/50 border rounded-2xl border-stone-800 p-6">
                 <h3 className="text-xl font-serif mb-3">Roman Deities</h3>
                 <p className="text-stone-400">
-                  Call upon the powers of ancient gods to enhance your gladiator's abilities,
+                  Call upon the powers of ancient gods to enhance your gladiator&apos;s abilities,
                   with each blessing recorded immutably on the blockchain.
                 </p>
               </div>
@@ -184,7 +184,7 @@ export default function Home() {
 
             <p className="text-lg md:text-xl text-stone-300 max-w-3xl mx-auto mb-10 leading-relaxed">
               Every battle tells a unique story, with dynamic narration and stunning visuals
-              bringing your gladiator's journey to life. Watch as your tactical decisions and
+              bringing your gladiator&apos;s journey to life. Watch as your tactical decisions and
               divine interventions unfold into an epic saga crafted exclusively for you.
             </p>
 

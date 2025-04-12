@@ -67,7 +67,7 @@ export const BattleModeSelection = ({
           Choose Your Battle
         </h1>
         <p className="text-slate-300">
-          Select your preferred way to test your gladiator's skill
+          Select your preferred way to test your gladiator&apos;s skill
         </p>
       </div>
 
