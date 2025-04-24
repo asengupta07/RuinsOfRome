@@ -1,13 +1,27 @@
 import { useRef, useEffect, useState } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { Environment, Float, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 
 export default function Scene3D() {
   const modelRef = useRef<THREE.Group>(null);
   const [scrollY, setScrollY] = useState(0);
-  const gltf = useLoader(GLTFLoader, "/modelz.glb");
+
+  // Initialize Draco loader with CDN path
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath(
+    "https://www.gstatic.com/draco/versioned/decoders/1.5.5/"
+  );
+
+  const gltf = useLoader(
+    GLTFLoader,
+    "https://ipfs.io/ipfs/bafybeiafzwyboy3ofjfdpzmqnx24qrb735jrotnpb5hffgnjqndzr7aliu",
+    (loader) => {
+      (loader as GLTFLoader).setDRACOLoader(dracoLoader);
+    }
+  );
 
   // Track scroll position
   useEffect(() => {
