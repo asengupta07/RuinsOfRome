@@ -1,10 +1,10 @@
 import { http, cookieStorage, createConfig, createStorage } from "wagmi";
-import { avalancheFuji } from "wagmi/chains";
+import { avalancheFuji, avalanche } from "wagmi/chains";
 import { connectorsForWallets } from "@rainbow-me/rainbowkit";
 
 export function getConfig(connectors: ReturnType<typeof connectorsForWallets>) {
   return createConfig({
-    chains: [avalancheFuji],
+    chains: [avalancheFuji, avalanche],
     connectors,
     storage: createStorage({
       storage: cookieStorage,
@@ -12,6 +12,7 @@ export function getConfig(connectors: ReturnType<typeof connectorsForWallets>) {
     ssr: true,
     transports: {
       [avalancheFuji.id]: http(),
+      [avalanche.id]: http(),
     },
   });
 }

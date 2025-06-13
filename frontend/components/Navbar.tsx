@@ -73,7 +73,7 @@ export default function Navbar() {
               About
             </Link>
 
-            <ConnectButton accountStatus="avatar" />
+            <ConnectButton accountStatus="avatar" chainStatus="none" />
 
             <Button
               variant="ghost"

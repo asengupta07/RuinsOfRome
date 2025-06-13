@@ -16,7 +16,11 @@ export default function Home() {
     data: gladiatorData,
     isLoading: isContractLoading,
     error: contractError,
-  } = useReadContract({
+  } = useReadContract<
+    typeof gladiatorAbi,
+    "getGladiatorForPlayer",
+    [address: `0x${string}`]
+  >({
     abi: gladiatorAbi,
     address: gladiatorAddress,
     functionName: "getGladiatorForPlayer",
@@ -36,7 +40,7 @@ export default function Home() {
         setError(null);
         console.log("Address: ", address);
         console.log("Gladiator Data: ", gladiatorData);
-        const uri = gladiatorData[1].toString();
+        const uri = (gladiatorData as [any, string])[1].toString();
         try {
           const metadata = await processGladiatorData(uri);
           console.log("Metadata: ", metadata);
