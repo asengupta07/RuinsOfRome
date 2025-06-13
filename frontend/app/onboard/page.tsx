@@ -62,7 +62,7 @@ export default function GladiatorOnboarding() {
       refetchClaimBool()
         .then((result: any) => {
           console.log("Claim check result: ", result);
-          setClaimed(result);
+          setClaimed(result.data);
         })
         .catch((error: any) => {
           console.error("Error during claim check: ", error);
@@ -126,7 +126,7 @@ export default function GladiatorOnboarding() {
           body: JSON.stringify({
             name: god.name,
             description: god.description,
-            imageUrl: god.image,
+            image: god.image,
             attributes: god.attributes,
             properties: god.properties,
             address: address,
@@ -149,14 +149,13 @@ export default function GladiatorOnboarding() {
       console.log("Minting transaction:", tx);
       if (tx) {
         console.log("Minting completed successfully!");
-        // The transaction hash is returned, we can use it to track the transaction
+
         console.log("Transaction hash:", tx);
         setIsMinting(false);
         router.push("/dashboard");
       }
     } catch (error) {
       console.error("Error minting gladiator:", error);
-      // You might want to show an error message to the user here
     } finally {
       setIsMinting(false);
     }

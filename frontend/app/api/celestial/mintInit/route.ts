@@ -18,26 +18,17 @@ export async function POST(request: NextRequest) {
     const body = await request.json(); // Parse JSON body
     console.log("Received Data:", body); // Log the received data
 
-    const { name, description, imageUrl, attributes, properties, address } =
-      body; // Destructure the data
-
-    console.log("RPC", RPC);
-    console.log("PRIVATE_KEY", PRIVATE_KEY);
+    const { name, description, image, attributes, properties, address } = body;
 
     const uri = JSON.stringify({
       name,
       description,
-      image: imageUrl,
+      image: image,
       attributes: attributes,
       properties: properties,
     });
 
     try {
-      // console.log("Wallet Address", wallet.address);
-      // console.log("Connected to Ethereum provider and contract");
-      // console.log("Minting NFT with URI:", uri);
-      // console.log("Minting NFT to address:", address);
-
       console.log("Starting minting process...");
       const tx = await contract.mintNFT(address, uri);
       const res = await tx.wait();

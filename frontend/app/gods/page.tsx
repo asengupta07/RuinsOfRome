@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import Navbar from "@/components/Navbar"
-import { celestialAbi, celestialAddress } from "@/app/abi"
-import { useAccount, useReadContract, useReadContracts } from "wagmi"
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import { celestialAbi, celestialAddress } from "@/app/abi";
+import { useAccount, useReadContract, useReadContracts } from "wagmi";
 
 // Sample data
 // const godsData = [
@@ -93,8 +93,8 @@ import { useAccount, useReadContract, useReadContracts } from "wagmi"
 //   }
 // ]
 let godsData: any[] = [];
-type God = typeof godsData[0]
-type Attribute = God['attributes'][0]
+type God = (typeof godsData)[0];
+type Attribute = God["attributes"][0];
 
 export default function Home() {
   const { address } = useAccount();
@@ -107,19 +107,21 @@ export default function Home() {
 
   if (celestialData) {
     console.log("celestialData", celestialData);
-    godsData = celestialData.map((json: string) => JSON.parse(json));
+    godsData = celestialData[0].map((json: string) => JSON.parse(json));
   }
 
-  const [selectedGodIndex, setSelectedGodIndex] = useState(0)
-  const selectedGod = godsData[selectedGodIndex]
+  const [selectedGodIndex, setSelectedGodIndex] = useState(0);
+  const selectedGod = godsData[selectedGodIndex];
 
   const nextGod = () => {
-    setSelectedGodIndex((prev) => (prev + 1) % godsData.length)
-  }
+    setSelectedGodIndex((prev) => (prev + 1) % godsData.length);
+  };
 
   const prevGod = () => {
-    setSelectedGodIndex((prev) => (prev - 1 + godsData.length) % godsData.length)
-  }
+    setSelectedGodIndex(
+      (prev) => (prev - 1 + godsData.length) % godsData.length
+    );
+  };
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#000000] to-[#000000] overflow-hidden">
@@ -128,9 +130,9 @@ export default function Home() {
       <div className="absolute -z-10 inset-0">
         <div
           className="absolute inset-0 opacity-20 bg-cover bg-center bg-no-repeat"
-          style={{ 
+          style={{
             backgroundImage: `url(${selectedGod?.image})`,
-            filter: 'blur(20px)'
+            filter: "blur(20px)",
           }}
         ></div>
         <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#000000] opacity-70"></div>
@@ -147,12 +149,12 @@ export default function Home() {
             key={i}
             className="absolute rounded-full bg-white opacity-10"
             style={{
-              width: `${Math.random() * 4 + 1}px`,
+              // width: `${Math.random() * 4 + 1}px`,
               height: `${Math.random() * 4 + 1}px`,
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
               animation: `float ${Math.random() * 10 + 10}s linear infinite`,
-              animationDelay: `${Math.random() * 5}s`
+              animationDelay: `${Math.random() * 5}s`,
             }}
           />
         ))}
@@ -167,7 +169,8 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-center text-gray-400 mt-2 max-w-xl mx-auto text-sm">
-            Explore the divine beings that have bestowed their blessings and favour upon your champion!
+            Explore the divine beings that have bestowed their blessings and
+            favour upon your champion!
           </p>
         </div>
       </header>
@@ -200,14 +203,25 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[#000000] opacity-30"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f1a] to-transparent opacity-90"></div>
 
-
                 {/* Tier indicator */}
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-amber-400 text-xs uppercase font-semibold">Tier</span>
+                    <span className="text-amber-400 text-xs uppercase font-semibold">
+                      Tier
+                    </span>
                     <div className="flex">
-                      {Array.from({ length: Number(selectedGod?.attributes.find((a: { trait_type: string }) => a.trait_type === "Tier")?.value || 0) }).map((_, i) => (
-                        <div key={i} className="w-1.5 h-1.5 rounded-full bg-amber-400 ml-0.5"></div>
+                      {Array.from({
+                        length: Number(
+                          selectedGod?.attributes.find(
+                            (a: { trait_type: string }) =>
+                              a.trait_type === "Tier"
+                          )?.value || 0
+                        ),
+                      }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="w-1.5 h-1.5 rounded-full bg-amber-400 ml-0.5"
+                        ></div>
                       ))}
                     </div>
                   </div>
@@ -216,7 +230,11 @@ export default function Home() {
                 {/* Category badge */}
                 <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full">
                   <span className="text-amber-400 text-xs uppercase font-semibold">
-                    {selectedGod?.attributes.find((a: { trait_type: string }) => a.trait_type === "Type")?.value}
+                    {
+                      selectedGod?.attributes.find(
+                        (a: { trait_type: string }) => a.trait_type === "Type"
+                      )?.value
+                    }
                   </span>
                 </div>
               </div>
@@ -247,7 +265,10 @@ export default function Home() {
               {/* Attributes Section */}
               <div className="grid grid-cols-2 gap-6 mb-8">
                 {selectedGod?.attributes
-                  .filter((attr: { trait_type: string }) => attr.trait_type !== "Type" && attr.trait_type !== "Tier")
+                  .filter(
+                    (attr: { trait_type: string }) =>
+                      attr.trait_type !== "Type" && attr.trait_type !== "Tier"
+                  )
                   .map((attr: { trait_type: string }) => (
                     <AttributeCard key={attr.trait_type} attribute={attr} />
                   ))}
@@ -257,12 +278,16 @@ export default function Home() {
               <div className="bg-gradient-to-r from-gray-900/40 to-transparent p-4 rounded-lg backdrop-blur-sm border border-purple-500/20 mb-8">
                 <div className="flex items-center justify-between">
                   <div className="text-gray-400 text-sm">Rarity Score</div>
-                  <div className="text-amber-400 text-2xl font-bold">{selectedGod?.properties.rarity_score}</div>
+                  <div className="text-amber-400 text-2xl font-bold">
+                    {selectedGod?.properties.rarity_score}
+                  </div>
                 </div>
                 <div className="mt-2 w-full bg-gray-700/30 rounded-full h-2">
                   <div
                     className="bg-gradient-to-r from-purple-500 to-amber-500 h-2 rounded-full"
-                    style={{ width: `${(selectedGod?.properties.rarity_score / 30) * 100}%` }}
+                    style={{
+                      width: `${(selectedGod?.properties.rarity_score / 30) * 100}%`,
+                    }}
                   ></div>
                 </div>
               </div>
@@ -286,10 +311,11 @@ export default function Home() {
               <button
                 key={god.name}
                 onClick={() => setSelectedGodIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all ${index === selectedGodIndex
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === selectedGodIndex
                     ? "bg-amber-400 scale-125"
                     : "bg-gray-600 hover:bg-gray-400"
-                  }`}
+                }`}
                 aria-label={`Select ${god.name}`}
               />
             ))}
@@ -309,8 +335,11 @@ export default function Home() {
             <button
               key={god.name}
               onClick={() => setSelectedGodIndex(index)}
-              className={`relative px-5 group ${index === selectedGodIndex ? "scale-110 z-10" : "opacity-70 hover:opacity-100"
-                } transition-all duration-300`}
+              className={`relative px-5 group ${
+                index === selectedGodIndex
+                  ? "scale-110 z-10"
+                  : "opacity-70 hover:opacity-100"
+              } transition-all duration-300`}
             >
               {/* <div className={`absolute -inset-1 rounded-lg ${
                 index === selectedGodIndex 
@@ -325,8 +354,13 @@ export default function Home() {
                   className="object-cover"
                 />
               </div>
-              <div className={`absolute -bottom-6 left-0 right-0 text-center text-xs font-medium capitalize ${index === selectedGodIndex ? "text-amber-400" : "text-gray-400"
-                }`}>
+              <div
+                className={`absolute -bottom-6 left-0 right-0 text-center text-xs font-medium capitalize ${
+                  index === selectedGodIndex
+                    ? "text-amber-400"
+                    : "text-gray-400"
+                }`}
+              >
                 {god.name}
               </div>
             </button>
@@ -349,7 +383,7 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
 
 function AttributeCard({ attribute }: { attribute: Attribute }) {
@@ -361,25 +395,29 @@ function AttributeCard({ attribute }: { attribute: Attribute }) {
       tempest: "from-blue-600 to-cyan-400",
       wisdom: "from-indigo-600 to-blue-400",
       rewind: "from-rose-600 to-pink-400",
-      default: "from-gray-600 to-gray-400"
-    }
+      default: "from-gray-600 to-gray-400",
+    };
 
-    return colors[type as keyof typeof colors] || colors.default
-  }
+    return colors[type as keyof typeof colors] || colors.default;
+  };
 
   return (
     <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800">
       <div className="p-4">
         {/* <div className="text-gray-400 text-sm mb-1 capitalize">{attribute.trait_type}</div> */}
         <div className="flex items-center justify-between">
-          <div className="text-white text-2xl font-bold">{attribute.trait_type.charAt(0).toUpperCase() + attribute.trait_type.slice(1)}</div>
+          <div className="text-white text-2xl font-bold">
+            {attribute.trait_type.charAt(0).toUpperCase() +
+              attribute.trait_type.slice(1)}
+          </div>
           <div className="flex items-center gap-0.5">
             {Array.from({ length: 10 }).map((_, i) => (
               <div
                 key={i}
-                className={`w-1 h-4 rounded-sm ${i < Number(attribute.value)
-                  ? `bg-gradient-to-t ${getAttributeColor(attribute.trait_type)}`
-                  : "bg-gray-700"
+                className={`w-1 h-4 rounded-sm ${
+                  i < Number(attribute.value)
+                    ? `bg-gradient-to-t ${getAttributeColor(attribute.trait_type)}`
+                    : "bg-gray-700"
                 }`}
               />
             ))}
@@ -390,5 +428,5 @@ function AttributeCard({ attribute }: { attribute: Attribute }) {
         ></div>
       </div>
     </div>
-  )
+  );
 }

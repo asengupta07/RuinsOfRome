@@ -140,25 +140,28 @@ export default function Home() {
             </h2>
 
             <p className="text-lg md:text-xl text-stone-300 max-w-3xl mb-8 leading-relaxed">
-              Engage in thrilling turn-based battles against other players or AI opponents. 
-              Trade and collect unique gladiators and divine artifacts on the blockchain, 
-              while making strategic decisions that shape your destiny in the arena.
+              Engage in thrilling turn-based battles against other players or AI
+              opponents. Trade and collect unique gladiators and divine
+              artifacts on the blockchain, while making strategic decisions that
+              shape your destiny in the arena.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
               <div className="bg-stone-900/50 border rounded-2xl border-stone-800 p-6">
                 <h3 className="text-xl font-serif mb-3">Gladiators & Gods</h3>
                 <p className="text-stone-400">
-                  Engage in strategic turn-based combat where your gladiator&apos;s fate
-                  is determined by skill, divine favor, and blockchain-verified battles.
+                  Engage in strategic turn-based combat where your
+                  gladiator&apos;s fate is determined by skill, divine favor,
+                  and blockchain-verified battles.
                 </p>
               </div>
 
               <div className="bg-stone-900/50 border rounded-2xl border-stone-800 p-6">
                 <h3 className="text-xl font-serif mb-3">Roman Deities</h3>
                 <p className="text-stone-400">
-                  Call upon the powers of ancient gods to enhance your gladiator&apos;s abilities,
-                  with each blessing recorded immutably on the blockchain.
+                  Call upon the powers of ancient gods to enhance your
+                  gladiator&apos;s abilities, with each blessing recorded
+                  immutably on the blockchain.
                 </p>
               </div>
             </div>
@@ -183,9 +186,10 @@ export default function Home() {
             </h2>
 
             <p className="text-lg md:text-xl text-stone-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Every battle tells a unique story, with dynamic narration and stunning visuals
-              bringing your gladiator&apos;s journey to life. Watch as your tactical decisions and
-              divine interventions unfold into an epic saga crafted exclusively for you.
+              Every battle tells a unique story, with dynamic narration and
+              stunning visuals bringing your gladiator&apos;s journey to life.
+              Watch as your tactical decisions and divine interventions unfold
+              into an epic saga crafted exclusively for you.
             </p>
 
             <div className="flex justify-center gap-4 mt-8">
@@ -222,7 +226,8 @@ export default function Home() {
 
             <div className="text-sm text-stone-500">
               <p>
-                © {new Date().getFullYear()} Ruins of Rome. All rights reserved.
+                © {new Date().getFullYear()} Ruins of Rome. All rights
+                reserved.
               </p>
               <p className="mt-1">A historical exploration experience</p>
             </div>

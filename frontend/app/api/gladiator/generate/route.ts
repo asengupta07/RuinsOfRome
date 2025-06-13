@@ -111,8 +111,8 @@ const generateImage = async (characterDescription: string) => {
     - Background should be simple and neutral like an ancient Roman gladiator arena
 
     The sculpture should capture the character's physical attributes exactly as described while maintaining historical accuracy for ancient Roman gladiator representations.`;
-  const imageUrl = await generateImageFunction(prompt);
-  return imageUrl;
+  const image = await generateImageFunction(prompt);
+  return image;
 };
 
 export async function POST(request: NextRequest) {
@@ -166,7 +166,7 @@ export async function POST(request: NextRequest) {
   const attackValue = BASE_ATTACK + Math.random() * 10;
   const defenceValue = BASE_DEFENCE + Math.random() * 10;
   const speedValue = BASE_SPEED + Math.random() * 10;
-  const imageUrl = await generateImage(characterLore.description);
+  const image = await generateImage(characterLore.description);
 
   return NextResponse.json({
     name,
@@ -177,7 +177,7 @@ export async function POST(request: NextRequest) {
     attackValue: Math.floor(attackValue),
     defenceValue: Math.floor(defenceValue),
     speedValue: Math.floor(speedValue),
-    imageUrl,
+    image,
     success: true,
   });
 }

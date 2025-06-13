@@ -1,5 +1,5 @@
-export const celestialAddress = "0x6812362C9c19e76fb3b91e18f83b6BE6D17B7e0c";
-export const gladiatorAddress = "0x936e03DF2F9c34637d716b1312473b7DaB326533";
+export const celestialAddress = "0xAa91B6a84f381025355EeD4F6bc07527B0D16628";
+export const gladiatorAddress = "0x12d209911D371fB1a97B4CB72e5574DF0bbbA88a";
 
 export const celestialAbi = [
   {
@@ -9,7 +9,49 @@ export const celestialAbi = [
   },
   {
     inputs: [],
+    name: "Celestial__NotForSale",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "Celestial__NotOwner",
+    type: "error",
+  },
+  {
+    inputs: [],
     name: "Celestial__OnlyOwner",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "Celestial__PriceMustBeAboveZero",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+    ],
+    name: "Celestial__PriceNotMet",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "Celestial__TokenAlreadyListed",
     type: "error",
   },
   {
@@ -202,6 +244,75 @@ export const celestialAbi = [
     inputs: [
       {
         indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "TokenDelisted",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "seller",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+    ],
+    name: "TokenListed",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "seller",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "buyer",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+    ],
+    name: "TokenSold",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
         internalType: "address",
         name: "from",
         type: "address",
@@ -267,12 +378,118 @@ export const celestialAbi = [
         type: "uint256",
       },
     ],
+    name: "buyNFT",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "cancelListing",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllListings",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "seller",
+            type: "address",
+          },
+        ],
+        internalType: "struct Celestial.Listing[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
     name: "getApproved",
     outputs: [
       {
         internalType: "address",
         name: "",
         type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "getListing",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "seller",
+            type: "address",
+          },
+        ],
+        internalType: "struct Celestial.Listing",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "addy",
+        type: "address",
+      },
+    ],
+    name: "getListingsForAddress",
+    outputs: [
+      {
+        internalType: "uint256[]",
+        name: "tokenIds",
+        type: "uint256[]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "prices",
+        type: "uint256[]",
       },
     ],
     stateMutability: "view",
@@ -292,6 +509,11 @@ export const celestialAbi = [
         internalType: "string[]",
         name: "",
         type: "string[]",
+      },
+      {
+        internalType: "uint256[]",
+        name: "",
+        type: "uint256[]",
       },
     ],
     stateMutability: "view",
@@ -319,6 +541,24 @@ export const celestialAbi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+    ],
+    name: "listNFT",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -893,6 +1133,11 @@ export const gladiatorAbi = [
     ],
     name: "getGladiatorForPlayer",
     outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
       {
         internalType: "string",
         name: "",

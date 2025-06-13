@@ -1,18 +1,19 @@
+// components/Navbar.tsx
 "use client";
-
-import type React from "react";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { usePathname } from "next/navigation";
+import { useMusic } from "@/app/context/MusicContext";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isPlaying, toggleMusic } = useMusic();
   const pathname = usePathname();
   const isBattlePage = pathname === "/battle";
 
@@ -41,7 +42,7 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8 font-serif">
-          <Link
+            <Link
               href="/dashboard"
               className="text-stone-300 hover:text-white transition-colors"
             >
@@ -71,47 +72,19 @@ export default function Navbar() {
             >
               About
             </Link>
+
             <ConnectButton accountStatus="avatar" />
+
+            <Button
+              variant="ghost"
+              className="text-stone-300 transition-colors p-2"
+              onClick={toggleMusic}
+            >
+              {isPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
+            </Button>
           </div>
         </div>
       </div>
     </nav>
-  );
-}
-
-function NavLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      className="text-zinc-400 hover:text-white transition-colors duration-200"
-    >
-      {children}
-    </Link>
-  );
-}
-
-function MobileNavLink({
-  href,
-  onClick,
-  children,
-}: {
-  href: string;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      className="text-xl font-medium text-zinc-200 hover:text-white transition-colors duration-200 py-2 border-b border-white/10"
-      onClick={onClick}
-    >
-      {children}
-    </Link>
   );
 }
