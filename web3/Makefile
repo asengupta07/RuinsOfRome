@@ -1,14 +1,27 @@
 compile:
 	npx hardhat compile
+	
+deploy:
+	npx hardhat run ignition/modules/contracts.ts --network fuji
 
-deploy_Celestial:
-	npx hardhat run ignition/modules/celestial.ts --network eduChain
+verify:
+	npx hardhat verify --network fuji 0xf16516D2a4806B16CA123085d332A57b89b2ff6f
+	npx hardhat verify --network fuji 0x0ba793eE542f15477d61E963EEbdF529279acAda
 
-deploy_Gladiator:
-	npx hardhat run ignition/modules/gladiator.ts --network eduChain
 
-verify_Celestial:
-	npx hardhat verify --network eduChain 0x6812362C9c19e76fb3b91e18f83b6BE6D17B7e0c
 
-verify_Gladiator:
-	npx hardhat verify --network eduChain 0x936e03DF2F9c34637d716b1312473b7DaB326533
+
+
+
+deployCelestial:
+	npx hardhat run ignition/modules/celestial.ts --network fuji
+
+deployGladiator:
+	npx hardhat run ignition/modules/gladiator.ts --network fuji
+
+verifyCelestial:
+	npx hardhat verify --network fuji 0xf16516D2a4806B16CA123085d332A57b89b2ff6f
+
+verifyGladiator:
+	npx hardhat verify --network fuji 0x0ba793eE542f15477d61E963EEbdF529279acAdas
+	

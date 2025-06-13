@@ -69,12 +69,12 @@ contract Gladiator is ERC721URIStorage {
 
     function getGladiatorForPlayer(
         address player
-    ) external view returns (string memory) {
+    ) external view returns (uint256, string memory) {
         if (!hasClaimed[player]) revert Gladiator__NotClaimed();
 
         for (uint256 i = 0; i < nextGladiatorId; i++) {
             if (ownerOf(i) == player) {
-                return tokenURI(i);
+                return (i, tokenURI(i));
             }
         }
         revert Gladiator__NoGladiatorOwned();
